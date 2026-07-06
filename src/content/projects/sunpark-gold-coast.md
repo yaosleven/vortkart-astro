@@ -1,6 +1,5 @@
 ---
 title: "SunPark Karting Experience"
-slug: "sunpark-gold-coast"
 category: "outdoor"
 location: "Gold Coast, Australia"
 country: "Australia"

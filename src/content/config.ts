@@ -5,7 +5,6 @@ const products = defineCollection({
   type: 'content',
   schema: z.object({
     title:       z.string(),                          // e.g. "EV-Pro® 48V"
-    slug:        z.string(),                          // e.g. "ev-pro-48"
     category:    z.enum(['electric', 'gas', 'racing', 'junior']),
     tagline:     z.string(),                          // short one-liner
     image:       z.string(),                          // /images/ev-pro-48/1.jpg
@@ -30,7 +29,6 @@ const projects = defineCollection({
   type: 'content',
   schema: z.object({
     title:       z.string(),                          // e.g. "SpeedZone Grand Prix"
-    slug:        z.string(),                          // e.g. "speedzone-grand-prix"
     category:    z.enum(['outdoor', 'indoor', 'resort', 'fec', 'corporate']),
     location:    z.string(),                          // e.g. "California, USA"
     country:     z.string(),                          // e.g. "USA"

@@ -1,6 +1,5 @@
 ---
 title: "Apex Corporate Karting"
-slug: "apex-corporate-london"
 category: "corporate"
 location: "London, UK"
 country: "UK"

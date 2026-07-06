@@ -1,6 +1,5 @@
 ---
 title: "SpeedZone Grand Prix"
-slug: "speedzone-grand-prix"
 category: "outdoor"
 location: "California, USA"
 country: "USA"

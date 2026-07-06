@@ -1,6 +1,5 @@
 ---
 title: "DuraTrak® 160"
-slug: "duratrak-160"
 category: "gas"
 tagline: "Compact 160cc gas rental kart — perfect for family entertainment centers."
 image: "/images/duratrak-160/1.jpg"

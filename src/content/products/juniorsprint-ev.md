@@ -1,6 +1,5 @@
 ---
 title: "JuniorSprint® EV"
-slug: "juniorsprint-ev"
 category: "junior"
 tagline: "Electric junior kart engineered for young drivers aged 5–12."
 image: "/images/juniorsprint-ev/1.jpg"

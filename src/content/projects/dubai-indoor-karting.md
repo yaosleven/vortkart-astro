@@ -1,6 +1,5 @@
 ---
 title: "Dubai Indoor Karting Dome"
-slug: "dubai-indoor-karting"
 category: "indoor"
 location: "Dubai, UAE"
 country: "UAE"

@@ -1,6 +1,5 @@
 ---
 title: "Grand Marina Resort Karting"
-slug: "grand-marina-resort"
 category: "resort"
 location: "Barcelona, Spain"
 country: "Spain"

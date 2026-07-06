@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map(p => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry('products', slug);
+if (!entry) return Astro.redirect('/listings');
+
+const { data: p } = entry;
+const { Content } = await entry.render();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// All products for related section (exclude current)
+const all = await getCollection('products');
+const related = all.filter(r => r.slug !== slug).sort((a,b) => a.data.order - b.data.order).slice(0, 3);
+
+// Build specs rows
+const specRows: { label: string; value: string }[] = [];
+if (p.specs.motor)      specRows.push({ label: 'Motor',        value: p.specs.motor });
+if (p.specs.engine)     specRows.push({ label: 'Engine',       value: p.specs.engine });
+if (p.specs.topSpeed)   specRows.push({ label: 'Top Speed',    value: p.specs.topSpeed });
+if (p.specs.weight)     specRows.push({ label: 'Weight',       value: p.specs.weight });
+if (p.specs.chargeTime) specRows.push({ label: 'Charge Time',  value: p.specs.chargeTime });
+if (p.specs.fuelTank)   specRows.push({ label: 'Fuel Tank',    value: p.specs.fuelTank });
+if (p.specs.extra)      specRows.push({ label: 'Notes',        value: p.specs.extra });
+---
+<BaseLayout
+  title={`${p.title} Commercial Go Kart | VortKart®`}
+  description={p.tagline}
+  canonical={`https://vortkart.com/product/${slug}`}
+>
+<style>
+.product-detail-hero{background:var(--dark-2);padding:var(--nav-height) 0 0}
+.pd-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;padding:60px 0 80px}
+.pd-gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pd-gallery-main{grid-column:span 2;border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:16/10}
+.pd-gallery-main img{width:100%;height:100%;object-fit:cover}
+.pd-gallery-thumb{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;cursor:pointer}
+.pd-gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.pd-gallery-thumb:hover img{transform:scale(1.05)}
+.pd-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(230,57,0,0.1);border:1px solid rgba(230,57,0,0.3);border-radius:100px;padding:4px 16px 4px 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
+.pd-badge span{background:var(--primary);color:var(--white);border-radius:100px;padding:3px 10px;font-size:10px}
+.pd-title{font-size:clamp(32px,4vw,52px);margin-bottom:16px}
+.pd-desc{font-size:16px;color:var(--gray-4);line-height:1.75;margin-bottom:32px}
+.pd-spec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px}
+.pd-spec-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-md);padding:24px}
+.pd-spec-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-3);margin-bottom:6px}
+.pd-spec-value{font-family:var(--font-heading);font-size:28px;font-weight:800;color:var(--white);line-height:1}
+.pd-hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.pd-section{padding:80px 0;background:var(--dark)}
+.pd-feature-list{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pd-feature-item{display:flex;align-items:flex-start;gap:14px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.pd-feature-item:nth-last-child(-n+2){border-bottom:none}
+.pd-check{width:22px;height:22px;background:rgba(230,57,0,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.pd-check svg{width:12px;height:12px;color:var(--primary)}
+.pd-table{width:100%;border-collapse:collapse}
+.pd-table th,.pd-table td{padding:14px 20px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px}
+.pd-table th{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);background:var(--dark-3)}
+.pd-table td:first-child{color:var(--gray-3)}
+.pd-table td:last-child{color:var(--white);font-weight:600}
+.pd-gallery-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pd-gallery-strip-img{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3}
+.pd-gallery-strip-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.pd-gallery-strip-img:hover img{transform:scale(1.05)}
+.pd-related-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-xl);overflow:hidden;transition:var(--transition)}
+.pd-related-card:hover{border-color:rgba(230,57,0,0.35);transform:translateY(-6px)}
+.pd-related-img{aspect-ratio:16/9;overflow:hidden}
+.pd-related-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pd-related-card:hover .pd-related-img img{transform:scale(1.05)}
+.pd-related-body{padding:24px}
+.pd-related-body h4{font-size:20px;margin-bottom:8px}
+.pd-related-body p{font-size:14px;color:var(--gray-3);margin-bottom:16px}
+.pd-cta-bar{background:var(--primary);padding:56px 0;text-align:center}
+.pd-cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+@media(max-width:1024px){.pd-hero-grid{grid-template-columns:1fr!important;gap:40px!important}.pd-feature-list{grid-template-columns:1fr!important}.pd-gallery-strip{grid-template-columns:repeat(2,1fr)!important}}
+</style>
+
+<div class="product-detail-hero">
+  <div class="container"><div class="pd-hero-grid">
+    <div class="fade-in">
+      <div class="pd-gallery">
+        <div class="pd-gallery-main"><img src={`${base}${p.image}`} alt={p.title} loading="lazy" /></div>
+        {(p.gallery ?? []).slice(0,2).map((img, i) => (
+          <div class="pd-gallery-thumb"><img src={`${base}${img}`} alt={`${p.title} view ${i+2}`} loading="lazy" /></div>
+        ))}
+      </div>
+    </div>
+    <div class="fade-in delay-2">
+      <nav class="breadcrumb" style="margin-bottom:20px">
+        <a href={`${base}/`}>Home</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <a href={`${base}/listings`}>Portfolio</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>{p.title}</span>
+      </nav>
+      {p.badge && <div class="pd-badge"><span>{p.badge}</span>{p.category} kart</div>}
+      <h1 class="pd-title">{p.title}<br><span class="highlight">Commercial Kart</span></h1>
+      <p class="pd-desc">{p.tagline}</p>
+      <div class="pd-spec-grid">
+        {specRows.slice(0,4).map(s => (
+          <div class="pd-spec-card">
+            <div class="pd-spec-label">{s.label}</div>
+            <div class="pd-spec-value">{s.value}</div>
+          </div>
+        ))}
+      </div>
+      <div class="pd-hero-actions">
+        <a href={`${base}/contact`} class="btn btn-primary btn-lg">Request Quote</a>
+        <a href={`${base}/contact`} class="btn btn-outline btn-lg">Download Spec Sheet</a>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<section class="pd-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="label">Features</div>
+      <h2>Built for <span class="highlight">Commercial</span> Performance</h2>
+    </div>
+    <div class="pd-feature-list fade-in">
+      {p.features.map(f => (
+        <div class="pd-feature-item">
+          <div class="pd-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span style="font-size:15px;color:var(--gray-4)">{f}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="pd-section" style="background:var(--dark-2)">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">Full Specifications</div><h2>Technical <span class="highlight">Spec Sheet</span></h2></div>
+    <table class="pd-table fade-in">
+      <thead><tr><th>Specification</th><th>Value</th></tr></thead>
+      <tbody>
+        {specRows.map(s => <tr><td>{s.label}</td><td>{s.value}</td></tr>)}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{(p.gallery ?? []).length > 0 && (
+<section class="pd-section" style="background:var(--dark)">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">Gallery</div><h2>In <span class="highlight">Action</span></h2></div>
+    <div class="pd-gallery-strip fade-in delay-1">
+      {(p.gallery ?? []).slice(0,4).map((img, i) => (
+        <div class="pd-gallery-strip-img"><img src={`${base}${img}`} alt={`${p.title} gallery ${i+1}`} loading="lazy" /></div>
+      ))}
+    </div>
+  </div>
+</section>
+)}
+
+<section class="pd-section" style="background:var(--dark-2);padding-bottom:120px">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">You Might Also Like</div><h2>Related <span class="highlight">Products</span></h2></div>
+    <div class="grid-3 fade-in delay-1">
+      {related.map(r => (
+        <div class="pd-related-card">
+          <div class="pd-related-img"><img src={`${base}${r.data.image}`} alt={r.data.title} loading="lazy" /></div>
+          <div class="pd-related-body">
+            <h4>{r.data.title}</h4>
+            <p>{r.data.tagline}</p>
+            <a href={`${base}/product/${r.slug}`} class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="pd-cta-bar">
+  <div class="container">
+    <h3 style="font-size:clamp(24px,4vw,40px);color:var(--white)">Ready to Order the {p.title}?</h3>
+    <p style="color:rgba(255,255,255,0.8);max-width:480px;margin:12px auto 0">Get a factory-direct quote for your fleet.</p>
+    <div class="pd-cta-buttons">
+      <a href={`${base}/contact`} class="btn btn-white">Request a Quote</a>
+      <a href={`${base}/listings`} class="btn btn-outline">View More Products</a>
+    </div>
+  </div>
+</div>
+</BaseLayout>

@@ -1,6 +1,5 @@
 ---
 title: "EV-Max® 72"
-slug: "ev-max-72"
 category: "electric"
 tagline: "Our newest flagship — 72V high-performance electric kart with gas-kart acceleration."
 image: "/images/ev-max-72/1.jpg"

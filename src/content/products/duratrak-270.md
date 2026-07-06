@@ -1,6 +1,5 @@
 ---
 title: "DuraTrak® 270"
-slug: "duratrak-270"
 category: "gas"
 tagline: "270cc gas-powered rental kart. Built for high-volume outdoor operations."
 image: "/images/duratrak-270/1.jpg"

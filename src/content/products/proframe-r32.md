@@ -1,6 +1,5 @@
 ---
 title: "ProFrame® R32"
-slug: "proframe-r32"
 category: "racing"
 tagline: "CIK/FIA-spec racing chassis for club and national competition."
 image: "/images/proframe-r32/1.jpg"

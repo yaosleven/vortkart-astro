@@ -1,6 +1,5 @@
 ---
 title: "AsiaPac Family Karting"
-slug: "asiapac-family-karting"
 category: "fec"
 location: "Singapore"
 country: "Singapore"

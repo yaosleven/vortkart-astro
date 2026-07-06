@@ -1,6 +1,5 @@
 ---
 title: "EV-Pro® 48V"
-slug: "ev-pro-48"
 category: "electric"
 tagline: "The world's best-selling electric rental kart. Purpose-built for high-throughput commercial venues."
 image: "/images/ev-pro-48/1.jpg"
