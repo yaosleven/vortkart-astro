@@ -161,9 +161,10 @@ p { font-size: 16px; line-height: 1.7; color: var(--gray-4); }
   display: flex; align-items: center;
 }
 .nav-logo-img {
-  height: 36px;
+  height: 40px;
   width: auto;
   display: block;
+  max-width: 160px;
 }
 .nav-links {
   display: flex; align-items: center; gap: 28px;
@@ -565,7 +566,7 @@ select.form-control { appearance: none; }
   .container { padding: 0 20px; }
   .nav-links, .nav-cta .btn, .nav-phone { display: none; }
   .nav-toggle { display: flex; }
-  .nav-logo-img { height: 30px; }
+  .nav-logo-img { height: 36px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .trust-bar-inner { flex-direction: column; gap: 0; }
   .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); width: 100%; justify-content: center; padding: 10px 16px; white-space: normal; flex-shrink: 1; }
@@ -597,7 +598,8 @@ select.form-control { appearance: none; }
   .social-icon { width: 36px; height: 36px; }
   .faq-question { font-size: 15px; padding: 20px 0; }
   .faq-answer-inner { font-size: 14px; padding-bottom: 20px; }
-  .filter-bar { gap: 6px; margin-bottom: 28px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+  .filter-bar { gap: 6px; margin-bottom: 28px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 4px; scrollbar-width: none; }
+  .filter-bar::-webkit-scrollbar { display: none; }
   .filter-btn { padding: 8px 16px; font-size: 12px; white-space: nowrap; }
   .testimonial-card { padding: 28px; }
   .advantage-card { padding: 28px; }
@@ -669,7 +671,7 @@ select.form-control { appearance: none; }
   .pd-spec-grid { grid-template-columns: 1fr !important; }
   .pd-gallery { grid-template-columns: 1fr 1fr !important; }
   .team-grid { grid-template-columns: 1fr !important; }
-  .nav-logo-img { height: 28px; }
+  .nav-logo-img { height: 34px; }
   .testimonial-card { padding: 20px; }
   .advantage-card { padding: 20px; }
   .advantage-card h3 { font-size: 18px; }
