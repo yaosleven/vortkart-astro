@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ---- Active nav link ----
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(link => {
-    const href = (link.getAttribute('href') || '').split('#')[0]; // strip anchors for matching
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    const href = (link.getAttribute('href') || '').split('#')[0].replace(/\/$/, ''); // strip anchors + trailing slash
+    if (href && href === currentPath) {
       link.classList.add('active');
     }
   });
