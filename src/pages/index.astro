@@ -8,9 +8,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   description="VortKart® is a leading commercial go kart manufacturer offering rental go karts, racing chassis production, and complete go kart track design & turnkey solutions worldwide."
   canonical="https://vortkart.com/"
 >
-<style define:vars={{heroBg: `${base}/images/duratrak-270/8.jpg`}}>
+<style>
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:var(--nav-height)}
-.hero-bg{position:absolute;inset:0;background:url(var(--heroBg)) center/cover no-repeat}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,10,10,0.92) 0%,rgba(10,10,10,0.65) 55%,rgba(10,10,10,0.3) 100%)}
 .hero-content{position:relative;z-index:2;max-width:680px;padding:80px 0 120px}
 .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(230,57,0,0.12);border:1px solid rgba(230,57,0,0.3);border-radius:100px;padding:6px 16px 6px 6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:24px}
@@ -63,7 +63,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 @media(max-width:768px){.hero{min-height:auto;padding-bottom:40px}.hero-content{padding:40px 0 80px!important;max-width:100%!important}.about-preview-grid{grid-template-columns:1fr!important;gap:48px!important}.testimonials-grid{grid-template-columns:1fr!important}}
 </style>
 <section class="hero">
-  <div class="hero-bg"></div><div class="hero-overlay"></div>
+  <div class="hero-bg" style={`background-image:url('${base}/images/duratrak-270/8.jpg')`}></div><div class="hero-overlay"></div>
   <div class="container"><div class="hero-content">
     <div class="hero-badge"><span>Trusted Worldwide</span>Commercial Karting Leader Since 2009</div>
     <h1>Built for <em>Speed.</em><br>Engineered to<br>Last.</h1>
