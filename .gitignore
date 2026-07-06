@@ -5,6 +5,9 @@ node_modules/
 dist/
 .astro/
 
+# Dev logs
+dev.log
+
 # Environment files
 .env
 .env.*
