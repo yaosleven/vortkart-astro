@@ -1,5 +1,7 @@
 ﻿---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout
   title="VortKart® | Commercial Go Kart Manufacturer & Track Design Solutions"
@@ -8,7 +10,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
 <style>
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:var(--nav-height)}
-.hero-bg{position:absolute;inset:0;background:url('/images/duratrak-270/8.jpg') center/cover no-repeat}
+.hero-bg{position:absolute;inset:0;background:url('${base}/images/duratrak-270/8.jpg') center/cover no-repeat}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,10,10,0.92) 0%,rgba(10,10,10,0.65) 55%,rgba(10,10,10,0.3) 100%)}
 .hero-content{position:relative;z-index:2;max-width:680px;padding:80px 0 120px}
 .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(230,57,0,0.12);border:1px solid rgba(230,57,0,0.3);border-radius:100px;padding:6px 16px 6px 6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:24px}
@@ -67,8 +69,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h1>Built for <em>Speed.</em><br>Engineered to<br>Last.</h1>
     <p class="hero-sub">VortKart® manufactures world-class commercial go karts, racing chassis, and delivers complete turnkey karting solutions from track design to opening day.</p>
     <div class="hero-actions">
-      <a href="/contact" class="btn btn-primary btn-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;vertical-align:-3px;margin-right:8px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 010 2.94 2 2 0 012 .76h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Request a Quote</a>
-      <a href="/listings" class="btn btn-outline btn-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;vertical-align:-3px;margin-right:8px"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>View Portfolio</a>
+      <a href={`${base}/contact`} class="btn btn-primary btn-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;vertical-align:-3px;margin-right:8px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 010 2.94 2 2 0 012 .76h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Request a Quote</a>
+      <a href={`${base}/listings`} class="btn btn-outline btn-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;vertical-align:-3px;margin-right:8px"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>View Portfolio</a>
     </div>
     <div class="hero-meta">
       <div class="hero-meta-item"><div class="hero-meta-num"><span>500</span>+</div><div class="hero-meta-label">Karts Deployed</div></div>
@@ -102,11 +104,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <section class="section services-preview"><div class="container">
   <div class="section-header fade-in"><div class="label">What We Do</div><h2>Complete Karting<br><span class="highlight">Solutions</span></h2><p>From a single rental kart to a full-scale attraction — we build it, design it, and deliver it ready to run.</p></div>
   <div class="grid-3">
-    <a href="/services#commercial" class="service-preview-card fade-in delay-1"><img src="/images/ev-pro-48/1.jpg" alt="Commercial go karts" loading="lazy" /><div class="service-preview-overlay"></div><div class="service-preview-content"><span class="service-tag">Manufacturing</span><h4>Commercial Go Karts</h4><p>Electric &amp; gas rental karts for all venues</p></div><div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></a>
-    <a href="/services#racing" class="service-preview-card fade-in delay-2"><img src="/images/proframe-r32/1.jpg" alt="Racing kart chassis" loading="lazy" /><div class="service-preview-overlay"></div><div class="service-preview-content"><span class="service-tag">Performance</span><h4>Racing Kart Chassis</h4><p>Competition-grade tubular steel frames</p></div><div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></a>
-    <a href="/services#track" class="service-preview-card fade-in delay-3"><img src="/images/proframe-r32/4.jpg" alt="Track design" loading="lazy" /><div class="service-preview-overlay"></div><div class="service-preview-content"><span class="service-tag">Turnkey</span><h4>Track Design &amp; Build</h4><p>Complete attraction from concept to opening</p></div><div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></a>
+    <a href={`${base}/services#commercial`} class="service-preview-card fade-in delay-1"><img src={`${base}/images/ev-pro-48/1.jpg`} alt="Commercial go karts" loading="lazy" /><div class="service-preview-overlay"></div><div class="service-preview-content"><span class="service-tag">Manufacturing</span><h4>Commercial Go Karts</h4><p>Electric &amp; gas rental karts for all venues</p></div><div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></a>
+    <a href={`${base}/services#racing`} class="service-preview-card fade-in delay-2"><img src={`${base}/images/proframe-r32/1.jpg`} alt="Racing kart chassis" loading="lazy" /><div class="service-preview-overlay"></div><div class="service-preview-content"><span class="service-tag">Performance</span><h4>Racing Kart Chassis</h4><p>Competition-grade tubular steel frames</p></div><div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></a>
+    <a href={`${base}/services#track`} class="service-preview-card fade-in delay-3"><img src={`${base}/images/proframe-r32/4.jpg`} alt="Track design" loading="lazy" /><div class="service-preview-overlay"></div><div class="service-preview-content"><span class="service-tag">Turnkey</span><h4>Track Design &amp; Build</h4><p>Complete attraction from concept to opening</p></div><div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></a>
   </div>
-  <div class="text-center mt-32 fade-in"><a href="/services" class="btn btn-outline btn-lg">Explore All Services</a></div>
+  <div class="text-center mt-32 fade-in"><a href={`${base}/services`} class="btn btn-outline btn-lg">Explore All Services</a></div>
 </div></section>
 <section class="section testimonials-section"><div class="container">
   <div class="section-header center fade-in"><div class="label">Client Voices</div><h2>What Our <span class="highlight">Operators</span> Say</h2><p>Real feedback from track owners, resort managers, and FEC operators who chose VortKart®.</p></div>
@@ -118,8 +120,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </div></section>
 <section class="section about-preview"><div class="container"><div class="about-preview-grid">
   <div class="about-img-stack fade-in">
-    <div class="about-img-main"><img src="/images/ev-pro-48/2.jpg" alt="VortKart facility" loading="lazy" /></div>
-    <div class="about-img-accent"><img src="/images/proframe-r32/3.jpg" alt="Kart chassis" loading="lazy" /></div>
+    <div class="about-img-main"><img src={`${base}/images/ev-pro-48/2.jpg`} alt="VortKart facility" loading="lazy" /></div>
+    <div class="about-img-accent"><img src={`${base}/images/proframe-r32/3.jpg`} alt="Kart chassis" loading="lazy" /></div>
     <div class="about-years-badge"><div class="num">15</div><div class="txt">Years of<br>Excellence</div></div>
   </div>
   <div class="about-text fade-in delay-2">
@@ -132,13 +134,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <li class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><p>24/7 technical support and spare parts supply globally</p></li>
       <li class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><p>Custom livery, branding, and fleet configurations available</p></li>
     </ul>
-    <a href="/about" class="btn btn-primary">Our Full Story</a>
+    <a href={`${base}/about`} class="btn btn-primary">Our Full Story</a>
   </div>
 </div></div></section>
 <section class="cta-section"><div class="container"><div class="fade-in">
   <div class="label" style="justify-content:center">Start Your Project</div>
   <h2>Ready to Launch Your<br><span class="highlight">Karting Attraction?</span></h2>
   <p>Tell us your vision. We will build it — from a single kart to a full turnkey track.</p>
-  <div class="cta-buttons"><a href="/contact" class="btn btn-primary btn-lg">Get a Free Quote</a><a href="/services" class="btn btn-outline btn-lg">Explore Services</a></div>
+  <div class="cta-buttons"><a href={`${base}/contact`} class="btn btn-primary btn-lg">Get a Free Quote</a><a href={`${base}/services`} class="btn btn-outline btn-lg">Explore Services</a></div>
 </div></div></section>
 </BaseLayout>

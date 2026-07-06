@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout
   title="Privacy Policy | VortKart®"
@@ -42,7 +44,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
       <nav class="breadcrumb" style="justify-content:center;margin-bottom:32px">
-        <a href="/">Home</a>
+        <a href={`${base}/`}>Home</a>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         <span>Privacy Policy</span>
       </nav>
@@ -175,7 +177,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </ul>
         </div>
         <div class="legal-back">
-          <a href="/" class="btn btn-outline btn-lg">Back to Home</a>
+          <a href={`${base}/`} class="btn btn-outline btn-lg">Back to Home</a>
         </div>
       </div>
 

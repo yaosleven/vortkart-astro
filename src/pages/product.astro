@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout
   title="EV-Pro® 48V Commercial Go Kart | VortKart®"
@@ -60,13 +62,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="container"><div class="pd-hero-grid">
     <div class="fade-in">
       <div class="pd-gallery">
-        <div class="pd-gallery-main"><img src="/images/ev-pro-48/1.jpg" alt="EV-Pro 48V Commercial Go Kart — front view" loading="lazy" /></div>
-        <div class="pd-gallery-thumb"><img src="/images/ev-pro-48/2.jpg" alt="EV-Pro 48V — side profile" loading="lazy" /></div>
-        <div class="pd-gallery-thumb"><img src="/images/ev-pro-48/3.jpg" alt="EV-Pro 48V — detail view" loading="lazy" /></div>
+        <div class="pd-gallery-main"><img src={`${base}/images/ev-pro-48/1.jpg`} alt="EV-Pro 48V Commercial Go Kart — front view" loading="lazy" /></div>
+        <div class="pd-gallery-thumb"><img src={`${base}/images/ev-pro-48/2.jpg`} alt="EV-Pro 48V — side profile" loading="lazy" /></div>
+        <div class="pd-gallery-thumb"><img src={`${base}/images/ev-pro-48/3.jpg`} alt="EV-Pro 48V — detail view" loading="lazy" /></div>
       </div>
     </div>
     <div class="fade-in delay-2">
-      <nav class="breadcrumb" style="margin-bottom:20px"><a href="/">Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><a href="/listings">Portfolio</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>EV-Pro® 48V</span></nav>
+      <nav class="breadcrumb" style="margin-bottom:20px"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><a href={`${base}/listings`}>Portfolio</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>EV-Pro® 48V</span></nav>
       <div class="pd-badge"><span>NEW 2025</span>Best Seller Electric</div>
       <h1 class="pd-title">EV-Pro® 48V<br><span class="highlight">Commercial Kart</span></h1>
       <p class="pd-desc">Our flagship electric commercial go kart — engineered for high-throughput rental operations with zero emissions, ultra-low noise, and industry-leading battery runtime. The preferred choice for indoor venues, resorts, and eco-conscious operators worldwide.</p>
@@ -77,8 +79,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="pd-spec-card"><div class="pd-spec-label">Max Speed</div><div class="pd-spec-value">45</div><div class="pd-spec-unit">km/h</div></div>
       </div>
       <div class="pd-hero-actions">
-        <a href="/contact" class="btn btn-primary btn-lg">Request Quote</a>
-        <a href="/contact" class="btn btn-outline btn-lg">Download Spec Sheet</a>
+        <a href={`${base}/contact`} class="btn btn-primary btn-lg">Request Quote</a>
+        <a href={`${base}/contact`} class="btn btn-outline btn-lg">Download Spec Sheet</a>
       </div>
     </div>
   </div></div>
@@ -128,10 +130,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="container">
     <div class="section-header fade-in"><div class="label">Gallery</div><h2>In <span class="highlight">Action</span></h2></div>
     <div class="pd-gallery-strip fade-in delay-1">
-      <div class="pd-gallery-strip-img"><img src="/images/ev-pro-48/2.jpg" alt="EV-Pro 48V side profile" loading="lazy" /></div>
-      <div class="pd-gallery-strip-img"><img src="/images/ev-pro-48/3.jpg" alt="EV-Pro 48V detail" loading="lazy" /></div>
-      <div class="pd-gallery-strip-img"><img src="/images/ev-pro-48/4.jpg" alt="EV-Pro 48V on track" loading="lazy" /></div>
-      <div class="pd-gallery-strip-img"><img src="/images/ev-pro-48/5.jpg" alt="EV-Pro 48V fleet" loading="lazy" /></div>
+      <div class="pd-gallery-strip-img"><img src={`${base}/images/ev-pro-48/2.jpg`} alt="EV-Pro 48V side profile" loading="lazy" /></div>
+      <div class="pd-gallery-strip-img"><img src={`${base}/images/ev-pro-48/3.jpg`} alt="EV-Pro 48V detail" loading="lazy" /></div>
+      <div class="pd-gallery-strip-img"><img src={`${base}/images/ev-pro-48/4.jpg`} alt="EV-Pro 48V on track" loading="lazy" /></div>
+      <div class="pd-gallery-strip-img"><img src={`${base}/images/ev-pro-48/5.jpg`} alt="EV-Pro 48V fleet" loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -140,9 +142,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="container">
     <div class="section-header fade-in"><div class="label">You Might Also Like</div><h2>Related <span class="highlight">Products</span></h2></div>
     <div class="grid-3 fade-in delay-1">
-      <div class="pd-related-card"><div class="pd-related-img"><img src="/images/duratrak-270/1.jpg" alt="DuraTrak 270 gas kart" loading="lazy" /></div><div class="pd-related-body"><h4>DuraTrak® 270</h4><p>270cc gas-powered rental kart. 75 km/h, heavy-duty frame, high-throughput outdoor operations.</p><a href="/product" class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
-      <div class="pd-related-card"><div class="pd-related-img"><img src="/images/ev-max-72/1.jpg" alt="EV-Max 72V high-performance kart" loading="lazy" /></div><div class="pd-related-body"><h4>EV-Max® 72</h4><p>72V flagship electric kart. 65 km/h, 0–50 in 3.8s, premium indoor entertainment centers.</p><a href="/product" class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
-      <div class="pd-related-card"><div class="pd-related-img"><img src="/images/juniorsprint-ev/1.jpg" alt="JuniorSprint EV junior kart" loading="lazy" /></div><div class="pd-related-body"><h4>JuniorSprint® EV</h4><p>Electric junior kart for ages 5–12. 25 km/h max, impact-resistant bodywork, age-verified activation.</p><a href="/product" class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+      <div class="pd-related-card"><div class="pd-related-img"><img src={`${base}/images/duratrak-270/1.jpg`} alt="DuraTrak 270 gas kart" loading="lazy" /></div><div class="pd-related-body"><h4>DuraTrak® 270</h4><p>270cc gas-powered rental kart. 75 km/h, heavy-duty frame, high-throughput outdoor operations.</p><a href={`${base}/product`} class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+      <div class="pd-related-card"><div class="pd-related-img"><img src={`${base}/images/ev-max-72/1.jpg`} alt="EV-Max 72V high-performance kart" loading="lazy" /></div><div class="pd-related-body"><h4>EV-Max® 72</h4><p>72V flagship electric kart. 65 km/h, 0–50 in 3.8s, premium indoor entertainment centers.</p><a href={`${base}/product`} class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+      <div class="pd-related-card"><div class="pd-related-img"><img src={`${base}/images/juniorsprint-ev/1.jpg`} alt="JuniorSprint EV junior kart" loading="lazy" /></div><div class="pd-related-body"><h4>JuniorSprint® EV</h4><p>Electric junior kart for ages 5–12. 25 km/h max, impact-resistant bodywork, age-verified activation.</p><a href={`${base}/product`} class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
     </div>
   </div>
 </section>
@@ -152,8 +154,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h3 style="font-size:clamp(24px,4vw,40px);color:var(--white)">Ready to Order the EV-Pro® 48V?</h3>
     <p style="color:rgba(255,255,255,0.8);max-width:480px;margin:12px auto 0">Get a factory-direct quote for your fleet. Minimum order 5 units.</p>
     <div class="pd-cta-buttons">
-      <a href="/contact" class="btn btn-white">Request a Quote</a>
-      <a href="/listings" class="btn btn-outline">View More Products</a>
+      <a href={`${base}/contact`} class="btn btn-white">Request a Quote</a>
+      <a href={`${base}/listings`} class="btn btn-outline">View More Products</a>
     </div>
   </div>
 </div>

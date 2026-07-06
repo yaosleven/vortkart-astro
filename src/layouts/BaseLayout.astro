@@ -19,6 +19,8 @@ const {
   ogImage = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
   canonical,
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!DOCTYPE html>
@@ -58,20 +60,20 @@ const {
 <nav id="navbar">
   <div class="container">
     <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="VortKart Home">
+      <a href={`${base}/`} class="nav-logo" aria-label="VortKart Home">
         <div class="nav-logo-icon">VK</div>
         <div class="nav-logo-text">Vort<span>Kart</span><sup style="font-size:10px;vertical-align:super;">®</sup></div>
       </a>
       <ul class="nav-links" role="navigation" aria-label="Main navigation">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/listings">Portfolio</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href={`${base}/`}>Home</a></li>
+        <li><a href={`${base}/about`}>About</a></li>
+        <li><a href={`${base}/services`}>Services</a></li>
+        <li><a href={`${base}/listings`}>Portfolio</a></li>
+        <li><a href={`${base}/contact`}>Contact</a></li>
       </ul>
       <div class="nav-cta">
         <a href="tel:+1234567890" class="nav-phone" aria-label="Call us">+1 (234) 567-890</a>
-        <a href="/contact" class="btn btn-primary">Get a Quote</a>
+        <a href={`${base}/contact`} class="btn btn-primary">Get a Quote</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -82,12 +84,12 @@ const {
 
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/services">Services</a>
-  <a href="/listings">Portfolio</a>
-  <a href="/contact">Contact</a>
-  <a href="/contact" class="btn btn-primary">Get a Free Quote</a>
+  <a href={`${base}/`}>Home</a>
+  <a href={`${base}/about`}>About</a>
+  <a href={`${base}/services`}>Services</a>
+  <a href={`${base}/listings`}>Portfolio</a>
+  <a href={`${base}/contact`}>Contact</a>
+  <a href={`${base}/contact`} class="btn btn-primary">Get a Free Quote</a>
 </div>
 
 <!-- ======================== PAGE CONTENT ======================== -->
@@ -98,7 +100,7 @@ const {
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="/" class="nav-logo" aria-label="VortKart Home">
+        <a href={`${base}/`} class="nav-logo" aria-label="VortKart Home">
           <div class="nav-logo-icon">VK</div>
           <div class="nav-logo-text">Vort<span>Kart</span><sup style="font-size:10px;vertical-align:super;">®</sup></div>
         </a>
@@ -112,19 +114,19 @@ const {
       </div>
       <div class="footer-col">
         <h5>Quick Links</h5>
-        <a href="/">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/services">Services</a>
-        <a href="/listings">Portfolio</a>
-        <a href="/contact">Contact</a>
+        <a href={`${base}/`}>Home</a>
+        <a href={`${base}/about`}>About Us</a>
+        <a href={`${base}/services`}>Services</a>
+        <a href={`${base}/listings`}>Portfolio</a>
+        <a href={`${base}/contact`}>Contact</a>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
-        <a href="/services#commercial">Commercial Go Karts</a>
-        <a href="/services#racing">Racing Chassis</a>
-        <a href="/services#track">Track Design</a>
-        <a href="/services#turnkey">Turnkey Solutions</a>
-        <a href="/contact">Parts &amp; Support</a>
+        <a href={`${base}/services#commercial`}>Commercial Go Karts</a>
+        <a href={`${base}/services#racing`}>Racing Chassis</a>
+        <a href={`${base}/services#track`}>Track Design</a>
+        <a href={`${base}/services#turnkey`}>Turnkey Solutions</a>
+        <a href={`${base}/contact`}>Parts &amp; Support</a>
       </div>
       <div class="footer-col">
         <h5>Contact</h5>
@@ -148,14 +150,14 @@ const {
     <div class="footer-bottom">
       <p>&copy; 2026 VortKart® International. All rights reserved.</p>
       <div class="footer-bottom-links">
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/terms">Terms of Service</a>
-        <a href="/sitemap.xml">Sitemap</a>
+        <a href={`${base}/privacy`}>Privacy Policy</a>
+        <a href={`${base}/terms`}>Terms of Service</a>
+        <a href={`${base}/sitemap.xml`}>Sitemap</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script src="/main.js" is:inline></script>
+<script src={`${base}/main.js`}></script>
 </body>
 </html>

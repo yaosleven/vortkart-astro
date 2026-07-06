@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout
   title="About VortKart® | Our Story, Mission & Commercial Go Kart Expertise"
@@ -43,10 +45,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </style>
 
 <section class="page-hero">
-  <div class="page-hero-bg" style="background-image:url('/images/ev-pro-48/4.jpg')"></div>
+  <div class="page-hero-bg" style="background-image:url('${base}/images/ev-pro-48/4.jpg')"></div>
   <div class="page-hero-overlay"></div>
   <div class="container"><div class="page-hero-content">
-    <nav class="breadcrumb"><a href="/">Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>About</span></nav>
+    <nav class="breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>About</span></nav>
     <div class="label">Our Story</div>
     <h1>15 Years of <span class="highlight">Karting</span><br>Excellence</h1>
   </div></div>
@@ -54,7 +56,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <section class="section mission-section">
   <div class="container"><div class="mission-grid">
-    <div class="mission-img fade-in"><img src="/images/ev-pro-48/4.jpg" alt="VortKart manufacturing team" loading="lazy" /></div>
+    <div class="mission-img fade-in"><img src={`${base}/images/ev-pro-48/4.jpg`} alt="VortKart manufacturing team" loading="lazy" /></div>
     <div class="mission-text fade-in delay-2">
       <div class="label">Our Mission</div>
       <h2>Powering the World's<br><span class="highlight">Karting Industry</span></h2>
@@ -64,7 +66,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <blockquote>"We don't just sell karts. We invest in our clients' success — from the first consultation through years of ongoing support."</blockquote>
         <cite>— Marcus Chen, Founder &amp; CEO of VortKart®</cite>
       </div>
-      <a href="/contact" class="btn btn-primary">Work With Us</a>
+      <a href={`${base}/contact`} class="btn btn-primary">Work With Us</a>
     </div>
   </div></div>
 </section>
@@ -96,7 +98,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="section-header center fade-in"><div class="label">Why We Win</div><h2>Our <span class="highlight">Differentiators</span></h2><p>Three things set VortKart® apart from every other manufacturer in the industry.</p></div>
     <div>
       <div class="diff-row fade-in">
-        <div class="diff-img"><img src="/images/proframe-r32/5.jpg" alt="Advanced CNC machining" loading="lazy" /></div>
+        <div class="diff-img"><img src={`${base}/images/proframe-r32/5.jpg`} alt="Advanced CNC machining" loading="lazy" /></div>
         <div class="diff-content">
           <div class="label">01 — Manufacturing</div>
           <h3>Factory-Direct,<br><span class="highlight">Zero Compromise</span></h3>
@@ -105,7 +107,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
       <div class="diff-row reverse fade-in">
-        <div class="diff-img"><img src="/images/proframe-r32/2.jpg" alt="Track design blueprint" loading="lazy" /></div>
+        <div class="diff-img"><img src={`${base}/images/proframe-r32/2.jpg`} alt="Track design blueprint" loading="lazy" /></div>
         <div class="diff-content">
           <div class="label">02 — Design Expertise</div>
           <h3>Track Design That<br><span class="highlight">Maximizes Revenue</span></h3>
@@ -114,7 +116,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
       <div class="diff-row fade-in">
-        <div class="diff-img"><img src="/images/kids-racing/6.jpg" alt="Customer support" loading="lazy" /></div>
+        <div class="diff-img"><img src={`${base}/images/kids-racing/6.jpg`} alt="Customer support" loading="lazy" /></div>
         <div class="diff-content">
           <div class="label">03 — Lifetime Support</div>
           <h3>Support That<br><span class="highlight">Never Stops</span></h3>
@@ -143,7 +145,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="label" style="justify-content:center">Let's Build Together</div>
     <h2>Your Vision. Our <span class="highlight">Expertise.</span></h2>
     <p>Whether you're launching a new venue or upgrading an existing fleet, our team is ready to help you succeed.</p>
-    <div class="cta-buttons"><a href="/contact" class="btn btn-primary btn-lg">Get a Free Quote</a><a href="/services" class="btn btn-outline btn-lg">See Our Services</a></div>
+    <div class="cta-buttons"><a href={`${base}/contact`} class="btn btn-primary btn-lg">Get a Free Quote</a><a href={`${base}/services`} class="btn btn-outline btn-lg">See Our Services</a></div>
   </div></div>
 </section>
 </BaseLayout>

@@ -1,5 +1,7 @@
 ﻿---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout
   title="Contact VortKart® | Request a Quote for Commercial Go Karts & Track Design"
@@ -55,10 +57,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </style>
 
 <section class="page-hero">
-  <div class="page-hero-bg" style="background-image:url('/images/ev-pro-48/1.jpg')"></div>
+  <div class="page-hero-bg" style="background-image:url('${base}/images/ev-pro-48/1.jpg')"></div>
   <div class="page-hero-overlay"></div>
   <div class="container"><div class="page-hero-content">
-    <nav class="breadcrumb"><a href="/">Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>Contact</span></nav>
+    <nav class="breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>Contact</span></nav>
     <div class="label">Let's Talk</div>
     <h1>Get Your <span class="highlight">Free</span><br>Quote Today</h1>
   </div></div>

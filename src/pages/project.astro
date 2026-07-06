@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout
   title="SpeedZone Family Park — Turnkey Project | VortKart®"
@@ -61,10 +63,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </style>
 
 <section class="project-hero">
-  <div class="project-hero-bg" style="background-image:url('/images/duratrak-270/2.jpg')"></div>
+  <div class="project-hero-bg" style="background-image:url('${base}/images/duratrak-270/2.jpg')"></div>
   <div class="project-hero-overlay"></div>
   <div class="container"><div class="project-hero-content">
-    <nav class="breadcrumb" style="margin-bottom:16px"><a href="/">Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><a href="/listings">Portfolio</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>SpeedZone</span></nav>
+    <nav class="breadcrumb" style="margin-bottom:16px"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><a href={`${base}/listings`}>Portfolio</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>SpeedZone</span></nav>
     <div class="label">Turnkey Project Case Study</div>
     <h1 class="pr-title">SpeedZone <span class="highlight">Family Park</span></h1>
     <p class="pr-subtitle">Complete 800m outdoor karting attraction — from site survey to grand opening in under 6 months.</p>
@@ -85,9 +87,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p style="margin-top:20px;margin-bottom:16px">SpeedZone Family Park approached VortKart® with a greenfield site and a vision for a world-class karting attraction. Starting with nothing but a flat plot of land, our team delivered a complete operational facility — track, karts, barriers, timing, signage, and staff training — in under 6 months.</p>
       <p>The 800-meter circuit was designed to accommodate 30 EV-Pro® 48V electric karts simultaneously, with a layout that maximized both track time per session and the spectator experience for non-riders. The result was an attraction that exceeded revenue projections in its first year of operation.</p>
       <div class="pr-gallery">
-        <div class="pr-gallery-img"><img src="/images/ev-pro-48/3.jpg" alt="SpeedZone track construction" loading="lazy" /></div>
-        <div class="pr-gallery-img"><img src="/images/ev-pro-48/1.jpg" alt="EV-Pro kart fleet" loading="lazy" /></div>
-        <div class="pr-gallery-img"><img src="/images/kids-racing/4.jpg" alt="SpeedZone opening day" loading="lazy" /></div>
+        <div class="pr-gallery-img"><img src={`${base}/images/ev-pro-48/3.jpg`} alt="SpeedZone track construction" loading="lazy" /></div>
+        <div class="pr-gallery-img"><img src={`${base}/images/ev-pro-48/1.jpg`} alt="EV-Pro kart fleet" loading="lazy" /></div>
+        <div class="pr-gallery-img"><img src={`${base}/images/kids-racing/4.jpg`} alt="SpeedZone opening day" loading="lazy" /></div>
       </div>
       <div class="pr-testimonial fade-in">
         <p class="pr-testimonial-text">"VortKart® designed our entire 800m track from scratch, supplied 30 electric karts, and had us operational in under 6 months. The ROI exceeded our projections in year one. We couldn't have asked for a better partner."</p>
@@ -109,7 +111,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="pr-fact"><span class="pr-fact-label">Track Type</span><span class="pr-fact-value">Outdoor Asphalt</span></div>
         <div class="pr-fact"><span class="pr-fact-label">Delivery Time</span><span class="pr-fact-value">&lt; 6 Months</span></div>
         <div class="pr-fact"><span class="pr-fact-label">Completed</span><span class="pr-fact-value">March 2024</span></div>
-        <a href="/contact" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:28px">Start Similar Project</a>
+        <a href={`${base}/contact`} class="btn btn-primary" style="width:100%;justify-content:center;margin-top:28px">Start Similar Project</a>
       </div>
     </div>
   </div></div>
@@ -164,9 +166,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="container">
     <div class="section-header fade-in"><div class="label">More Work</div><h2>Related <span class="highlight">Projects</span></h2></div>
     <div class="grid-3 fade-in delay-1">
-      <a href="/project" class="pr-related-card"><img src="/images/ev-pro-48/3.jpg" alt="Dubai Indoor Karting Dome" loading="lazy" /><div class="pr-related-body"><h4>Dubai Indoor Karting Dome</h4><p>600m indoor circuit, 30 EV-Max® karts, multi-level spectator gallery. UAE.</p><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)">View Project →</span></div></a>
-      <a href="/project" class="pr-related-card"><img src="/images/duratrak-160/4.jpg" alt="SunPark Karting Gold Coast" loading="lazy" /><div class="pr-related-body"><h4>SunPark Karting Experience</h4><p>35-kart gas fleet for high-volume theme park. 700m track. Gold Coast, Australia.</p><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)">View Project →</span></div></a>
-      <a href="/project" class="pr-related-card"><img src="/images/duratrak-270/8.jpg" alt="Grand Marina Resort Spain" loading="lazy" /><div class="pr-related-body"><h4>Grand Marina Resort Karting</h4><p>20 EV karts integrated into 5-star resort. Custom livery &amp; service contract. Spain.</p><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)">View Project →</span></div></a>
+      <a href={`${base}/project`} class="pr-related-card"><img src={`${base}/images/ev-pro-48/3.jpg`} alt="Dubai Indoor Karting Dome" loading="lazy" /><div class="pr-related-body"><h4>Dubai Indoor Karting Dome</h4><p>600m indoor circuit, 30 EV-Max® karts, multi-level spectator gallery. UAE.</p><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)">View Project →</span></div></a>
+      <a href={`${base}/project`} class="pr-related-card"><img src={`${base}/images/duratrak-160/4.jpg`} alt="SunPark Karting Gold Coast" loading="lazy" /><div class="pr-related-body"><h4>SunPark Karting Experience</h4><p>35-kart gas fleet for high-volume theme park. 700m track. Gold Coast, Australia.</p><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)">View Project →</span></div></a>
+      <a href={`${base}/project`} class="pr-related-card"><img src={`${base}/images/duratrak-270/8.jpg`} alt="Grand Marina Resort Spain" loading="lazy" /><div class="pr-related-body"><h4>Grand Marina Resort Karting</h4><p>20 EV karts integrated into 5-star resort. Custom livery &amp; service contract. Spain.</p><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)">View Project →</span></div></a>
     </div>
   </div>
 </section>
@@ -176,8 +178,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="label" style="justify-content:center">Your Turn</div>
     <h3 style="font-size:clamp(24px,4vw,44px)">Ready to Build Your<br><span class="highlight">Karting Attraction?</span></h3>
     <div class="pr-cta-buttons">
-      <a href="/contact" class="btn btn-primary btn-lg">Get a Free Quote</a>
-      <a href="/listings" class="btn btn-outline btn-lg">View More Projects</a>
+      <a href={`${base}/contact`} class="btn btn-primary btn-lg">Get a Free Quote</a>
+      <a href={`${base}/listings`} class="btn btn-outline btn-lg">View More Projects</a>
     </div>
   </div>
 </div>
