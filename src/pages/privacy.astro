@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Privacy Policy | VortKart®"
+  description="VortKart® Privacy Policy — Learn how we collect, use, and protect your personal information when you use our website and services."
+  canonical="https://vortkart.com/privacy"
+>
+<style>
+.legal-page{background:var(--dark);padding-top:calc(var(--nav-height) + 60px);padding-bottom:80px}
+.legal-container{max-width:860px;margin:0 auto}
+.legal-header{text-align:center;margin-bottom:48px}
+.legal-header h1{font-size:clamp(32px,5vw,48px);margin-bottom:12px}
+.legal-header .label{color:var(--primary);font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;display:block}
+.legal-updated{color:var(--gray-3);font-size:14px}
+.legal-content{color:var(--gray-2);font-size:16px;line-height:1.8}
+.legal-content h2{color:var(--white);font-size:24px;margin:40px 0 16px;font-weight:700}
+.legal-content h3{color:var(--white);font-size:18px;margin:28px 0 12px}
+.legal-content p{margin-bottom:16px}
+.legal-content ul{margin:12px 0 20px 20px}
+.legal-content li{margin-bottom:8px}
+.legal-content a{color:var(--primary);text-decoration:underline}
+.legal-content strong{color:var(--white)}
+.legal-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-lg);padding:24px;margin:24px 0}
+.legal-card h3{margin-top:0}
+.legal-toc{background:var(--dark-2);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:40px}
+.legal-toc h3{color:var(--white);font-size:16px;margin-bottom:12px;text-transform:uppercase;letter-spacing:.1em}
+.legal-toc ol{margin-left:20px}
+.legal-toc li{margin-bottom:6px}
+.legal-toc a{color:var(--gray-2);text-decoration:none;transition:var(--transition)}
+.legal-toc a:hover{color:var(--primary)}
+.legal-back{text-align:center;margin-top:48px}
+</style>
+
+<section class="legal-page">
+  <div class="container">
+    <div class="legal-container">
+      <div class="legal-header">
+        <span class="label">Legal</span>
+        <h1>Privacy <span class="highlight">Policy</span></h1>
+        <p class="legal-updated">Last updated: June 24, 2026</p>
+      </div>
+
+      <nav class="breadcrumb" style="justify-content:center;margin-bottom:32px">
+        <a href="/">Home</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Privacy Policy</span>
+      </nav>
+
+      <div class="legal-toc">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#data-collected">Information We Collect</a></li>
+          <li><a href="#how-we-use">How We Use Your Information</a></li>
+          <li><a href="#cookies">Cookies &amp; Tracking Technologies</a></li>
+          <li><a href="#third-party">Third-Party Services</a></li>
+          <li><a href="#data-sharing">Data Sharing &amp; Disclosure</a></li>
+          <li><a href="#data-security">Data Security</a></li>
+          <li><a href="#user-rights">Your Rights</a></li>
+          <li><a href="#children">Children's Privacy</a></li>
+          <li><a href="#changes">Changes to This Policy</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ol>
+      </div>
+
+      <div class="legal-content">
+        <h2 id="intro">1. Introduction</h2>
+        <p>VortKart&reg; International ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
+        <p>By accessing or using our Site, you agree to the collection and use of information in accordance with this Privacy Policy. If you do not agree with our policies and practices, please do not use our Site.</p>
+
+        <h2 id="data-collected">2. Information We Collect</h2>
+        <h3>2.1 Information You Provide Directly</h3>
+        <p>When you submit a quote request or contact us through our forms, we may collect:</p>
+        <ul>
+          <li><strong>Personal identification:</strong> First name, last name</li>
+          <li><strong>Contact details:</strong> Email address, phone number</li>
+          <li><strong>Business information:</strong> Company name, country</li>
+          <li><strong>Project details:</strong> Type of service requested, number of karts needed, project description</li>
+          <li><strong>Communication preferences:</strong> How you found us</li>
+        </ul>
+
+        <h3>2.2 Information Collected Automatically</h3>
+        <p>When you visit our Site, we automatically collect certain technical information:</p>
+        <ul>
+          <li><strong>Device &amp; browser information:</strong> Browser type, version, operating system</li>
+          <li><strong>Usage data:</strong> Pages visited, time spent on pages, referring URLs</li>
+          <li><strong>IP address:</strong> Used for security and analytics purposes</li>
+          <li><strong>Cookies &amp; pixels:</strong> See Section 4 below</li>
+        </ul>
+
+        <h2 id="how-we-use">3. How We Use Your Information</h2>
+        <p>We use the information we collect for the following purposes:</p>
+        <ul>
+          <li><strong>Responding to inquiries:</strong> To process and respond to your quote requests and questions</li>
+          <li><strong>Providing services:</strong> To deliver the products and services you request</li>
+          <li><strong>Communication:</strong> To send you important updates and customer support</li>
+          <li><strong>Marketing:</strong> To send promotional materials about our products (you can opt out at any time)</li>
+          <li><strong>Analytics &amp; improvement:</strong> To analyze usage patterns and improve our Site</li>
+          <li><strong>Security &amp; fraud prevention:</strong> To protect against unauthorized access</li>
+          <li><strong>Legal compliance:</strong> To comply with applicable laws and legal processes</li>
+        </ul>
+
+        <h2 id="cookies">4. Cookies &amp; Tracking Technologies</h2>
+        <p>We use cookies, web beacons, tracking pixels, and similar technologies to track activity on our Site and store certain information.</p>
+        <div class="legal-card">
+          <h3>Types of Cookies We Use:</h3>
+          <ul>
+            <li><strong>Essential cookies:</strong> Required for the Site to function properly</li>
+            <li><strong>Analytics cookies:</strong> Help us understand how visitors interact with our Site (Google Analytics)</li>
+            <li><strong>Advertising cookies:</strong> Used to deliver relevant ads and track ad campaign performance (Google Ads)</li>
+            <li><strong>Functional cookies:</strong> Remember your preferences and settings</li>
+          </ul>
+          <p>You can control and manage cookies through your browser settings. Please note that disabling cookies may affect the functionality of our Site.</p>
+        </div>
+
+        <h2 id="third-party">5. Third-Party Services</h2>
+        <p>We use third-party services that may collect information governed by their own privacy policies:</p>
+        <div class="legal-card">
+          <h3>5.1 Web3Forms (Contact Form Processing)</h3>
+          <p>We use Web3Forms to process contact form submissions. When you submit a form, your information is transmitted through Web3Forms to our email. Web3Forms may temporarily store form data on their servers for processing.</p>
+        </div>
+        <div class="legal-card">
+          <h3>5.2 Google Analytics 4 (GA4)</h3>
+          <p>We use Google Analytics to analyze website traffic and user behavior. GA4 collects anonymous usage data such as page views, session duration, and traffic sources.</p>
+        </div>
+        <div class="legal-card">
+          <h3>5.3 Google Ads</h3>
+          <p>We use Google Ads to display advertisements and track conversions. Google may use cookies to serve ads based on your prior visits to our Site. You can opt out at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>.</p>
+        </div>
+        <div class="legal-card">
+          <h3>5.4 Google Tag Manager (GTM)</h3>
+          <p>We use Google Tag Manager to manage and deploy tracking codes. GTM itself does not collect personal data but facilitates the deployment of tags that may collect data.</p>
+        </div>
+
+        <h2 id="data-sharing">6. Data Sharing &amp; Disclosure</h2>
+        <p>We do not sell, trade, or rent your personal information to third parties. We may share your information in the following circumstances:</p>
+        <ul>
+          <li><strong>Service providers:</strong> With third-party service providers who perform services on our behalf</li>
+          <li><strong>Legal requirements:</strong> When required by law, court order, or government regulation</li>
+          <li><strong>Business transfers:</strong> In connection with a merger, acquisition, or sale of assets</li>
+          <li><strong>Consent:</strong> With your explicit consent</li>
+        </ul>
+
+        <h2 id="data-security">7. Data Security</h2>
+        <p>We implement appropriate technical and organizational security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These measures include encrypted data transmission (HTTPS), access controls, and regular security assessments.</p>
+        <p>However, no method of transmission over the Internet is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee absolute security.</p>
+
+        <h2 id="user-rights">8. Your Rights</h2>
+        <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+        <ul>
+          <li><strong>Right to access:</strong> Request a copy of the personal data we hold about you</li>
+          <li><strong>Right to rectification:</strong> Request correction of inaccurate or incomplete data</li>
+          <li><strong>Right to erasure:</strong> Request deletion of your personal data</li>
+          <li><strong>Right to restrict processing:</strong> Request that we limit the processing of your data</li>
+          <li><strong>Right to data portability:</strong> Receive your data in a structured, machine-readable format</li>
+          <li><strong>Right to object:</strong> Object to the processing of your personal data</li>
+          <li><strong>Right to withdraw consent:</strong> Withdraw consent at any time for data processing based on consent</li>
+        </ul>
+        <p>To exercise any of these rights, please contact us at <a href="mailto:sales@vortkart.com">sales@vortkart.com</a>.</p>
+
+        <h2 id="children">9. Children's Privacy</h2>
+        <p>Our Site and services are not intended for individuals under the age of 16. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately, and we will take steps to delete such information.</p>
+
+        <h2 id="changes">10. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. We recommend that you review this Privacy Policy periodically for any changes.</p>
+
+        <h2 id="contact">11. Contact Us</h2>
+        <p>If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+        <div class="legal-card">
+          <ul>
+            <li><strong>Email:</strong> <a href="mailto:sales@vortkart.com">sales@vortkart.com</a></li>
+            <li><strong>Phone:</strong> +1 (234) 567-890</li>
+            <li><strong>Address:</strong> 123 Motorsport Drive, Karting District, CA 90001</li>
+          </ul>
+        </div>
+        <div class="legal-back">
+          <a href="/" class="btn btn-outline btn-lg">Back to Home</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</BaseLayout>

@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="EV-Pro® 48V Commercial Go Kart | VortKart®"
+  description="The VortKart® EV-Pro® 48V is our flagship electric commercial go kart — built for high-throughput rental operations with zero emissions and low noise."
+  canonical="https://vortkart.com/product"
+>
+<style>
+.product-detail-hero{background:var(--dark-2);padding:var(--nav-height) 0 0}
+.pd-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;padding:60px 0 80px}
+.pd-gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pd-gallery-main{grid-column:span 2;border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:16/10}
+.pd-gallery-main img{width:100%;height:100%;object-fit:cover}
+.pd-gallery-thumb{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;cursor:pointer}
+.pd-gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.pd-gallery-thumb:hover img{transform:scale(1.05)}
+.pd-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(230,57,0,0.1);border:1px solid rgba(230,57,0,0.3);border-radius:100px;padding:4px 16px 4px 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
+.pd-badge span{background:var(--primary);color:var(--white);border-radius:100px;padding:3px 10px;font-size:10px}
+.pd-title{font-size:clamp(32px,4vw,52px);margin-bottom:16px}
+.pd-desc{font-size:16px;color:var(--gray-4);line-height:1.75;margin-bottom:32px}
+.pd-spec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px}
+.pd-spec-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-md);padding:24px}
+.pd-spec-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-3);margin-bottom:6px}
+.pd-spec-value{font-family:var(--font-heading);font-size:28px;font-weight:800;color:var(--white);line-height:1}
+.pd-spec-unit{font-size:14px;color:var(--primary);font-weight:700;margin-top:2px}
+.pd-hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.pd-section{padding:80px 0;background:var(--dark)}
+.pd-feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pd-feature-item{padding:32px;border-bottom:1px solid rgba(255,255,255,0.06);border-right:1px solid rgba(255,255,255,0.06)}
+.pd-feature-item:nth-child(2n){border-right:none}
+.pd-feature-item:nth-last-child(-n+2){border-bottom:none}
+.pd-feature-icon{width:44px;height:44px;background:rgba(230,57,0,0.1);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.pd-feature-icon svg{width:22px;height:22px;color:var(--primary)}
+.pd-feature-item h4{font-size:18px;margin-bottom:8px}
+.pd-feature-item p{font-size:14px;color:var(--gray-3)}
+.pd-table{width:100%;border-collapse:collapse}
+.pd-table th,.pd-table td{padding:14px 20px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px}
+.pd-table th{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);background:var(--dark-3)}
+.pd-table td:first-child{color:var(--gray-3)}
+.pd-table td:last-child{color:var(--white);font-weight:600}
+.pd-gallery-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pd-gallery-strip-img{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3}
+.pd-gallery-strip-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.pd-gallery-strip-img:hover img{transform:scale(1.05)}
+.pd-related-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-xl);overflow:hidden;transition:var(--transition)}
+.pd-related-card:hover{border-color:rgba(230,57,0,0.35);transform:translateY(-6px)}
+.pd-related-img{aspect-ratio:16/9;overflow:hidden}
+.pd-related-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pd-related-card:hover .pd-related-img img{transform:scale(1.05)}
+.pd-related-body{padding:24px}
+.pd-related-body h4{font-size:20px;margin-bottom:8px}
+.pd-related-body p{font-size:14px;color:var(--gray-3);margin-bottom:16px}
+.pd-cta-bar{background:var(--primary);padding:56px 0;text-align:center}
+.pd-cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+@media(max-width:1024px){.pd-hero-grid{grid-template-columns:1fr!important;gap:40px!important}.pd-feature-grid{grid-template-columns:1fr!important;gap:0!important}.pd-gallery{grid-template-columns:1fr 1fr!important}}
+</style>
+
+<div class="product-detail-hero">
+  <div class="container"><div class="pd-hero-grid">
+    <div class="fade-in">
+      <div class="pd-gallery">
+        <div class="pd-gallery-main"><img src="/images/ev-pro-48/1.jpg" alt="EV-Pro 48V Commercial Go Kart — front view" loading="lazy" /></div>
+        <div class="pd-gallery-thumb"><img src="/images/ev-pro-48/2.jpg" alt="EV-Pro 48V — side profile" loading="lazy" /></div>
+        <div class="pd-gallery-thumb"><img src="/images/ev-pro-48/3.jpg" alt="EV-Pro 48V — detail view" loading="lazy" /></div>
+      </div>
+    </div>
+    <div class="fade-in delay-2">
+      <nav class="breadcrumb" style="margin-bottom:20px"><a href="/">Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><a href="/listings">Portfolio</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>EV-Pro® 48V</span></nav>
+      <div class="pd-badge"><span>NEW 2025</span>Best Seller Electric</div>
+      <h1 class="pd-title">EV-Pro® 48V<br><span class="highlight">Commercial Kart</span></h1>
+      <p class="pd-desc">Our flagship electric commercial go kart — engineered for high-throughput rental operations with zero emissions, ultra-low noise, and industry-leading battery runtime. The preferred choice for indoor venues, resorts, and eco-conscious operators worldwide.</p>
+      <div class="pd-spec-grid">
+        <div class="pd-spec-card"><div class="pd-spec-label">Motor Power</div><div class="pd-spec-value">3.5</div><div class="pd-spec-unit">kW Peak</div></div>
+        <div class="pd-spec-card"><div class="pd-spec-label">Battery</div><div class="pd-spec-value">48V</div><div class="pd-spec-unit">LiFePO4</div></div>
+        <div class="pd-spec-card"><div class="pd-spec-label">Runtime</div><div class="pd-spec-value">4–6</div><div class="pd-spec-unit">Hours/Charge</div></div>
+        <div class="pd-spec-card"><div class="pd-spec-label">Max Speed</div><div class="pd-spec-value">45</div><div class="pd-spec-unit">km/h</div></div>
+      </div>
+      <div class="pd-hero-actions">
+        <a href="/contact" class="btn btn-primary btn-lg">Request Quote</a>
+        <a href="/contact" class="btn btn-outline btn-lg">Download Spec Sheet</a>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<section class="pd-section">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">Features</div><h2>Built for <span class="highlight">Commercial</span> Performance</h2><p>Every component of the EV-Pro® 48V is engineered for maximum uptime and minimal maintenance in a commercial rental environment.</p></div>
+    <div class="pd-feature-grid fade-in">
+      <div class="pd-feature-item"><div class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h4>LiFePO4 Battery Pack</h4><p>Safe, long-lasting lithium iron phosphate battery chemistry with 2,000+ charge cycle life.</p></div>
+      <div class="pd-feature-item"><div class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4>Steel Safety Chassis</h4><p>CNC-bent 32mm steel tube frame with integrated side impact protection and roll hoop.</p></div>
+      <div class="pd-feature-item"><div class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div><h4>Adjustable Speed Limiter</h4><p>Operator-programmable max speed profiles for different rider skill levels and venue requirements.</p></div>
+      <div class="pd-feature-item"><div class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h4>Regenerative Braking</h4><p>Recovers kinetic energy on deceleration, extending range and reducing brake wear by up to 40%.</p></div>
+      <div class="pd-feature-item"><div class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><h4>Adult &amp; Junior Variants</h4><p>Available in full adult size and junior configuration with reduced dimensions and speed range.</p></div>
+      <div class="pd-feature-item"><div class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><h4>Fleet Management Ready</h4><p>Pre-wired for timing system integration and fleet management software compatibility.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pd-section" style="background:var(--dark-2)">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">Full Specifications</div><h2>Technical <span class="highlight">Spec Sheet</span></h2></div>
+    <table class="pd-table fade-in">
+      <thead><tr><th>Specification</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Chassis Material</td><td>CNC-Bent 32mm Steel Tube</td></tr>
+        <tr><td>Motor Type</td><td>Brushless DC Hub Motor</td></tr>
+        <tr><td>Motor Power (Peak)</td><td>3.5 kW</td></tr>
+        <tr><td>Battery Chemistry</td><td>LiFePO4 (Lithium Iron Phosphate)</td></tr>
+        <tr><td>Battery Voltage</td><td>48V</td></tr>
+        <tr><td>Battery Capacity</td><td>30 Ah</td></tr>
+        <tr><td>Charge Time</td><td>3–4 Hours (Standard) / 1.5 Hours (Fast)</td></tr>
+        <tr><td>Runtime per Charge</td><td>4–6 Hours (continuous operation)</td></tr>
+        <tr><td>Maximum Speed</td><td>45 km/h (adjustable)</td></tr>
+        <tr><td>Braking System</td><td>Disc Brake (Rear) + Regenerative</td></tr>
+        <tr><td>Overall Length</td><td>1,820 mm</td></tr>
+        <tr><td>Overall Width</td><td>720 mm</td></tr>
+        <tr><td>Weight</td><td>165 kg</td></tr>
+        <tr><td>Max Rider Weight</td><td>120 kg</td></tr>
+        <tr><td>Warranty</td><td>12 Months Chassis / 6 Months Drivetrain</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="pd-section" style="background:var(--dark)">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">Gallery</div><h2>In <span class="highlight">Action</span></h2></div>
+    <div class="pd-gallery-strip fade-in delay-1">
+      <div class="pd-gallery-strip-img"><img src="/images/ev-pro-48/2.jpg" alt="EV-Pro 48V side profile" loading="lazy" /></div>
+      <div class="pd-gallery-strip-img"><img src="/images/ev-pro-48/3.jpg" alt="EV-Pro 48V detail" loading="lazy" /></div>
+      <div class="pd-gallery-strip-img"><img src="/images/ev-pro-48/4.jpg" alt="EV-Pro 48V on track" loading="lazy" /></div>
+      <div class="pd-gallery-strip-img"><img src="/images/ev-pro-48/5.jpg" alt="EV-Pro 48V fleet" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<section class="pd-section" style="background:var(--dark-2);padding-bottom:120px">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">You Might Also Like</div><h2>Related <span class="highlight">Products</span></h2></div>
+    <div class="grid-3 fade-in delay-1">
+      <div class="pd-related-card"><div class="pd-related-img"><img src="/images/duratrak-270/1.jpg" alt="DuraTrak 270 gas kart" loading="lazy" /></div><div class="pd-related-body"><h4>DuraTrak® 270</h4><p>270cc gas-powered rental kart. 75 km/h, heavy-duty frame, high-throughput outdoor operations.</p><a href="/product" class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+      <div class="pd-related-card"><div class="pd-related-img"><img src="/images/ev-max-72/1.jpg" alt="EV-Max 72V high-performance kart" loading="lazy" /></div><div class="pd-related-body"><h4>EV-Max® 72</h4><p>72V flagship electric kart. 65 km/h, 0–50 in 3.8s, premium indoor entertainment centers.</p><a href="/product" class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+      <div class="pd-related-card"><div class="pd-related-img"><img src="/images/juniorsprint-ev/1.jpg" alt="JuniorSprint EV junior kart" loading="lazy" /></div><div class="pd-related-body"><h4>JuniorSprint® EV</h4><p>Electric junior kart for ages 5–12. 25 km/h max, impact-resistant bodywork, age-verified activation.</p><a href="/product" class="service-card-link">View Spec Sheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="pd-cta-bar">
+  <div class="container">
+    <h3 style="font-size:clamp(24px,4vw,40px);color:var(--white)">Ready to Order the EV-Pro® 48V?</h3>
+    <p style="color:rgba(255,255,255,0.8);max-width:480px;margin:12px auto 0">Get a factory-direct quote for your fleet. Minimum order 5 units.</p>
+    <div class="pd-cta-buttons">
+      <a href="/contact" class="btn btn-white">Request a Quote</a>
+      <a href="/listings" class="btn btn-outline">View More Products</a>
+    </div>
+  </div>
+</div>
+</BaseLayout>

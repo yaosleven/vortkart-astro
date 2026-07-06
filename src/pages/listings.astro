@@ -1,0 +1,155 @@
+﻿---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="VortKart® Portfolio | Go Kart Projects, Products & Track Installations"
+  description="Browse VortKart®'s portfolio of commercial go kart deployments, track design projects, and karting attraction installations across the world."
+  canonical="https://vortkart.com/listings"
+>
+<style>
+.products-section{background:var(--dark-2)}
+.product-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);overflow:hidden;transition:var(--transition)}
+.product-card:hover{border-color:rgba(230,57,0,0.35);transform:translateY(-6px)}
+.product-img{aspect-ratio:4/3;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;object-position:center 65%;transition:transform .5s ease}
+.product-card:hover .product-img img{transform:scale(1.05)}
+.product-badge{position:absolute;top:16px;left:16px;background:var(--primary);color:var(--white);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px}
+.product-info{padding:28px}
+.product-info h4{font-size:22px;margin-bottom:8px}
+.product-info p{font-size:14px;color:var(--gray-3);margin-bottom:16px}
+.product-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.spec-item{background:var(--dark-4);border-radius:var(--radius-sm);padding:10px 12px}
+.spec-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-3)}
+.spec-value{font-size:14px;font-weight:600;color:var(--white);margin-top:2px}
+.product-actions{display:flex;gap:10px;margin-top:20px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.portfolio-card{border-radius:var(--radius-lg);overflow:hidden;background:var(--dark-3);border:1px solid rgba(255,255,255,0.07);transition:var(--transition);position:relative}
+.portfolio-card:hover{border-color:rgba(230,57,0,0.35);transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.portfolio-card.featured{grid-column:span 2}
+.portfolio-img{overflow:hidden;position:relative}
+.portfolio-card:not(.featured) .portfolio-img{aspect-ratio:16/10}
+.portfolio-card.featured .portfolio-img{aspect-ratio:21/9}
+.portfolio-img img{width:100%;height:100%;object-fit:cover;object-position:center 55%;transition:transform .5s ease}
+.portfolio-card:hover .portfolio-img img{transform:scale(1.05)}
+.portfolio-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,10,10,0.7) 0%,transparent 60%);opacity:0;transition:opacity var(--transition)}
+.portfolio-card:hover .portfolio-overlay{opacity:1}
+.portfolio-view-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.8);background:var(--primary);color:var(--white);border-radius:100px;padding:10px 24px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:all var(--transition);white-space:nowrap;text-decoration:none;display:block}
+.portfolio-card:hover .portfolio-view-btn{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.portfolio-info{padding:24px}
+.portfolio-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.portfolio-category{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);background:rgba(230,57,0,0.1);padding:3px 10px;border-radius:100px}
+.portfolio-country{font-size:12px;color:var(--gray-3);display:flex;align-items:center;gap:4px}
+.portfolio-country svg{width:12px;height:12px}
+.portfolio-info h4{font-size:18px;margin-bottom:6px}
+.portfolio-info p{font-size:13px;color:var(--gray-3);margin-bottom:16px}
+.portfolio-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.portfolio-tag{font-size:11px;color:var(--gray-3);background:var(--dark-4);padding:3px 10px;border-radius:4px}
+.portfolio-stats{display:flex;gap:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06)}
+.portfolio-stat-item .num{font-family:var(--font-heading);font-size:22px;font-weight:800;color:var(--white);line-height:1}
+.portfolio-stat-item .lbl{font-size:11px;color:var(--gray-3);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+@media(max-width:1024px){.portfolio-grid{grid-template-columns:repeat(2,1fr)!important}.portfolio-card.featured{grid-column:span 2}}
+@media(max-width:768px){.portfolio-grid{grid-template-columns:1fr!important}.portfolio-card.featured{grid-column:span 1}.portfolio-card.featured .portfolio-img{aspect-ratio:16/9}.product-actions{flex-direction:column}}
+</style>
+
+<section class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('/images/proframe-r32/2.jpg')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container"><div class="page-hero-content">
+    <nav class="breadcrumb"><a href="/">Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>Portfolio</span></nav>
+    <div class="label">Our Work</div>
+    <h1>Karts &amp; Tracks<br>Around the <span class="highlight">World</span></h1>
+  </div></div>
+</section>
+
+<div class="stats-strip">
+  <div class="container"><div class="stats-grid">
+    <div class="text-center fade-in"><div class="stat-num" data-count="120" data-suffix="+">120+</div><div class="stat-label">Track Projects</div></div>
+    <div class="text-center fade-in delay-1"><div class="stat-num" data-count="500" data-suffix="+">500+</div><div class="stat-label">Karts Deployed</div></div>
+    <div class="text-center fade-in delay-2"><div class="stat-num" data-count="60" data-suffix="+">60+</div><div class="stat-label">Countries</div></div>
+    <div class="text-center fade-in delay-3"><div class="stat-num" data-count="15" data-suffix="+">15+</div><div class="stat-label">Years Portfolio</div></div>
+  </div></div>
+</div>
+
+<section class="section products-section">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">Product Lines</div><h2>Our <span class="highlight">Kart Models</span></h2><p>Three purpose-engineered product families to match every venue type and operational requirement.</p></div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Models</button>
+      <button class="filter-btn" data-filter="electric">Electric</button>
+      <button class="filter-btn" data-filter="gas">Gas</button>
+      <button class="filter-btn" data-filter="junior">Junior</button>
+      <button class="filter-btn" data-filter="racing">Racing</button>
+    </div>
+    <div class="grid-3">
+      <div class="product-card fade-in delay-1" data-category="electric">
+        <div class="product-img"><img src="/images/ev-pro-48/1.jpg" alt="VortKart EV-Pro electric commercial go kart" loading="lazy" /><span class="product-badge">Bestseller</span></div>
+        <div class="product-info">
+          <h4>EV-Pro® 48</h4>
+          <p>Our flagship electric rental kart — zero-emission, low-noise, high-durability. Built for indoor and outdoor venues demanding premium guest experience.</p>
+          <div class="product-specs">
+            <div class="spec-item"><div class="spec-label">Motor</div><div class="spec-value">3kW Electric</div></div>
+            <div class="spec-item"><div class="spec-label">Top Speed</div><div class="spec-value">50 km/h</div></div>
+            <div class="spec-item"><div class="spec-label">Charge Time</div><div class="spec-value">45 mins</div></div>
+            <div class="spec-item"><div class="spec-label">Runtime</div><div class="spec-value">2–3 hrs</div></div>
+          </div>
+          <div class="product-actions">
+            <a href="/contact" class="btn btn-primary" style="flex:1;justify-content:center">Request Quote</a>
+            <a href="/product" class="btn btn-outline" style="flex:1;justify-content:center">Spec Sheet</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card fade-in delay-2" data-category="gas">
+        <div class="product-img"><img src="/images/duratrak-270/1.jpg" alt="VortKart DuraTrak 270 gas go kart" loading="lazy" /></div>
+        <div class="product-info">
+          <h4>DuraTrak® 270</h4>
+          <p>Powered by a 270cc engine, the DuraTrak® delivers maximum thrills for outdoor attractions and high-throughput rental operations demanding raw performance.</p>
+          <div class="product-specs">
+            <div class="spec-item"><div class="spec-label">Engine</div><div class="spec-value">270cc 4-Stroke</div></div>
+            <div class="spec-item"><div class="spec-label">Top Speed</div><div class="spec-value">75 km/h</div></div>
+            <div class="spec-item"><div class="spec-label">Fuel Tank</div><div class="spec-value">3.5 litres</div></div>
+            <div class="spec-item"><div class="spec-label">Weight</div><div class="spec-value">135 kg</div></div>
+          </div>
+          <div class="product-actions">
+            <a href="/contact" class="btn btn-primary" style="flex:1;justify-content:center">Request Quote</a>
+            <a href="/product" class="btn btn-outline" style="flex:1;justify-content:center">Spec Sheet</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card fade-in delay-3" data-category="junior">
+        <div class="product-img"><img src="/images/juniorsprint-ev/1.jpg" alt="VortKart JuniorSprint EV go kart" loading="lazy" /></div>
+        <div class="product-info"><h4>JuniorSprint® EV</h4><p>Specifically engineered for young drivers aged 5–12. Speed-limited, impact-resistant bodywork, and intuitive throttle response.</p><div class="product-specs"><div class="spec-item"><div class="spec-label">Motor</div><div class="spec-value">1.2kW Electric</div></div><div class="spec-item"><div class="spec-label">Max Speed</div><div class="spec-value">25 km/h</div></div><div class="spec-item"><div class="spec-label">Age Range</div><div class="spec-value">5–12 yrs</div></div><div class="spec-item"><div class="spec-label">Height Range</div><div class="spec-value">110–150cm</div></div></div><div class="product-actions"><a href="/contact" class="btn btn-primary" style="flex:1;justify-content:center">Request Quote</a><a href="/product" class="btn btn-outline" style="flex:1;justify-content:center">Spec Sheet</a></div></div>
+      </div>
+      <div class="product-card fade-in delay-1" data-category="racing">
+        <div class="product-img"><img src="/images/proframe-r32/1.jpg" alt="VortKart ProFrame R32 racing chassis" loading="lazy" /><span class="product-badge" style="background:var(--accent);color:var(--dark)">Racing</span></div>
+        <div class="product-info"><h4>ProFrame® R32</h4><p>CIK/FIA-spec racing chassis for club and national competition. Precision CNC-bent 32mm chrome-moly tubing with competition-optimized geometry.</p><div class="product-specs"><div class="spec-item"><div class="spec-label">Tube Size</div><div class="spec-value">32mm CrMo</div></div><div class="spec-item"><div class="spec-label">Weight</div><div class="spec-value">56 kg bare</div></div><div class="spec-item"><div class="spec-label">Homolog.</div><div class="spec-value">CIK/FIA</div></div><div class="spec-item"><div class="spec-label">Classes</div><div class="spec-value">OK / KZ / X30</div></div></div><div class="product-actions"><a href="/contact" class="btn btn-primary" style="flex:1;justify-content:center">Request Quote</a><a href="/product" class="btn btn-outline" style="flex:1;justify-content:center">Spec Sheet</a></div></div>
+      </div>
+      <div class="product-card fade-in delay-2" data-category="electric">
+        <div class="product-img"><img src="/images/ev-max-72/1.jpg" alt="VortKart EV-Max 72V indoor kart" loading="lazy" /><span class="product-badge" style="background:#7c3aed">New 2024</span></div>
+        <div class="product-info"><h4>EV-Max® 72</h4><p>Our newest flagship — 72V high-performance electric kart delivering the visceral acceleration of a gas kart with zero emissions.</p><div class="product-specs"><div class="spec-item"><div class="spec-label">Motor</div><div class="spec-value">5kW BLDC</div></div><div class="spec-item"><div class="spec-label">Top Speed</div><div class="spec-value">65 km/h</div></div><div class="spec-item"><div class="spec-label">Charge Time</div><div class="spec-value">30 mins</div></div><div class="spec-item"><div class="spec-label">0–50 km/h</div><div class="spec-value">3.8 sec</div></div></div><div class="product-actions"><a href="/contact" class="btn btn-primary" style="flex:1;justify-content:center">Request Quote</a><a href="/product" class="btn btn-outline" style="flex:1;justify-content:center">Spec Sheet</a></div></div>
+      </div>
+      <div class="product-card fade-in delay-3" data-category="gas">
+        <div class="product-img"><img src="/images/duratrak-160/1.jpg" alt="VortKart DuraTrak 160 compact gas kart" loading="lazy" /></div>
+        <div class="product-info"><h4>DuraTrak® 160</h4><p>Compact gas rental kart with 160cc engine — perfect for family entertainment centers that want the gas kart experience in a manageable package.</p><div class="product-specs"><div class="spec-item"><div class="spec-label">Engine</div><div class="spec-value">160cc 4-Stroke</div></div><div class="spec-item"><div class="spec-label">Top Speed</div><div class="spec-value">55 km/h</div></div><div class="spec-item"><div class="spec-label">Fuel Tank</div><div class="spec-value">2.5 litres</div></div><div class="spec-item"><div class="spec-label">Weight</div><div class="spec-value">118 kg</div></div></div><div class="product-actions"><a href="/contact" class="btn btn-primary" style="flex:1;justify-content:center">Request Quote</a><a href="/product" class="btn btn-outline" style="flex:1;justify-content:center">Spec Sheet</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" style="background:var(--dark)"><div class="container">
+  <div class="section-header fade-in"><div class="label">Project Portfolio</div><h2>Completed <span class="highlight">Installations</span></h2><p>A selection of our track design and karting attraction projects delivered worldwide.</p></div>
+  <div class="filter-bar"><button class="filter-btn active" data-filter="all">All Projects</button><button class="filter-btn" data-filter="indoor">Indoor</button><button class="filter-btn" data-filter="outdoor">Outdoor</button><button class="filter-btn" data-filter="resort">Resort</button><button class="filter-btn" data-filter="fec">FEC</button></div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card featured fade-in" data-category="outdoor"><div class="portfolio-img"><img src="/images/proframe-r32/4.jpg" alt="SpeedZone Grand Prix outdoor track California" loading="lazy" style="object-position:center 72%" /><div class="portfolio-overlay"></div><a href="/project" class="portfolio-view-btn">View Project</a></div><div class="portfolio-info"><div class="portfolio-meta"><span class="portfolio-category">Turnkey Project</span><span class="portfolio-country"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> USA</span></div><h4>SpeedZone Grand Prix — California</h4><p>Full turnkey outdoor karting attraction — 850m track, 40 EV-Pro® karts, pit lanes, grandstand, timing system, and operator training.</p><div class="portfolio-stats"><div class="portfolio-stat-item"><div class="num">850m</div><div class="lbl">Track</div></div><div class="portfolio-stat-item"><div class="num">40</div><div class="lbl">Karts</div></div><div class="portfolio-stat-item"><div class="num">5mo</div><div class="lbl">Timeline</div></div></div><div class="portfolio-tags"><span class="portfolio-tag">EV Fleet</span><span class="portfolio-tag">Track Design</span><span class="portfolio-tag">Timing System</span><span class="portfolio-tag">Staff Training</span></div></div></div>
+    <div class="portfolio-card fade-in delay-1" data-category="resort"><div class="portfolio-img"><img src="/images/duratrak-270/7.jpg" alt="Grand Marina Resort Spain" loading="lazy" /><div class="portfolio-overlay"></div><a href="/project" class="portfolio-view-btn">View Project</a></div><div class="portfolio-info"><div class="portfolio-meta"><span class="portfolio-category">Resort</span><span class="portfolio-country"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Spain</span></div><h4>Grand Marina Resort Karting</h4><p>20-kart EV fleet integrated into a luxury resort. Custom livery and full-service maintenance contract.</p><div class="portfolio-stats"><div class="portfolio-stat-item"><div class="num">20</div><div class="lbl">EV Karts</div></div><div class="portfolio-stat-item"><div class="num">400m</div><div class="lbl">Circuit</div></div></div></div></div>
+    <div class="portfolio-card fade-in delay-2" data-category="indoor"><div class="portfolio-img"><img src="/images/ev-pro-48/3.jpg" alt="Dubai Indoor Karting Dome" loading="lazy" /><div class="portfolio-overlay"></div><a href="/project" class="portfolio-view-btn">View Project</a></div><div class="portfolio-info"><div class="portfolio-meta"><span class="portfolio-category">Indoor Track</span><span class="portfolio-country"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> UAE</span></div><h4>Dubai Indoor Karting Dome</h4><p>600m circuit, 30 EV-Max® karts, multi-level spectator gallery, and full smart timing system.</p><div class="portfolio-stats"><div class="portfolio-stat-item"><div class="num">600m</div><div class="lbl">Circuit</div></div><div class="portfolio-stat-item"><div class="num">30</div><div class="lbl">EV Karts</div></div></div></div></div>
+    <div class="portfolio-card fade-in delay-3" data-category="fec"><div class="portfolio-img"><img src="/images/kids-racing/1.jpg" alt="AsiaPac Family Karting Singapore" loading="lazy" /><div class="portfolio-overlay"></div><a href="/project" class="portfolio-view-btn">View Project</a></div><div class="portfolio-info"><div class="portfolio-meta"><span class="portfolio-category">FEC</span><span class="portfolio-country"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Singapore</span></div><h4>AsiaPac Family Karting Center</h4><p>Dual-track layout with separate junior and adult circuits. Complete operational setup for FEC.</p><div class="portfolio-stats"><div class="portfolio-stat-item"><div class="num">25</div><div class="lbl">Adult Karts</div></div><div class="portfolio-stat-item"><div class="num">15</div><div class="lbl">Junior Karts</div></div></div></div></div>
+    <div class="portfolio-card fade-in delay-1" data-category="outdoor"><div class="portfolio-img"><img src="/images/duratrak-160/5.jpg" alt="SunPark Gold Coast Australia" loading="lazy" /><div class="portfolio-overlay"></div><a href="/project" class="portfolio-view-btn">View Project</a></div><div class="portfolio-info"><div class="portfolio-meta"><span class="portfolio-category">Amusement Park</span><span class="portfolio-country"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Australia</span></div><h4>SunPark Karting — Gold Coast</h4><p>35-kart mixed gas fleet for a high-volume theme park. Custom livery, ongoing maintenance contract.</p><div class="portfolio-stats"><div class="portfolio-stat-item"><div class="num">35</div><div class="lbl">Gas Karts</div></div><div class="portfolio-stat-item"><div class="num">700m</div><div class="lbl">Track</div></div></div></div></div>
+    <div class="portfolio-card fade-in delay-2" data-category="indoor"><div class="portfolio-img"><img src="/images/dual-rider/1.jpg" alt="Apex Corporate Karting London" loading="lazy" /><div class="portfolio-overlay"></div><a href="/project" class="portfolio-view-btn">View Project</a></div><div class="portfolio-info"><div class="portfolio-meta"><span class="portfolio-category">Corporate Venue</span><span class="portfolio-country"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> UK</span></div><h4>Apex Corporate Karting — London</h4><p>20 EV-Max® karts, VIP briefing room, live race commentary, and professional lap timing portal.</p><div class="portfolio-stats"><div class="portfolio-stat-item"><div class="num">20</div><div class="lbl">EV Karts</div></div><div class="portfolio-stat-item"><div class="num">480m</div><div class="lbl">Circuit</div></div></div></div></div>
+  </div>
+</div></section>
+<section class="cta-section"><div class="container"><div class="fade-in">
+  <div class="label" style="justify-content:center">Your Project Next</div>
+  <h2>Ready to Start Your<br><span class="highlight">Karting Project?</span></h2>
+  <p>Join 500+ operators worldwide who trust VortKart® to power their business.</p>
+  <div class="cta-buttons"><a href="/contact" class="btn btn-primary btn-lg">Get a Free Quote</a><a href="/services" class="btn btn-outline btn-lg">View Services</a></div>
+</div></div></section>
+</BaseLayout>
