@@ -1,8 +1,8 @@
 ---
-title: "DuraTrak® 159"
+title: "DuraTrak® 158"
 category: "gas"
 tagline: "Compact 160cc gas rental kart — perfect for family entertainment centers."
-image: "/images/proframe-r32/4.jpg"
+image: "/images/proframe-r32/6.jpg"
 gallery:
   - /images/duratrak-160/2.jpg
   - /images/duratrak-160/3.jpg
