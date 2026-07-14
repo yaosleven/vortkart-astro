@@ -36,6 +36,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 .collage-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .collage-item:hover img{transform:scale(1.04)}
 .collage-item.full{grid-column:span 2;aspect-ratio:21/9}
+.timeline-img{display:none}
 .collage-year{position:absolute;bottom:10px;left:12px;font-family:var(--font-heading);font-size:12px;font-weight:700;color:var(--white);background:rgba(6,8,13,0.7);backdrop-filter:blur(6px);padding:3px 10px;border-radius:100px;letter-spacing:.05em}
 .values-section{background:var(--dark-2)}
 .value-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px;text-align:center;transition:var(--transition)}
@@ -52,7 +53,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 .diff-list li{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
 .diff-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:8px}
 .diff-list li span{font-size:15px;color:var(--gray-4)}
-@media(max-width:1024px){.mission-grid{grid-template-columns:1fr!important;gap:48px!important}.diff-row{grid-template-columns:1fr!important;gap:32px!important}.diff-row.reverse .diff-img{order:1!important}.diff-row.reverse .diff-content{order:2!important}.timeline-grid{grid-template-columns:1fr!important;gap:48px!important}.timeline-col{max-width:100%!important}}
+@media(max-width:1024px){.mission-grid{grid-template-columns:1fr!important;gap:48px!important}.diff-row{grid-template-columns:1fr!important;gap:32px!important}.diff-row.reverse .diff-img{order:1!important}.diff-row.reverse .diff-content{order:2!important}.timeline-grid{grid-template-columns:1fr!important;gap:48px!important}.timeline-col{max-width:100%!important}.collage-col{display:none!important}.timeline-img{display:block;width:100%;border-radius:var(--radius-lg);margin-top:16px;aspect-ratio:16/9;object-fit:cover}}
 @media(max-width:640px){.collage-grid{grid-template-columns:1fr}.collage-item.full{grid-column:span 1;aspect-ratio:16/9}}
 .process-section{background:var(--dark-2)}
 .process-timeline{position:relative;padding-left:40px;max-width:640px;margin:0 auto}
@@ -141,11 +142,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="timeline-grid">
       <div class="timeline-col">
         <div class="timeline">
-          <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-year">2009</div><h3>The Beginning</h3><p>VortKart® founded in a 200 m² workshop with a team of 6 engineers. First commercial rental go kart model launched and adopted by 3 local tracks.</p></div>
-          <div class="timeline-item fade-in delay-1"><div class="timeline-dot"></div><div class="timeline-year">2012</div><h3>International Expansion</h3><p>First export orders shipped to Europe and the Middle East. Manufacturing facility expanded to 2,000 m². ISO 9001 quality certification received.</p></div>
-          <div class="timeline-item fade-in delay-2"><div class="timeline-dot"></div><div class="timeline-year">2015</div><h3>Track Design Division Launched</h3><p>Expanded services to include full track design, layout consultation, and turnkey project management.</p></div>
-          <div class="timeline-item fade-in delay-3"><div class="timeline-dot"></div><div class="timeline-year">2018</div><h3>Electric Kart Series</h3><p>Launched the EL-2000 electric commercial kart series. Over 200 units shipped in the first year.</p></div>
-          <div class="timeline-item fade-in delay-4"><div class="timeline-dot"></div><div class="timeline-year">Today</div><h3>A Global Go Kart Manufacturer</h3><p>500+ go karts delivered and 120+ tracks designed across 60+ countries. Our 15,000 m² facility and 120+ skilled staff continue to scale to meet growing global demand.</p></div>
+          <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-year">2009</div><h3>The Beginning</h3><p>VortKart® founded in a 200 m² workshop with a team of 6 engineers. First commercial rental go kart model launched and adopted by 3 local tracks.</p><img class="timeline-img" src={`${base}/images/history/2009-workshop.png`} alt="VortKart founding workshop 2009" loading="lazy" /></div>
+          <div class="timeline-item fade-in delay-1"><div class="timeline-dot"></div><div class="timeline-year">2012</div><h3>International Expansion</h3><p>First export orders shipped to Europe and the Middle East. Manufacturing facility expanded to 2,000 m². ISO 9001 quality certification received.</p><img class="timeline-img" src={`${base}/images/history/2012-expansion.png`} alt="VortKart factory expansion 2012" loading="lazy" /></div>
+          <div class="timeline-item fade-in delay-2"><div class="timeline-dot"></div><div class="timeline-year">2015</div><h3>Track Design Division Launched</h3><p>Expanded services to include full track design, layout consultation, and turnkey project management.</p><img class="timeline-img" src={`${base}/images/history/2015-track-design.png`} alt="VortKart track design team 2015" loading="lazy" /></div>
+          <div class="timeline-item fade-in delay-3"><div class="timeline-dot"></div><div class="timeline-year">2018</div><h3>Electric Kart Series</h3><p>Launched the EL-2000 electric commercial kart series. Over 200 units shipped in the first year.</p><img class="timeline-img" src={`${base}/images/history/2018-electric.png`} alt="VortKart electric kart production 2018" loading="lazy" /></div>
+          <div class="timeline-item fade-in delay-4"><div class="timeline-dot"></div><div class="timeline-year">Today</div><h3>A Global Go Kart Manufacturer</h3><p>500+ go karts delivered and 120+ tracks designed across 60+ countries. Our 15,000 m² facility and 120+ skilled staff continue to scale to meet growing global demand.</p><img class="timeline-img" src={`${base}/images/history/2024-campus.png`} alt="VortKart modern manufacturing campus 2024" loading="lazy" /></div>
         </div>
       </div>
       <div class="collage-col fade-in delay-2">
