@@ -1,5 +1,35 @@
 {
   "cms": "Sitepins",
   "generator": "Sitepins CMS",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "site": {
+    "name": "VortKart International",
+    "url": "https://vortkart.com",
+    "description": "Leading commercial go kart manufacturer and track design solutions provider.",
+    "language": "en",
+    "framework": "Astro 7"
+  },
+  "content": {
+    "products": {
+      "label": "Products",
+      "path": "/portfolio",
+      "detail": "/product/{slug}",
+      "count": 7,
+      "categories": ["electric", "gas", "racing", "junior"]
+    },
+    "projects": {
+      "label": "Projects",
+      "path": "/portfolio",
+      "detail": "/project/{slug}",
+      "count": 6,
+      "categories": ["outdoor", "indoor", "resort", "fec", "corporate"]
+    }
+  },
+  "pages": [
+    { "path": "/", "label": "Home" },
+    { "path": "/about", "label": "About" },
+    { "path": "/services", "label": "Services" },
+    { "path": "/portfolio", "label": "Portfolio" },
+    { "path": "/contact", "label": "Contact" }
+  ]
 }

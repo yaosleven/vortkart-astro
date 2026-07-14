@@ -1,0 +1,32 @@
+Negative Keyword,Match Type,Reason
+free,Broad,No-budget / freebie seekers
+plans,Broad,DIY blueprint seekers
+DIY,Broad,Do-it-yourself, not buyers
+how to make,Phrase,DIY makers
+homemade,Broad,DIY makers
+used,Broad,Second-hand market
+second hand,Phrase,Second-hand market
+pre owned,Phrase,Second-hand market
+kids toy,Phrase,Toy shoppers
+toy,Broad,Toy shoppers
+pedal,Broad,Pedal karts / toys
+remote control,Phrase,RC toys
+rc,Exact,RC toys
+video game,Phrase,Gaming searches
+roblox,Broad,Gaming searches
+mario kart,Phrase,Gaming searches
+near me,Phrase,Local entertainment seekers
+rent near me,Phrase,Consumers wanting to play
+racing near me,Phrase,Consumers wanting to play
+jobs,Broad,Job seekers
+hiring,Broad,Job seekers
+salary,Broad,Job seekers
+career,Broad,Job seekers
+repair,Broad,Repair / parts seekers
+parts diagram,Phrase,Parts seekers
+manual,Broad,Manual seekers
+lego,Broad,Toy brand
+hot wheels,Phrase,Toy brand
+drift trike,Phrase,Wrong product
+lawn mower,Phrase,Wrong product
+go kart game,Phrase,Gaming searches

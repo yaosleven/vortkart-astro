@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntry, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(p => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry({ collection: 'blog', id: slug });
+if (!entry) return Astro.redirect('/blog');
+
+const { data: post } = entry;
+const { Content } = await render(entry);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const categoryLabels: Record<string, string> = {
+  'industry': 'Industry',
+  'guide': 'Guide',
+  'news': 'News',
+  'case-study': 'Case Study',
+};
+
+// Get related posts (same category, exclude current)
+const all = await getCollection('blog');
+const related = all
+  .filter(p => p.id !== slug && p.data.category === post.category)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+
+// If fewer than 3 related in same category, fill from other categories
+if (related.length < 3) {
+  const others = all
+    .filter(p => p.id !== slug && p.data.category !== post.category)
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  for (const o of others) {
+    if (related.length >= 3) break;
+    related.push(o);
+  }
+}
+
+// Structured data
+const articleSchema = {
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "description": post.description,
+  "datePublished": post.date,
+  "author": { "@type": "Organization", "name": "VortKart® International" },
+  "image": `https://vortkart.com${post.image}`,
+  "publisher": {
+    "@type": "Organization",
+    "name": "VortKart® International",
+    "logo": { "@type": "ImageObject", "url": "https://vortkart.com/images/logo.png" }
+  },
+};
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vortkart.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://vortkart.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://vortkart.com/blog/${slug}` },
+  ],
+};
+---
+<BaseLayout
+  title={`${post.title} | VortKart® Blog`}
+  description={post.description}
+  canonical={`https://vortkart.com/blog/${slug}`}
+  ogTitle={post.title}
+  ogDescription={post.description}
+  ogImage={`https://vortkart.com${post.image}`}
+  ogType="article"
+  jsonLd={[articleSchema, breadcrumbSchema]}
+>
+<style>
+.ar-overview-grid{display:grid;grid-template-columns:1fr 360px;gap:64px;align-items:start}
+.ar-facts-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);padding:32px;position:sticky;top:calc(var(--nav-height) + 24px)}
+.ar-fact{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.ar-fact:last-child{border-bottom:none}
+.ar-fact-label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-3)}
+.ar-fact-value{font-size:14px;font-weight:700;color:var(--white);text-align:right}
+.article-content h2{font-size:24px;margin:48px 0 16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06)}
+.article-content h2:first-of-type{border-top:none;padding-top:0}
+.article-content h3{font-size:20px;margin:32px 0 12px}
+.article-content p{font-size:16px;line-height:1.8;color:var(--gray-4);margin-bottom:16px}
+.article-content strong{color:var(--white)}
+.article-content a{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
+.article-content a:hover{text-decoration-thickness:2px}
+.article-content ul,.article-content ol{margin:16px 0;padding-left:24px}
+.article-content li{font-size:15px;line-height:1.7;color:var(--gray-4);margin-bottom:8px}
+.article-content ul li{list-style:disc}
+.article-content ol li{list-style:decimal}
+.article-content img{width:100%;border-radius:var(--radius-lg);margin:24px 0}
+.article-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+.article-tag{font-size:12px;color:var(--gray-3);background:var(--dark-3);padding:4px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.06)}
+.ar-related-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);display:block;text-decoration:none}
+.ar-related-card:hover{border-color:rgba(249,115,22,0.25);transform:translateY(-4px)}
+.ar-related-card img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.ar-related-body{padding:22px}
+.ar-related-body h4{font-size:18px;margin-bottom:6px}
+.ar-related-body p{font-size:13px;color:var(--gray-3);margin-bottom:14px}
+@media(max-width:1024px){.ar-overview-grid{grid-template-columns:1fr!important;gap:40px}.ar-facts-card{position:static!important}}
+</style>
+
+<section class="page-hero">
+  <div class="page-hero-bg" style={`background-image:url('${base}${post.image}')`}></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container"><div class="page-hero-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg><a href={`${base}/blog`}>Blog</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg><span>{post.title.length > 40 ? post.title.slice(0, 40) + '…' : post.title}</span></nav>
+    <div class="label">{categoryLabels[post.category]}</div>
+    <h1>{post.title}</h1>
+  </div></div>
+</section>
+
+<section class="section" style="background:var(--dark)">
+  <div class="container">
+    <div class="ar-overview-grid">
+      <div class="fade-in">
+        <div class="article-content">
+          <Content />
+        </div>
+        {post.tags.length > 0 && (
+          <div class="article-tags">
+            {post.tags.map(tag => <span class="article-tag">{tag}</span>)}
+          </div>
+        )}
+        <a href={`${base}/contact`} class="btn btn-primary" style="width:100%;justify-content:center;margin-top:28px">Discuss Your Project</a>
+      </div>
+      <div class="fade-in delay-2">
+        <div class="ar-facts-card">
+          <h4 style="margin-bottom:20px;font-size:16px">Article Details</h4>
+          <div class="ar-fact"><span class="ar-fact-label">Category</span><span class="ar-fact-value">{categoryLabels[post.category]}</span></div>
+          <div class="ar-fact"><span class="ar-fact-label">Published</span><span class="ar-fact-value">{formatDate(post.date)}</span></div>
+          <div class="ar-fact"><span class="ar-fact-label">Author</span><span class="ar-fact-value">{post.author}</span></div>
+          <div class="ar-fact"><span class="ar-fact-label">Reading Time</span><span class="ar-fact-value">~5 min</span></div>
+          {post.featured && <div class="ar-fact"><span class="ar-fact-label">Featured</span><span class="ar-fact-value" style="color:var(--primary)">Yes</span></div>}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{related.length > 0 && (
+  <section class="section" style="background:var(--dark-2)">
+    <div class="container">
+      <div class="section-header fade-in"><div class="label">Keep Reading</div><h2>Related <span class="highlight">Articles</span></h2></div>
+      <div class="grid-3 fade-in delay-1">
+        {related.map(r => (
+          <a href={`${base}/blog/${r.id}`} class="ar-related-card">
+            <img src={`${base}${r.data.image}`} alt={r.data.title} loading="lazy" />
+            <div class="ar-related-body">
+              <h4>{r.data.title}</h4>
+              <p>{r.data.description}</p>
+              <span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)">Read Article →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<section class="cta-section">
+  <div class="container"><div class="fade-in">
+    <div class="label" style="justify-content:center">Need Expert Advice?</div>
+    <h2>Let's Discuss <span class="highlight">Your Project</span></h2>
+    <p>Talk to our go kart specialists about fleet sizing, track design, and turnkey options for your venue.</p>
+    <div class="cta-buttons">
+      <a href={`${base}/contact`} class="btn btn-primary btn-lg">Get in Touch</a>
+      <a href={`${base}/blog`} class="btn btn-outline btn-lg">Browse All Articles</a>
+    </div>
+  </div></div>
+</section>
+</BaseLayout>

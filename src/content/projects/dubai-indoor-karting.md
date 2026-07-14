@@ -3,7 +3,7 @@ title: "Dubai Indoor Karting Dome"
 category: "indoor"
 location: "Dubai, UAE"
 country: "UAE"
-image: "/images/ev-pro-48/3.jpg"
+image: "/images/fl-270/Recreational-go-karting3.webp"
 stats:
   trackLength: "600m"
   kartCount: "30 karts"
@@ -14,4 +14,4 @@ featured: false
 order: 3
 ---
 
-600m multi-level indoor circuit with 30 EV-Max® 72V karts. Features a spectator gallery, live timing displays, and a corporate event suite. One of the largest indoor karting venues in the Middle East.
+600m multi-level indoor circuit with 30 EL-2000 karts. Features a spectator gallery, live timing displays, and a corporate event suite. One of the largest indoor karting venues in the Middle East.

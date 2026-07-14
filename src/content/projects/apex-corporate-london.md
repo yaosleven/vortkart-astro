@@ -3,7 +3,7 @@ title: "Apex Corporate Karting"
 category: "corporate"
 location: "London, UK"
 country: "UK"
-image: "/images/dual-rider/1.jpg"
+image: "/images/fl-270d/Two-seater-go-kart3.webp"
 stats:
   trackLength: "450m"
   kartCount: "18 karts"

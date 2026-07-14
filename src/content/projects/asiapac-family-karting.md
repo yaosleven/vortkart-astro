@@ -3,7 +3,7 @@ title: "AsiaPac Family Karting"
 category: "fec"
 location: "Singapore"
 country: "Singapore"
-image: "/images/kids-racing/1.jpg"
+image: "/images/fr-60k/Junior-Racing-Karting2.webp"
 stats:
   trackLength: "380m"
   kartCount: "25 karts"
@@ -14,4 +14,4 @@ featured: false
 order: 4
 ---
 
-Mixed-fleet family entertainment center with 15 EV-Pro® adult karts and 10 JuniorSprint® EV karts on a dual-circuit layout. Separate junior and adult tracks allow simultaneous operation.
+Mixed-fleet family entertainment center with 15 FL-270 adult karts and 10 EL-500 junior karts on a dual-circuit layout. Separate junior and adult tracks allow simultaneous operation.

@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../config/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const commercialFaqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the minimum order quantity for commercial go karts?", "acceptedAnswer": { "@type": "Answer", "text": "VortKart® accepts commercial orders starting from 5 units. We offer volume-based pricing with significant discounts for larger fleet orders. Contact our sales team for a custom quote tailored to your fleet size and venue requirements." } },
+    { "@type": "Question", "name": "Do you ship commercial go karts internationally?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. VortKart® ships to 60+ countries worldwide via sea or air freight with full export documentation. We offer DDP (Delivered Duty Paid) shipping options for hassle-free delivery. Typical lead times vary by destination and order size." } },
+    { "@type": "Question", "name": "What is the difference between electric and gas commercial go karts?", "acceptedAnswer": { "@type": "Answer", "text": "Electric karts offer zero emissions, silent operation, and lower maintenance — ideal for indoor venues. Gas karts powered by Honda GX engines offer longer run times, quick refueling, and higher top speeds — ideal for outdoor tracks. VortKart® manufactures both types to suit any venue." } },
+    { "@type": "Question", "name": "What warranty and support do you offer for commercial go karts?", "acceptedAnswer": { "@type": "Answer", "text": "All VortKart® commercial go karts come with a 12-month structural warranty on the chassis. We provide 24/7 technical support via phone, email, and video call, plus spare parts shipped globally within 48 hours. Operator training is included with every fleet order." } }
+  ]
+};
+---
+<BaseLayout
+  title="Commercial Go Karts | Factory-Direct Pricing | VortKart®"
+  description="Buy commercial go karts directly from the manufacturer. Electric & gas-powered options. 5-unit MOQ. 48hr quotes. Ships to 60+ countries."
+  keywords="buy commercial go karts, commercial go kart wholesale, factory direct go karts, go kart fleet supplier, go kart bulk order, commercial karting equipment, go kart dealer, go kart distributor, rental go kart supplier, go kart manufacturer China"
+  canonical="https://vortkart.com/commercial-go-karts"
+  jsonLd={commercialFaqSchema}
+>
+<style>
+  .lp-hero{background:var(--dark);position:relative;overflow:hidden}
+  .lp-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,8,13,.92) 0%,rgba(6,8,13,.7) 100%);pointer-events:none}
+  .lp-hero-bg{position:absolute;inset:0}
+  .lp-hero-bg img{width:100%;height:100%;object-fit:cover}
+  .lp-hero-content{position:relative;z-index:1;padding:100px 0 80px}
+  .lp-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.25);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:24px}
+  .lp-badge svg{width:14px;height:14px}
+  .lp-hero h1{font-size:clamp(32px,5vw,56px);line-height:1.1;margin-bottom:20px}
+  .lp-hero h1 .highlight{color:var(--primary)}
+  .lp-hero-sub{font-size:18px;color:var(--gray-3);max-width:560px;line-height:1.7;margin-bottom:36px}
+  .lp-hero-stats{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:40px}
+  .lp-stat{text-align:left}
+  .lp-stat-val{font-family:var(--font-heading);font-size:32px;font-weight:800;color:var(--primary);line-height:1}
+  .lp-stat-label{font-size:13px;color:var(--gray-3);margin-top:4px}
+  .lp-hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .lp-trust{display:flex;gap:24px;flex-wrap:wrap;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.06)}
+  .lp-trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-3)}
+  .lp-trust-item svg{width:16px;height:16px;color:var(--primary);flex-shrink:0}
+  .lp-products{background:var(--dark-2)}
+  .lp-product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-product-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);overflow:hidden;transition:var(--transition)}
+  .lp-product-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+  .lp-product-img{aspect-ratio:4/3;overflow:hidden}
+  .lp-product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .lp-product-card:hover .lp-product-img img{transform:scale(1.05)}
+  .lp-product-body{padding:24px}
+  .lp-product-tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:8px}
+  .lp-product-body h3{font-size:20px;margin-bottom:8px}
+  .lp-product-body p{font-size:14px;color:var(--gray-3);line-height:1.6;margin-bottom:16px}
+  .lp-product-specs{display:flex;gap:16px;flex-wrap:wrap}
+  .lp-product-spec{font-size:12px;color:var(--gray-4);display:flex;align-items:center;gap:4px}
+  .lp-product-spec svg{width:12px;height:12px;color:var(--primary)}
+  .lp-why{background:var(--dark)}
+  .lp-why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .lp-why-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;transition:var(--transition)}
+  .lp-why-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+  .lp-why-icon{width:48px;height:48px;border-radius:var(--radius-md);background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+  .lp-why-icon svg{width:24px;height:24px;color:var(--primary)}
+  .lp-why-card h3{font-size:16px;margin-bottom:8px}
+  .lp-why-card p{font-size:13px;color:var(--gray-3);line-height:1.6}
+  .lp-social{background:var(--dark-2)}
+  .lp-testimonial{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);padding:40px;max-width:720px;margin:0 auto;text-align:center}
+  .lp-testimonial-stars{color:var(--accent);font-size:20px;margin-bottom:16px;letter-spacing:4px}
+  .lp-testimonial blockquote{font-size:18px;line-height:1.7;color:var(--gray-4);font-style:italic;margin-bottom:20px}
+  .lp-testimonial cite{font-size:14px;font-weight:600;color:var(--white);font-style:normal}
+  .lp-testimonial cite span{display:block;font-size:12px;color:var(--gray-3);font-weight:400;margin-top:4px}
+  .lp-testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-testimonials-grid .lp-testimonial{max-width:none}
+  .faq-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:1024px){.lp-product-grid{grid-template-columns:1fr 1fr}.lp-why-grid{grid-template-columns:1fr 1fr}.lp-testimonials-grid{grid-template-columns:1fr}}
+  @media(max-width:768px){.lp-hero-content{padding:60px 0 50px}.lp-testimonial{padding:28px}.lp-why-card{padding:24px 20px}}
+  @media(max-width:640px){.lp-product-grid{grid-template-columns:1fr}.lp-why-grid{grid-template-columns:1fr}.lp-hero-stats{gap:24px}.lp-hero-actions{flex-direction:column}.lp-hero-actions .btn{width:100%;justify-content:center}.faq-grid-2{grid-template-columns:1fr}}
+  @media(max-width:480px){.lp-hero-content{padding:40px 0 30px}}
+.faq-section{background:var(--dark)}
+.faq-item{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:12px;transition:var(--transition)}
+.faq-item:hover{border-color:rgba(255,42,95,0.2)}
+.faq-item h4{font-size:16px;margin-bottom:8px;color:var(--white)}
+.faq-item p{font-size:14px;color:var(--gray-3);line-height:1.7;margin:0}
+</style>
+
+<section class="lp-hero">
+  <div class="lp-hero-bg"><img src={`${base}/images/fl-270/Recreational-go-karting1.webp`} alt="Commercial go karts" /></div>
+  <div class="lp-hero-content container">
+    <div class="lp-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Factory-Direct Manufacturer
+    </div>
+    <h1>Commercial <span class="highlight">Go Karts</span><br>Built for Your Business</h1>
+    <p class="lp-hero-sub">High-durability electric and gas-powered karts for rental fleets worldwide. Factory-direct pricing with no unnecessary reseller markup.</p>
+    <div class="lp-hero-stats">
+      <div class="lp-stat"><div class="lp-stat-val">500+</div><div class="lp-stat-label">Karts Manufactured</div></div>
+      <div class="lp-stat"><div class="lp-stat-val">60+</div><div class="lp-stat-label">Countries Served</div></div>
+      <div class="lp-stat"><div class="lp-stat-val">48hr</div><div class="lp-stat-label">Quote Turnaround</div></div>
+      <div class="lp-stat"><div class="lp-stat-val">5</div><div class="lp-stat-label">Unit Minimum Order</div></div>
+    </div>
+    <div class="lp-hero-actions">
+      <a href={`${base}/contact`} class="btn btn-primary btn-lg">Get Factory Pricing</a>
+      <a href={`${base}/portfolio`} class="btn btn-outline btn-lg">View All Models</a>
+    </div>
+    <div class="lp-trust">
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>ISO 9001 Certified</div>
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>12-Month Warranty</div>
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Worldwide Shipping</div>
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Spare Parts Stocked</div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-products">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Our Fleet</div><h2>Best-Selling <span class="highlight">Models</span></h2><p>Purpose-built for commercial rental operations.</p></div>
+    <div class="lp-product-grid">
+      <div class="lp-product-card fade-in delay-1">
+        <div class="lp-product-img"><img src={`${base}/images/fl-270/Recreational-go-karting1.webp`} alt="FL-270" loading="lazy" /></div>
+        <div class="lp-product-body">
+          <div class="lp-product-tag">Best Seller — Gas</div>
+          <h3>FL-270</h3>
+          <p>Honda GX270-powered rental kart for outdoor tracks. 80 km/h top speed, hydraulic disc brakes, 4130 Cr-Mo steel frame.</p>
+          <div class="lp-product-specs">
+            <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Honda GX270</span>
+            <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>80 km/h</span>
+            <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>6.5L tank</span>
+          </div>
+        </div>
+      </div>
+      <div class="lp-product-card fade-in delay-2">
+        <div class="lp-product-img"><img src={`${base}/images/fr-200x/2026-Four-stroke-go-kart8.webp`} alt="FR-200X" loading="lazy" /></div>
+        <div class="lp-product-body">
+          <div class="lp-product-tag">2026 New — Gas</div>
+          <h3>FR-200X</h3>
+          <p>Honda GX200-powered kart with chain drive. 75 km/h top speed, hydraulic disc brakes, 4130 Cr-Mo steel frame.</p>
+          <div class="lp-product-specs">
+            <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Honda GX200</span>
+            <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>75 km/h</span>
+            <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>6.5L tank</span>
+          </div>
+        </div>
+      </div>
+      <div class="lp-product-card fade-in delay-3">
+        <div class="lp-product-img"><img src={`${base}/images/el-2500/Whirlwind-Electric-Go-Kart1.webp`} alt="EL-2500" loading="lazy" /></div>
+        <div class="lp-product-body">
+          <div class="lp-product-tag">2026 New — Electric</div>
+          <h3>EL-2500</h3>
+          <p>2500W PMSM electric kart with 69V NCM lithium battery. 3-speed transmission, 65 km/h top speed, fast charging.</p>
+          <div class="lp-product-specs">
+            <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>2500W PMSM</span>
+            <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>65 km/h</span>
+            <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>69V 32Ah NCM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px"><a href={`${base}/portfolio`} class="btn btn-outline">View All 15 Models &rarr;</a></div>
+  </div>
+</section>
+
+<section class="section lp-why">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Why VortKart®</div><h2>The <span class="highlight">Factory-Direct</span> Advantage</h2></div>
+    <div class="lp-why-grid">
+      <div class="lp-why-card fade-in delay-1">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Factory-Direct Pricing</h3>
+        <p>No distributors, no markup. Buy directly from the manufacturer and save 20–40%.</p>
+      </div>
+      <div class="lp-why-card fade-in delay-2">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>12-Month Warranty</h3>
+        <p>Full structural warranty on chassis. Spare parts shipped globally within 48 hours.</p>
+      </div>
+      <div class="lp-why-card fade-in delay-3">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Ships to 60+ Countries</h3>
+        <p>Sea or air freight with full export documentation. DDP shipping available.</p>
+      </div>
+      <div class="lp-why-card fade-in">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Dedicated Support</h3>
+        <p>24/7 technical support via phone, email, and video call. Operator training included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-social">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Client Feedback</div><h2>Trusted by <span class="highlight">Operators</span> Worldwide</h2></div>
+    <div class="lp-testimonials-grid">
+      <div class="lp-testimonial fade-in">
+        <div class="lp-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"We ordered 40 EL-2000 karts for our new indoor venue. The quality exceeded our expectations, and VortKart's team handled everything from design to delivery."</blockquote>
+        <cite>Daniel Brooks<span>Owner, ApexZone Indoor Karting — Manchester, UK</span></cite>
+      </div>
+      <div class="lp-testimonial fade-in delay-1">
+        <div class="lp-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Factory-direct pricing saved us over 30% compared to buying through a European distributor. The karts arrived in perfect condition and the spare parts support has been excellent."</blockquote>
+        <cite>Thomas Mueller<span>Managing Director, AlpineKart GmbH — Munich, Germany</span></cite>
+      </div>
+      <div class="lp-testimonial fade-in delay-2">
+        <div class="lp-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"We've been running a mixed fleet of 20 electric and 15 gas karts for two years. VortKart's after-sales support is unmatched — they respond to technical queries within hours."</blockquote>
+        <cite>Raj Patel<span>CEO, FunZone Entertainment — Mumbai, India</span></cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq-section">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">FAQ</div><h2>Commercial Go Kart <span class="highlight">Questions</span></h2><p>Common questions about ordering commercial go karts from VortKart®.</p></div>
+    <div class="faq-grid-2">
+      <div class="faq-item fade-in"><h4>What is the minimum order quantity for commercial go karts?</h4><p>Orders start from 5 units with volume-based pricing discounts for larger fleets. Contact our sales team for a custom quote.</p></div>
+      <div class="faq-item fade-in delay-1"><h4>Do you ship commercial go karts internationally?</h4><p>Yes — we ship to 60+ countries via sea or air freight with full export documentation and DDP options available.</p></div>
+      <div class="faq-item fade-in delay-2"><h4>What is the difference between electric and gas commercial go karts?</h4><p>Electric karts offer zero emissions and silent operation for indoor venues; gas karts (Honda GX engines) deliver longer run times and higher speeds for outdoor tracks. VortKart® manufactures both.</p></div>
+      <div class="faq-item fade-in delay-3"><h4>What warranty and support do you offer for commercial go karts?</h4><p>All karts include a 12-month structural chassis warranty, 24/7 technical support, spare parts shipped within 48 hours, and operator training with every fleet order.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section"><div class="container"><div class="fade-in">
+  <div class="label" style="justify-content:center">Get Started</div>
+  <h2>Request Your <span class="highlight">Factory Quote</span></h2>
+  <p>Tell us your fleet size and venue type. We'll respond within 48 hours with pricing and lead times.</p>
+  <div class="cta-buttons">
+    <a href={`${base}/contact`} class="btn btn-primary btn-lg">Get Factory Pricing</a>
+    <a href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, '')}`} class="btn btn-outline btn-lg" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+  </div>
+</div></div></section>
+</BaseLayout>

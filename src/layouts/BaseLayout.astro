@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { CONTACT, SITE, SOCIAL, ANALYTICS } from '../config/site';
 export interface Props {
   title: string;
   description?: string;
@@ -7,20 +8,49 @@ export interface Props {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  ogType?: string;
   canonical?: string;
+  jsonLd?: object | object[];
 }
 
 const {
   title,
-  description = 'VortKart® is a leading commercial go kart manufacturer offering rental go karts, racing chassis production, and complete go kart track design & turnkey solutions worldwide.',
+  description = 'VortKart® is a factory-direct commercial go kart manufacturer offering rental go karts, racing chassis, and complete turnkey karting solutions for operators worldwide.',
   keywords = 'commercial go kart, rental go kart, go kart manufacturer, go kart supplier, go kart track design, karting solutions',
   ogTitle,
   ogDescription,
-  ogImage = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+  ogImage = `${SITE.url}${SITE.ogImage}`,
+  ogType = 'website',
   canonical,
+  jsonLd,
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const hasSocialLinks = Object.values(SOCIAL).some(Boolean);
+
+// Build JSON-LD array: always include Organization, plus any page-specific schemas
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": SITE.fullName,
+  "url": SITE.url,
+  "description": SITE.description,
+  "telephone": CONTACT.phone,
+  "email": CONTACT.email,
+  "address": CONTACT.address,
+  "logo": `${SITE.url}/images/logo.png`,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+};
+
+const jsonLdGraph = jsonLd
+  ? (Array.isArray(jsonLd) ? [orgSchema, ...jsonLd] : [orgSchema, jsonLd])
+  : [orgSchema];
 ---
 
 <!DOCTYPE html>
@@ -31,47 +61,79 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="keywords" content={keywords} />
+  <link rel="icon" type="image/png" href={`${base}/images/logo.png`} />
+  <link rel="apple-touch-icon" href={`${base}/images/logo.png`} />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
   {canonical && <link rel="canonical" href={canonical} />}
   <meta property="og:title" content={ogTitle || title} />
   <meta property="og:description" content={ogDescription || description} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   {canonical && <meta property="og:url" content={canonical} />}
-  <meta property="og:site_name" content="VortKart®" />
+  <meta property="og:site_name" content={SITE.name} />
   <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={ogTitle || title} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={ogTitle || title} />
   <meta name="twitter:description" content={ogDescription || description} />
+  <meta name="twitter:image" content={ogImage} />
   <meta name="robots" content="index, follow" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "VortKart International",
-    "url": "https://vortkart.com/",
-    "description": "Leading manufacturer of commercial go karts, racing chassis, and turnkey karting solutions.",
-    "telephone": "+1-234-567-890",
-    "email": "sales@vortkart.com"
-  }
-  </script>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLdGraph)} />
+
+  {/* ===== Google Analytics 4 + Google Ads (gtag) — only injected when IDs are set ===== */}
+  {(ANALYTICS.ga4Id || ANALYTICS.adsId) && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.ga4Id || ANALYTICS.adsId}`}></script>
+      <script is:inline set:html={`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        // Consent Mode v2 — default DENIED until the user accepts (GDPR/CCPA compliant).
+        gtag('consent', 'default', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: 'denied',
+          wait_for_update: 500
+        });
+        // Restore prior consent if the visitor already accepted.
+        try {
+          if (document.cookie.indexOf('vortkart_cookie_consent=accepted') !== -1) {
+            gtag('consent', 'update', {
+              ad_storage: 'granted', ad_user_data: 'granted',
+              ad_personalization: 'granted', analytics_storage: 'granted'
+            });
+          }
+        } catch (e) {}
+        gtag('js', new Date());
+        ${ANALYTICS.ga4Id ? `gtag('config', '${ANALYTICS.ga4Id}');` : ''}
+        ${ANALYTICS.adsId ? `gtag('config', '${ANALYTICS.adsId}');` : ''}
+        window.VK_ADS_ID = ${JSON.stringify(ANALYTICS.adsId)};
+        window.VK_QUOTE_LABEL = ${JSON.stringify(ANALYTICS.quoteConversionLabel)};
+      `} />
+    </>
+  )}
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to content</a>
 
 <!-- ======================== NAVBAR ======================== -->
-<nav id="navbar">
+<nav id="navbar" aria-label="Main navigation">
   <div class="container">
     <div class="nav-inner">
       <a href={`${base}/`} class="nav-logo" aria-label="VortKart Home">
-        <img src={`${base}/images/logo.png`} alt="VortKart®" class="nav-logo-img" />
+        <img src={`${base}/images/logo.png`} alt={SITE.name} class="nav-logo-img" width="48" height="48" />
       </a>
-      <ul class="nav-links" role="navigation" aria-label="Main navigation">
-        <li><a href={`${base}/`}>Home</a></li>
-        <li><a href={`${base}/about`}>About</a></li>
+      <ul class="nav-links" aria-label="Main navigation">
+        <li><a href={`${base}/factory`}>Factory</a></li>
         <li><a href={`${base}/services`}>Services</a></li>
-        <li><a href={`${base}/listings`}>Portfolio</a></li>
-        <li><a href={`${base}/contact`}>Contact</a></li>
+        <li><a href={`${base}/portfolio`}>Portfolio</a></li>
+        <li><a href={`${base}/blog`}>Blog</a></li>
       </ul>
       <div class="nav-cta">
-        <a href="tel:+1234567890" class="nav-phone" aria-label="Call us">+1 (234) 567-890</a>
+        <a href={`tel:${CONTACT.phoneRaw}`} class="nav-phone" aria-label="Call us">{CONTACT.phone}</a>
         <a href={`${base}/contact`} class="btn btn-primary">Get a Quote</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -83,16 +145,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
-  <a href={`${base}/`}>Home</a>
-  <a href={`${base}/about`}>About</a>
+  <a href={`${base}/factory`}>Factory</a>
   <a href={`${base}/services`}>Services</a>
-  <a href={`${base}/listings`}>Portfolio</a>
-  <a href={`${base}/contact`}>Contact</a>
-  <a href={`${base}/contact`} class="btn btn-primary">Get a Free Quote</a>
+  <a href={`${base}/portfolio`}>Portfolio</a>
+  <a href={`${base}/blog`}>Blog</a>
+  <a href={`${base}/contact`} class="btn btn-primary">Get a Quote</a>
 </div>
 
 <!-- ======================== PAGE CONTENT ======================== -->
-<slot />
+<main id="main-content">
+  <slot />
+</main>
 
 <!-- ======================== FOOTER ======================== -->
 <footer>
@@ -100,23 +163,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="footer-top">
       <div class="footer-brand">
         <a href={`${base}/`} class="nav-logo" aria-label="VortKart Home">
-          <img src={`${base}/images/logo.png`} alt="VortKart®" class="nav-logo-img" />
+          <img src={`${base}/images/logo.png`} alt={SITE.name} class="nav-logo-img" width="48" height="48" />
         </a>
-        <p>The world's leading manufacturer of commercial go karts and provider of complete karting attraction solutions. Factory direct. Globally trusted.</p>
-        <div class="footer-social" aria-label="Social media links">
-          <a href="#" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-          <a href="#" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
-          <a href="#" class="social-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="#" class="social-icon" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.95C18.88 4 12 4 12 4s-6.88 0-8.6.47a2.78 2.78 0 00-1.94 1.95A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.53C5.12 20 12 20 12 20s6.88 0 8.6-.47a2.78 2.78 0 001.94-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0a0a0a"/></svg></a>
-        </div>
+        <p>VortKart® is a factory-direct manufacturer of commercial go karts and turnkey karting solutions for operators worldwide.</p>
+        {hasSocialLinks && (
+          <div class="footer-social" aria-label="Social media links">
+            {SOCIAL.facebook && <a href={SOCIAL.facebook} class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>}
+            {SOCIAL.instagram && <a href={SOCIAL.instagram} class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>}
+            {SOCIAL.linkedin && <a href={SOCIAL.linkedin} class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>}
+            {SOCIAL.youtube && <a href={SOCIAL.youtube} class="social-icon" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.95C18.88 4 12 4 12 4s-6.88 0-8.6.47a2.78 2.78 0 00-1.94 1.95A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.53C5.12 20 12 20 12 20s6.88 0 8.6-.47a2.78 2.78 0 001.94-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#06080D"/></svg></a>}
+          </div>
+        )}
       </div>
       <div class="footer-col">
         <h5>Quick Links</h5>
-        <a href={`${base}/`}>Home</a>
-        <a href={`${base}/about`}>About Us</a>
+        <a href={`${base}/factory`}>Our Factory &amp; Story</a>
         <a href={`${base}/services`}>Services</a>
-        <a href={`${base}/listings`}>Portfolio</a>
-        <a href={`${base}/contact`}>Contact</a>
+        <a href={`${base}/portfolio`}>Portfolio</a>
+        <a href={`${base}/blog`}>Blog</a>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
@@ -130,15 +194,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <h5>Contact</h5>
         <div class="footer-contact-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 010 2.94 2 2 0 012 .76h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          <span>+1 (234) 567-890</span>
+          <span>{CONTACT.phone}</span>
         </div>
         <div class="footer-contact-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span>sales@vortkart.com</span>
+          <span>{CONTACT.email}</span>
         </div>
         <div class="footer-contact-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>123 Motorsport Drive,<br />Karting District, CA 90001</span>
+          <span class="footer-addr"><strong class="footer-addr-tag">Office</strong>{CONTACT.officeLine1}<br>{CONTACT.officeLine2}</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg>
+          <span class="footer-addr"><strong class="footer-addr-tag">Factory</strong>{CONTACT.factoryLine1}<br>{CONTACT.factoryLine2}</span>
         </div>
       </div>
     </div>
@@ -146,7 +214,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="divider"></div>
   <div class="container">
     <div class="footer-bottom">
-      <p>&copy; 2026 VortKart® International. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} VortKart® International. All rights reserved.</p>
       <div class="footer-bottom-links">
         <a href={`${base}/privacy`}>Privacy Policy</a>
         <a href={`${base}/terms`}>Terms of Service</a>
@@ -156,6 +224,76 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </div>
 </footer>
 
-<script src={`${base}/main.js`}></script>
+<!-- ======================== WHATSAPP FLOAT ======================== -->
+<a href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, '')}`} class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <span class="wa-float-label">Chat with us</span>
+  <svg class="wa-float-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.958A15.915 15.915 0 0016.004 32C24.83 32 32 24.822 32 16S24.83 0 16.004 0zm9.31 22.598c-.39 1.1-1.932 2.014-3.168 2.28-.846.18-1.95.324-5.67-1.218-4.762-1.972-7.826-6.792-8.064-7.108-.228-.318-1.926-2.566-1.926-4.892 0-2.326 1.214-3.472 1.644-3.944.39-.426 1.04-.612 1.66-.612.198 0 .376.01.536.018.468.02.702.048 1.012.786.386.916 1.326 3.228 1.442 3.464.118.236.236.552.078.87-.148.326-.278.472-.514.744-.236.272-.46.48-.696.772-.216.256-.46.53-.196.994.264.456 1.174 1.932 2.522 3.134 1.732 1.542 3.19 2.02 3.646 2.248.456.228.72.19.984-.114.272-.314 1.156-1.348 1.466-1.814.302-.466.61-.388 1.028-.232.42.152 2.67 1.26 3.126 1.49.456.228.762.342.874.534.11.192.11 1.112-.28 2.212z"/></svg>
+</a>
+
+<style>
+  .wa-float{position:fixed;bottom:36px;right:36px;z-index:9999;display:flex;align-items:center;gap:12px;text-decoration:none;flex-direction:row-reverse}
+  .wa-float-icon{width:54px;height:54px;padding:13px;color:var(--white);background:#25D366;border-radius:50%;box-shadow:0 4px 14px rgba(37,211,102,.3),0 1px 3px rgba(0,0,0,.12);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease;animation:wa-pulse 3s ease-in-out infinite}
+  .wa-float:hover .wa-float-icon{transform:scale(1.08);box-shadow:0 8px 24px rgba(37,211,102,.4),0 2px 6px rgba(0,0,0,.15);animation:none}
+  .wa-float-label{font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--white);background:rgba(6,8,13,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:7px 16px;border-radius:100px;opacity:0;transform:translateX(6px);transition:opacity .25s ease,transform .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap}
+  .wa-float:hover .wa-float-label{opacity:1;transform:translateX(0)}
+  @keyframes wa-pulse{0%,100%{transform:scale(1);box-shadow:0 4px 14px rgba(37,211,102,.3),0 1px 3px rgba(0,0,0,.12)}50%{transform:scale(1.04);box-shadow:0 6px 18px rgba(37,211,102,.38),0 2px 4px rgba(0,0,0,.1)}}
+  @media(max-width:768px){.wa-float{bottom:22px;right:20px}.wa-float-icon{width:48px;height:48px;padding:11px}.wa-float-label{display:none}}
+</style>
+
+<!-- ======================== COOKIE CONSENT ======================== -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent" aria-hidden="true">
+  <div class="cookie-inner">
+    <p class="cookie-text">We use cookies to enhance your experience, analyse traffic, and serve personalised content. By clicking "Accept All", you consent to our use of cookies. <a href={`${base}/privacy`}>Privacy Policy</a></p>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-btn-decline" id="cookieDecline" type="button">Decline</button>
+      <button class="cookie-btn cookie-btn-accept" id="cookieAccept" type="button">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:10000;background:var(--dark-3);border-top:1px solid rgba(255,255,255,0.08);padding:20px 24px;transform:translateY(100%);transition:transform .5s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .cookie-banner.show{transform:translateY(0)}
+  .cookie-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+  .cookie-text{flex:1;font-size:13px;color:var(--gray-4);line-height:1.6;margin:0}
+  .cookie-text a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}
+  .cookie-actions{display:flex;gap:10px;flex-shrink:0}
+  .cookie-btn{padding:10px 22px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);border:none;font-family:var(--font-body)}
+  .cookie-btn-decline{background:transparent;color:var(--gray-3);border:1px solid var(--gray-1)}
+  .cookie-btn-decline:hover{border-color:var(--gray-2);color:var(--white)}
+  .cookie-btn-accept{background:var(--primary);color:var(--white)}
+  .cookie-btn-accept:hover{background:var(--primary-dark)}
+  @media(max-width:640px){.cookie-inner{flex-direction:column;text-align:center}.cookie-actions{width:100%;justify-content:center}}
+</style>
+
+<script is:inline>
+(function(){
+  function getCookie(name){var m=document.cookie.match(new RegExp('(?:^|;\\s*)'+name+'=([^;]*)'));return m?m[1]:null}
+  function setCookie(name,val,days){var d=new Date();d.setTime(d.getTime()+days*864e5);document.cookie=name+'='+val+';expires='+d.toUTCString()+';path=/;SameSite=Lax'}
+  var banner=document.getElementById('cookieBanner');
+  if(!banner)return;
+  if(!getCookie('vortkart_cookie_consent')){
+    setTimeout(function(){banner.classList.add('show');banner.setAttribute('aria-hidden','false')},1200);
+  }
+  function dismiss(val){
+    setCookie('vortkart_cookie_consent',val,365);
+    banner.classList.remove('show');
+    banner.setAttribute('aria-hidden','true');
+    // Update Google Consent Mode when the user accepts.
+    if(val==='accepted' && typeof window.gtag==='function'){
+      window.gtag('consent','update',{
+        ad_storage:'granted', ad_user_data:'granted',
+        ad_personalization:'granted', analytics_storage:'granted'
+      });
+    }
+  }
+  var acceptBtn=document.getElementById('cookieAccept');
+  var declineBtn=document.getElementById('cookieDecline');
+  if(acceptBtn)acceptBtn.addEventListener('click',function(){dismiss('accepted')});
+  if(declineBtn)declineBtn.addEventListener('click',function(){dismiss('declined')});
+})();
+</script>
+
+<script is:inline defer src="/main.js"></script>
 </body>
 </html>

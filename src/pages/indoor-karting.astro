@@ -1,0 +1,343 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../config/site';
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How much does it cost to build an indoor go karting track?", "acceptedAnswer": { "@type": "Answer", "text": "Indoor go karting track construction costs vary by size and complexity. A basic warehouse conversion with 10-15 electric karts typically starts at $50,000-$100,000. VortKart® provides turnkey indoor karting solutions including track design, electric kart supply, timing systems, and staff training. Contact us for a custom quote based on your space and requirements." } },
+    { "@type": "Question", "name": "What type of space is needed for an indoor karting venue?", "acceptedAnswer": { "@type": "Answer", "text": "VortKart® designs indoor karting tracks for spaces as small as 10,000 sq ft (930 m²). Ideal venues include warehouses, distribution centers, retail units, and basement spaces. We require minimum 14 ft (4.3m) ceiling height. Our team handles feasibility analysis, layout optimization, and permit documentation." } },
+    { "@type": "Question", "name": "Do you supply electric karts for indoor venues?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. VortKart® manufactures electric go karts from 500W to 3000W specifically designed for indoor karting. Our karts feature zero emissions, under 65 dB noise levels, and lithium battery fast charging. We supply fleets from 10 to 100+ units with factory-direct pricing." } },
+    { "@type": "Question", "name": "How long does it take to build an indoor karting facility?", "acceptedAnswer": { "@type": "Answer", "text": "A typical indoor karting venue takes 3-6 months from design to grand opening. This includes 2-4 weeks for track design, 4-8 weeks for kart manufacturing, and 4-8 weeks for on-site construction and commissioning. VortKart® manages the entire process as your single point of contact." } }
+  ]
+};
+
+const allProducts = await getCollection('products');
+const products = allProducts
+  .filter(p => p.data.category === 'electric')
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .slice(0, 3);
+---
+<BaseLayout
+  title="Indoor Go Karting Solutions | Turnkey Indoor Track & Kart Supply | VortKart®"
+  description="Complete indoor go karting solutions — from track design to kart supply, timing systems, and staff training. Purpose-built electric karts for indoor venues."
+  keywords="indoor go karting, indoor karting solutions, indoor go karting equipment, indoor karting track manufacturer, indoor karting business, turnkey indoor karting, electric go karts indoor, indoor karting supplier, warehouse karting track, indoor entertainment venue"
+  canonical="https://vortkart.com/indoor-karting"
+  jsonLd={faqJsonLd}
+>
+<style>
+  .lp-hero{background:var(--dark);position:relative;overflow:hidden}
+  .lp-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,8,13,.92) 0%,rgba(6,8,13,.7) 100%);pointer-events:none}
+  .lp-hero-bg{position:absolute;inset:0}
+  .lp-hero-bg img{width:100%;height:100%;object-fit:cover}
+  .lp-hero-content{position:relative;z-index:1;padding:100px 0 80px}
+  .lp-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.25);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:24px}
+  .lp-badge svg{width:14px;height:14px}
+  .lp-hero h1{font-size:clamp(32px,5vw,56px);line-height:1.1;margin-bottom:20px}
+  .lp-hero h1 .highlight{color:var(--primary)}
+  .lp-hero-sub{font-size:18px;color:var(--gray-3);max-width:560px;line-height:1.7;margin-bottom:36px}
+  .lp-hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .lp-solutions{background:var(--dark-2)}
+  .lp-solution-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .lp-solution-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);padding:40px;transition:var(--transition)}
+  .lp-solution-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+  .lp-solution-icon{width:52px;height:52px;border-radius:var(--radius-md);background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .lp-solution-icon svg{width:26px;height:26px;color:var(--primary)}
+  .lp-solution-card h3{font-size:22px;margin-bottom:12px}
+  .lp-solution-card p{font-size:14px;color:var(--gray-3);line-height:1.7;margin-bottom:16px}
+  .lp-solution-card ul{list-style:none;padding:0;margin:0}
+  .lp-solution-card li{display:flex;gap:10px;align-items:center;padding:6px 0;font-size:14px;color:var(--gray-4);border-bottom:1px solid rgba(255,255,255,0.04)}
+  .lp-solution-card li:last-child{border-bottom:none}
+  .lp-solution-card li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--primary);flex-shrink:0}
+  .lp-process{background:var(--dark)}
+  .lp-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .lp-step{text-align:center;padding:24px 16px}
+  .lp-step-num{font-family:var(--font-heading);font-size:40px;font-weight:800;color:rgba(249,115,22,0.2);line-height:1;margin-bottom:12px}
+  .lp-step h3{font-size:16px;margin-bottom:8px}
+  .lp-step p{font-size:13px;color:var(--gray-3);line-height:1.6}
+  .lp-venue{background:var(--dark-2)}
+  .lp-venue-types{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-venue-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px;text-align:center;transition:var(--transition)}
+  .lp-venue-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+  .lp-venue-card h3{font-size:18px;margin-bottom:8px}
+  .lp-venue-card p{font-size:13px;color:var(--gray-3);line-height:1.6}
+  .lp-venue-icon{width:48px;height:48px;border-radius:50%;background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+  .lp-venue-icon svg{width:24px;height:24px;color:var(--primary)}
+  .lp-trust{display:flex;gap:24px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+  .lp-trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-3)}
+  .lp-trust-item svg{width:16px;height:16px;color:var(--primary);flex-shrink:0}
+  .lp-stats-strip{background:var(--dark);padding:56px 0}
+  .lp-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+  .lp-stat-val{font-family:var(--font-heading);font-size:36px;font-weight:800;color:var(--primary);line-height:1}
+  .lp-stat-label{font-size:13px;color:var(--gray-3);margin-top:4px}
+  .lp-products{background:var(--dark-2)}
+  .lp-product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-product-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);overflow:hidden;transition:var(--transition)}
+  .lp-product-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+  .lp-product-img{aspect-ratio:4/3;overflow:hidden}
+  .lp-product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .lp-product-card:hover .lp-product-img img{transform:scale(1.05)}
+  .lp-product-body{padding:24px}
+  .lp-product-tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:8px}
+  .lp-product-body h3{font-size:20px;margin-bottom:8px}
+  .lp-product-body p{font-size:14px;color:var(--gray-3);line-height:1.6;margin-bottom:16px}
+  .lp-product-specs{display:flex;gap:16px;flex-wrap:wrap}
+  .lp-product-spec{font-size:12px;color:var(--gray-4);display:flex;align-items:center;gap:4px}
+  .lp-product-spec svg{width:12px;height:12px;color:var(--primary)}
+  .lp-why{background:var(--dark)}
+  .lp-why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .lp-why-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;transition:var(--transition)}
+  .lp-why-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+  .lp-why-icon{width:48px;height:48px;border-radius:var(--radius-md);background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+  .lp-why-icon svg{width:24px;height:24px;color:var(--primary)}
+  .lp-why-card h3{font-size:16px;margin-bottom:8px}
+  .lp-why-card p{font-size:13px;color:var(--gray-3);line-height:1.6}
+  .lp-social{background:var(--dark-2)}
+  .lp-testimonial{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);padding:40px;max-width:720px;margin:0 auto;text-align:center}
+  .lp-testimonial-stars{color:var(--accent);font-size:20px;margin-bottom:16px;letter-spacing:4px}
+  .lp-testimonial blockquote{font-size:18px;line-height:1.7;color:var(--gray-4);font-style:italic;margin-bottom:20px}
+  .lp-testimonial cite{font-size:14px;font-weight:600;color:var(--white);font-style:normal}
+  .lp-testimonial cite span{display:block;font-size:12px;color:var(--gray-3);font-weight:400;margin-top:4px}
+  .lp-testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-testimonials-grid .lp-testimonial{max-width:none}
+  .faq-section{background:var(--dark)}
+  .faq-item{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:12px;transition:var(--transition)}
+  .faq-item:hover{border-color:rgba(249,115,22,0.2)}
+  .faq-item h4{font-size:16px;margin-bottom:8px;color:var(--white)}
+  .faq-item p{font-size:14px;color:var(--gray-3);line-height:1.7;margin:0}
+.faq-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:1024px){.lp-solution-grid{grid-template-columns:1fr}.lp-steps{grid-template-columns:1fr 1fr}.lp-venue-types{grid-template-columns:1fr 1fr}.lp-why-grid{grid-template-columns:1fr 1fr}.lp-stat-grid{grid-template-columns:1fr 1fr}.lp-product-grid{grid-template-columns:1fr 1fr}.lp-testimonials-grid{grid-template-columns:1fr}}
+  @media(max-width:768px){.lp-hero-content{padding:60px 0 50px}.lp-solution-card{padding:28px}.lp-venue-card{padding:24px}.lp-testimonial{padding:28px}.lp-product-grid{grid-template-columns:1fr}}
+  @media(max-width:640px){.faq-grid-2{grid-template-columns:1fr}.lp-steps{grid-template-columns:1fr}.lp-venue-types{grid-template-columns:1fr}.lp-hero-actions{flex-direction:column}.lp-hero-actions .btn{width:100%;justify-content:center}.lp-why-grid{grid-template-columns:1fr}.lp-stat-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.lp-hero-content{padding:40px 0 30px}.lp-stat-grid{grid-template-columns:1fr}}
+</style>
+
+<section class="lp-hero">
+  <div class="lp-hero-bg"><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis4.webp`} alt="Indoor go karting track" /></div>
+  <div class="lp-hero-content container">
+    <div class="lp-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Indoor Karting Specialists
+    </div>
+    <h1>Turnkey <span class="highlight">Indoor</span><br>Karting Solutions</h1>
+    <p class="lp-hero-sub">From warehouse conversion to grand opening — we design, build, and equip complete indoor karting attractions. Zero-emission electric karts included.</p>
+    <div class="lp-hero-actions">
+      <a href={`${base}/contact`} class="btn btn-primary btn-lg">Request a Proposal</a>
+      <a href={`${base}/project/dubai-indoor-karting`} class="btn btn-outline btn-lg">View Case Study</a>
+    </div>
+    <div class="lp-trust">
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>ISO 9001 Certified</div>
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>12-Month Warranty</div>
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Worldwide Shipping</div>
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Spare Parts Stocked</div>
+    </div>
+  </div>
+</section>
+
+<div class="lp-stats-strip">
+  <div class="container"><div class="lp-stat-grid fade-in">
+    <div><div class="lp-stat-val" data-count="120" data-suffix="+">120+</div><div class="lp-stat-label">Indoor Tracks Designed</div></div>
+    <div><div class="lp-stat-val" data-count="500" data-suffix="+">500+</div><div class="lp-stat-label">Electric Karts Deployed</div></div>
+    <div><div class="lp-stat-val" data-count="60" data-suffix="+">60+</div><div class="lp-stat-label">Countries Served</div></div>
+    <div><div class="lp-stat-val" data-count="98" data-suffix="%">98%</div><div class="lp-stat-label">Client Satisfaction</div></div>
+  </div></div>
+</div>
+
+<section class="section lp-solutions">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">What's Included</div><h2>Complete <span class="highlight">Indoor Karting</span> Package</h2><p>As a leading indoor go karting equipment supplier, VortKart® provides everything you need to launch a profitable indoor karting business — from track design to electric kart manufacturing.</p></div>
+    <div class="lp-solution-grid">
+      <div class="lp-solution-card fade-in delay-1">
+        <div class="lp-solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h3>Track Design & Layout</h3>
+        <p>Custom 3D CAD track design optimized for your space, throughput, and revenue targets.</p>
+        <ul>
+          <li>Site feasibility analysis</li>
+          <li>3D rendering & walkthrough</li>
+          <li>Safety barrier specification</li>
+          <li>Revenue-optimized layout</li>
+        </ul>
+      </div>
+      <div class="lp-solution-card fade-in delay-2">
+        <div class="lp-solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Electric Kart Fleet</h3>
+        <p>Zero-emission electric karts purpose-built for indoor karting venues. As a commercial indoor go karting equipment manufacturer, we supply fleets from 10 to 100+ units at factory-direct pricing.</p>
+        <ul>
+          <li>Zero emissions — no ventilation needed</li>
+          <li>Under 65 dB noise level</li>
+          <li>Instant torque, smooth acceleration</li>
+          <li>Fleet sizing from 10 to 100+ units</li>
+        </ul>
+      </div>
+      <div class="lp-solution-card fade-in delay-3">
+        <div class="lp-solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Timing & Management</h3>
+        <p>Professional lap timing system and fleet management software for seamless operations.</p>
+        <ul>
+          <li>Real-time lap tracking</li>
+          <li>Leaderboard display system</li>
+          <li>Session management</li>
+          <li>Customer data analytics</li>
+        </ul>
+      </div>
+      <div class="lp-solution-card fade-in">
+        <div class="lp-solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Training & Launch</h3>
+        <p>Complete staff training program and grand opening support to ensure a successful launch.</p>
+        <ul>
+          <li>Operations manual</li>
+          <li>Staff training (on-site or remote)</li>
+          <li>Safety procedures setup</li>
+          <li>Grand opening support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-products">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Our Electric Karts</div><h2>Featured <span class="highlight">Models</span> for Indoor Venues</h2><p>Purpose-built electric go karts from the VortKart® manufacturing line — zero emissions, fast charging, commercial-grade durability.</p></div>
+    <div class="lp-product-grid">
+      {products.map((p, i) => {
+        const delay = ['delay-1','delay-2','delay-3'][i % 3];
+        const specs = p.data.specs ?? {};
+        const specEntries = Object.entries({
+          ...(specs.motor      ? { Motor:       specs.motor }      : {}),
+          ...(specs.topSpeed   ? { 'Top Speed': specs.topSpeed }   : {}),
+          ...(specs.weight     ? { Weight:      specs.weight }     : {}),
+          ...(specs.chargeTime ? { 'Charge':    specs.chargeTime } : {}),
+        }).slice(0, 3);
+        return (
+          <div class={`lp-product-card fade-in ${delay}`}>
+            <div class="lp-product-img"><img src={`${base}${p.data.image}`} alt={`VortKart ${p.data.title} electric go kart`} loading="lazy" /></div>
+            <div class="lp-product-body">
+              <div class="lp-product-tag">{p.data.badge ?? 'Electric'}</div>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.tagline}</p>
+              <div class="lp-product-specs">
+                {specEntries.map(([label, value]) => (
+                  <span class="lp-product-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>{value}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+    <div style="text-align:center;margin-top:40px"><a href={`${base}/portfolio/electric/`} class="btn btn-outline">View All Electric Models &rarr;</a></div>
+  </div>
+</section>
+
+<section class="section lp-process">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">How It Works</div><h2>From Enquiry to <span class="highlight">Opening Day</span></h2></div>
+    <div class="lp-steps fade-in">
+      <div class="lp-step"><div class="lp-step-num">01</div><h3>Discovery Call</h3><p>Share your space dimensions, budget, and vision. We'll assess feasibility within 48 hours.</p></div>
+      <div class="lp-step"><div class="lp-step-num">02</div><h3>Design & Proposal</h3><p>Custom 3D track layout, kart specification, and detailed cost breakdown.</p></div>
+      <div class="lp-step"><div class="lp-step-num">03</div><h3>Build & Ship</h3><p>Manufacturing, QA inspection, and worldwide shipping with full documentation.</p></div>
+      <div class="lp-step"><div class="lp-step-num">04</div><h3>Install & Launch</h3><p>On-site commissioning, staff training, and grand opening support.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-venue">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Venue Types</div><h2>Indoor Karting Spaces <span class="highlight">We Transform</span></h2><p>Our indoor go karting solutions fit any commercial space — from warehouse conversions to retail entertainment centers.</p></div>
+    <div class="lp-venue-types">
+      <div class="lp-venue-card fade-in delay-1">
+        <div class="lp-venue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Warehouse Conversions</h3>
+        <p>Transform unused industrial space into a high-revenue entertainment venue.</p>
+      </div>
+      <div class="lp-venue-card fade-in delay-2">
+        <div class="lp-venue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <h3>Retail & Shopping Centres</h3>
+        <p>Compact track designs that fit within retail footprints and drive foot traffic.</p>
+      </div>
+      <div class="lp-venue-card fade-in delay-3">
+        <div class="lp-venue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <h3>Resort & Hospitality</h3>
+        <p>Premium karting experiences integrated into hotels, resorts, and entertainment complexes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-why">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Why VortKart®</div><h2>The <span class="highlight">Factory-Direct</span> Advantage</h2><p>As an established indoor go karting track manufacturer, we deliver unmatched value and support.</p></div>
+    <div class="lp-why-grid">
+      <div class="lp-why-card fade-in delay-1">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Factory-Direct Pricing</h3>
+        <p>No distributors, no markup. Buy indoor karting equipment directly from the manufacturer and save 20–40%.</p>
+      </div>
+      <div class="lp-why-card fade-in delay-2">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>12-Month Warranty</h3>
+        <p>Full structural warranty on all karts and track components. Spare parts shipped globally within 48 hours.</p>
+      </div>
+      <div class="lp-why-card fade-in delay-3">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Ships to 60+ Countries</h3>
+        <p>Sea or air freight with full export documentation. Indoor karting equipment delivered worldwide.</p>
+      </div>
+      <div class="lp-why-card fade-in">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Dedicated Support</h3>
+        <p>24/7 technical support via phone, email, and video call. Staff training and operator certification included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-social">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Client Feedback</div><h2>Trusted by <span class="highlight">Operators</span> Worldwide</h2></div>
+    <div class="lp-testimonials-grid">
+      <div class="lp-testimonial fade-in">
+        <div class="lp-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"VortKart® converted our 2,200 m² warehouse into a fully operational indoor karting venue in under 5 months. They supplied 20 electric karts, designed a fantastic track layout, and trained our entire staff."</blockquote>
+        <cite>David Thompson<span>Director, UrbanKart Indoor Racing — London, UK</span></cite>
+      </div>
+      <div class="lp-testimonial fade-in delay-1">
+        <div class="lp-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"We purchased 25 EL-2000 karts for our entertainment center. Zero emissions mean no ventilation upgrades needed, and the 1-hour fast charging keeps sessions running all day without interruption."</blockquote>
+        <cite>Sarah Chen<span>Operations Director, GreenKart Entertainment — Melbourne, Australia</span></cite>
+      </div>
+      <div class="lp-testimonial fade-in delay-2">
+        <div class="lp-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"From track design to kart delivery, VortKart handled everything. Our 30-kart indoor facility has been running at 95% capacity since opening day. Best investment we've made."</blockquote>
+        <cite>Marcus Weber<span>CEO, SpeedDome Indoor — Berlin, Germany</span></cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq-section">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">FAQ</div><h2>Indoor Go Karting <span class="highlight">Questions</span></h2><p>Common questions about building an indoor karting venue with VortKart®.</p></div>
+    <div class="faq-grid-2">
+      <div class="faq-item fade-in"><h4>How much does it cost to build an indoor go karting track?</h4><p>A basic warehouse conversion with 10–15 electric karts starts at $50,000–$100,000. VortKart® provides turnkey solutions including design, karts, timing systems, and training.</p></div>
+      <div class="faq-item fade-in delay-1"><h4>What type of space is needed for an indoor karting venue?</h4><p>Spaces as small as 10,000 sq ft (930 m²) with 14 ft (4.3m) ceiling height — warehouses, retail units, and basements all work.</p></div>
+      <div class="faq-item fade-in delay-2"><h4>Do you supply electric karts for indoor venues?</h4><p>Yes — VortKart® manufactures 500W–3000W electric karts with zero emissions, under 65 dB noise, and fast charging, in fleets from 10 to 100+ units.</p></div>
+      <div class="faq-item fade-in delay-3"><h4>How long does it take to build an indoor karting facility?</h4><p>Typical timeline is 3–6 months: design 2–4 weeks, kart manufacturing 4–8 weeks, construction and commissioning 4–8 weeks.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section"><div class="container"><div class="fade-in">
+  <div class="label" style="justify-content:center">Start Your Project</div>
+  <h2>Ready to Build Your <span class="highlight">Indoor Track?</span></h2>
+  <p>Send us your space dimensions and we'll prepare a feasibility study and initial proposal.</p>
+  <div class="cta-buttons">
+    <a href={`${base}/contact`} class="btn btn-primary btn-lg">Request a Proposal</a>
+    <a href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, '')}`} class="btn btn-outline btn-lg" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+  </div>
+</div></div></section>
+</BaseLayout>

@@ -1,0 +1,262 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { CONTACT } from '../../config/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const allProducts = await getCollection('products');
+const products = allProducts
+  .filter(p => p.data.category === 'electric')
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const electricFaqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What are the best electric go karts for commercial use?", "acceptedAnswer": { "@type": "Answer", "text": "VortKart® offers electric go karts from 500W to 3000W with PMSM motors, lithium or lead-acid batteries, and zero emissions. Models like the EL-2500 and EL-3000 feature 69V NCM lithium batteries with fast charging, making them ideal for indoor and outdoor commercial venues." } },
+    { "@type": "Question", "name": "How long do electric go kart batteries last?", "acceptedAnswer": { "@type": "Answer", "text": "VortKart® electric go karts use high-quality lithium or lead-acid batteries. Our fast-charging models reach 80-85% in just 1 hour. With proper maintenance, lithium batteries last 2000+ charge cycles, and lead-acid batteries last 500+ cycles, ensuring years of reliable commercial operation." } },
+    { "@type": "Question", "name": "Can electric go karts be used outdoors?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. VortKart® electric go karts are built for both indoor and outdoor use. Our higher-powered models like the EL-2500 (2500W) and EL-3000 (3000W) deliver 65 km/h top speed with 4130 Cr-Mo steel frames, suitable for outdoor tracks while maintaining zero emissions." } },
+    { "@type": "Question", "name": "What is the minimum order for electric go karts?", "acceptedAnswer": { "@type": "Answer", "text": "VortKart® accepts orders starting from 5 units for electric go karts. We offer factory-direct pricing with volume discounts for larger fleet orders. Contact us for a custom quote within 48 hours." } }
+  ]
+};
+---
+<BaseLayout
+  title="Electric Go Karts | Zero Emissions Commercial Karts | VortKart®"
+  description="Explore VortKart®'s range of electric go karts — 500W to 3000W, lithium & lead-acid batteries, zero emissions. Built for indoor and outdoor commercial venues."
+  keywords="electric go karts, indoor go karts, zero emission go karts, electric rental karts, commercial electric karts, lithium battery go kart, PMSM electric kart, silent go karts, indoor karting equipment, electric go kart supplier"
+  canonical="https://vortkart.com/portfolio/electric/"
+  jsonLd={electricFaqSchema}
+>
+<style>
+.category-hero{position:relative;overflow:hidden;background:var(--dark)}
+.category-hero-bg{position:absolute;inset:0}
+.category-hero-bg img{width:100%;height:100%;object-fit:cover}
+.category-hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,var(--dark) 0%,rgba(7,9,14,0.6) 100%)}
+.category-hero .page-hero-content{position:relative;z-index:1;padding:120px 0 80px}
+.category-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(var(--primary-rgb),0.12);border:1px solid rgba(var(--primary-rgb),0.25);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:20px}
+.category-badge svg{width:14px;height:14px}
+.category-hero h1{font-size:clamp(32px,5vw,52px);line-height:1.1;margin-bottom:16px}
+.category-hero h1 .highlight{color:var(--primary)}
+.category-hero-sub{font-size:18px;color:var(--gray-3);max-width:600px;line-height:1.7;margin-bottom:32px}
+.category-stats{display:flex;gap:40px;flex-wrap:wrap}
+.category-stat-val{font-family:var(--font-heading);font-size:28px;font-weight:800;color:var(--primary);line-height:1}
+.category-stat-label{font-size:13px;color:var(--gray-3);margin-top:4px}
+.product-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);overflow:hidden;transition:var(--transition)}
+.product-card:hover{border-color:rgba(var(--primary-rgb),0.35);transform:translateY(-6px)}
+.product-img{aspect-ratio:4/3;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;object-position:center 65%;transition:transform .5s ease}
+.product-card:hover .product-img img{transform:scale(1.05)}
+.product-badge{position:absolute;top:16px;left:16px;background:var(--primary);color:var(--white);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px}
+.product-info{padding:28px}
+.product-info h3{font-size:22px;margin-bottom:8px}
+.product-info p{font-size:14px;color:var(--gray-3);margin-bottom:16px}
+.product-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.spec-item{background:var(--dark-4);border-radius:var(--radius-sm);padding:10px 12px}
+.spec-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-3)}
+.spec-value{font-size:14px;font-weight:600;color:var(--white);margin-top:2px}
+.product-actions{display:flex;gap:10px;margin-top:20px}
+.features-list{background:var(--dark-2)}
+.feature-item{display:flex;align-items:flex-start;gap:12px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.feature-item:last-child{border-bottom:none}
+.feature-icon{width:36px;height:36px;border-radius:var(--radius-md);background:rgba(var(--primary-rgb),0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feature-icon svg{width:18px;height:18px;color:var(--primary)}
+.feature-item h4{font-size:15px;margin-bottom:4px}
+.feature-item p{font-size:13px;color:var(--gray-3);line-height:1.5}
+@media(max-width:768px){.category-hero .page-hero-content{padding:80px 0 60px}.category-stats{gap:24px}.product-actions{flex-direction:column}.category-b2b-stats{gap:24px}.category-why-grid{grid-template-columns:1fr 1fr}.category-trust{gap:16px}}
+.category-b2b-stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+.category-b2b-stat-val{font-family:var(--font-heading);font-size:28px;font-weight:800;color:var(--primary);line-height:1}
+.category-b2b-stat-label{font-size:13px;color:var(--gray-3);margin-top:4px}
+.category-trust{display:flex;gap:24px;flex-wrap:wrap;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+.category-trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-3)}
+.category-trust-item svg{width:16px;height:16px;color:var(--primary);flex-shrink:0}
+.category-why{background:var(--dark-2)}
+.category-why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.category-why-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;transition:var(--transition)}
+.category-why-card:hover{border-color:rgba(var(--primary-rgb),0.3);transform:translateY(-4px)}
+.category-why-icon{width:48px;height:48px;border-radius:var(--radius-md);background:rgba(var(--primary-rgb),0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.category-why-icon svg{width:24px;height:24px;color:var(--primary)}
+.category-why-card h3{font-size:16px;margin-bottom:8px}
+.category-why-card p{font-size:13px;color:var(--gray-3);line-height:1.6}
+.category-social{background:var(--dark)}
+.category-testimonial{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);padding:40px;max-width:720px;margin:0 auto;text-align:center}
+.category-testimonial-stars{color:var(--accent);font-size:20px;margin-bottom:16px;letter-spacing:4px}
+.category-testimonial blockquote{font-size:18px;line-height:1.7;color:var(--gray-4);font-style:italic;margin-bottom:20px}
+.category-testimonial cite{font-size:14px;font-weight:600;color:var(--white);font-style:normal}
+.category-testimonial cite span{display:block;font-size:12px;color:var(--gray-3);font-weight:400;margin-top:4px}
+.category-testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.category-testimonials-grid .category-testimonial{max-width:none}
+@media(max-width:1024px){.category-why-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.category-why-grid{grid-template-columns:1fr}.category-b2b-stats{flex-direction:column;gap:16px}.category-trust{flex-direction:column;gap:12px}.category-testimonial{padding:28px}}
+.faq-section{background:var(--dark)}
+.faq-item{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:12px;transition:var(--transition)}
+.faq-item:hover{border-color:rgba(var(--primary-rgb),0.2)}
+.faq-item h4{font-size:16px;margin-bottom:8px;color:var(--white)}
+.faq-item p{font-size:14px;color:var(--gray-3);line-height:1.7;margin:0}
+.faq-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.faq-grid-2{grid-template-columns:1fr}}
+</style>
+
+<section class="category-hero">
+  <div class="category-hero-bg"><img src={`${base}/images/el-3000/Phantom-Electric-Go-Kart1.webp`} alt="Electric go karts" /></div>
+  <div class="category-hero-overlay"></div>
+  <div class="container"><div class="page-hero-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg><a href={`${base}/portfolio`}>Portfolio</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg><span>Electric</span></nav>
+    <div class="category-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      {products.length} {products.length === 1 ? 'Model' : 'Models'}
+    </div>
+    <h1>Electric <span class="highlight">Go Karts</span></h1>
+    <p class="category-hero-sub">Zero-emission, high-performance electric karts for indoor and outdoor venues. As a leading electric go kart manufacturer, VortKart® supplies commercial-grade karts from 500W to 3000W — factory-direct pricing with worldwide shipping.</p>
+    <div class="category-stats">
+      <div><div class="category-stat-val">{products.length}</div><div class="category-stat-label">{products.length === 1 ? 'Model' : 'Models'}</div></div>
+      <div><div class="category-stat-val">0</div><div class="category-stat-label">Emissions</div></div>
+      <div><div class="category-stat-val">3000W</div><div class="category-stat-label">Max Power</div></div>
+    </div>
+    <div class="category-b2b-stats">
+      <div><div class="category-b2b-stat-val">500+</div><div class="category-b2b-stat-label">Units Sold</div></div>
+      <div><div class="category-b2b-stat-val">1hr</div><div class="category-b2b-stat-label">Fast Charge</div></div>
+      <div><div class="category-b2b-stat-val">5</div><div class="category-b2b-stat-label">Unit MOQ</div></div>
+    </div>
+    <div class="category-trust">
+      <div class="category-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>ISO 9001 Certified</div>
+      <div class="category-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>12-Month Warranty</div>
+      <div class="category-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Worldwide Shipping</div>
+      <div class="category-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Spare Parts Stocked</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="section" style="background:var(--dark-2)">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">Electric Range</div><h2>Our <span class="highlight">Electric Models</span></h2><p>Commercial electric go karts from a trusted manufacturer — purpose-built for rental venues, FECs, and entertainment centers worldwide.</p></div>
+    <div class="grid-3">
+      {products.map((p, i) => {
+        const delay = ['delay-1','delay-2','delay-3'][i % 3];
+        const specs = p.data.specs ?? {};
+        const specEntries = Object.entries({
+          ...(specs.motor      ? { Motor:       specs.motor }      : {}),
+          ...(specs.topSpeed   ? { 'Top Speed': specs.topSpeed }   : {}),
+          ...(specs.weight     ? { Weight:      specs.weight }     : {}),
+          ...(specs.chargeTime ? { 'Charge':    specs.chargeTime } : {}),
+          ...(specs.extra      ? { Notes:       specs.extra }      : {}),
+        }).slice(0, 4);
+        return (
+          <div class={`product-card fade-in ${delay}`}>
+            <div class="product-img">
+              <img src={`${base}${p.data.image}`} alt={`VortKart ${p.data.title} electric go kart`} loading="lazy" />
+              {p.data.badge && <span class="product-badge">{p.data.badge}</span>}
+            </div>
+            <div class="product-info">
+              <h3>{p.data.title}</h3>
+              <p>{p.data.tagline}</p>
+              <div class="product-specs">
+                {specEntries.map(([label, value]) => (
+                  <div class="spec-item"><div class="spec-label">{label}</div><div class="spec-value">{value}</div></div>
+                ))}
+              </div>
+              <div class="product-actions">
+                <a href={`${base}/contact`} class="btn btn-primary" style="flex:1;justify-content:center">Request Quote</a>
+                <a href={`${base}/product/${p.id}`} class="btn btn-outline" style="flex:1;justify-content:center">Spec Sheet</a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<section class="section features-list">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Why Electric</div><h2>The Electric <span class="highlight">Advantage</span></h2></div>
+    <div style="max-width:720px;margin:0 auto">
+      <div class="feature-item fade-in">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div><h4>Zero Emissions</h4><p>100% electric powertrains produce no exhaust — perfect for indoor venues and environmentally conscious operations.</p></div>
+      </div>
+      <div class="feature-item fade-in delay-1">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></div>
+        <div><h4>Silent Operation</h4><p>Electric motors run virtually silently — no noise complaints, ideal for urban and indoor locations.</p></div>
+      </div>
+      <div class="feature-item fade-in delay-2">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><h4>Instant Torque</h4><p>PMSM motors deliver instant torque from standstill — thrilling acceleration without gear shifts.</p></div>
+      </div>
+      <div class="feature-item fade-in delay-3">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div><h4>Low Maintenance</h4><p>Fewer moving parts mean lower maintenance costs — no oil changes, spark plugs, or fuel filters.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section category-why">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Why VortKart®</div><h2>The <span class="highlight">Factory-Direct</span> Advantage</h2></div>
+    <div class="category-why-grid">
+      <div class="category-why-card fade-in delay-1">
+        <div class="category-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Factory-Direct Pricing</h3>
+        <p>No distributors, no markup. Buy directly from the manufacturer and save 20–40%.</p>
+      </div>
+      <div class="category-why-card fade-in delay-2">
+        <div class="category-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>12-Month Warranty</h3>
+        <p>Full structural warranty on chassis. Spare parts shipped globally within 48 hours.</p>
+      </div>
+      <div class="category-why-card fade-in delay-3">
+        <div class="category-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Ships to 60+ Countries</h3>
+        <p>Sea or air freight with full export documentation. DDP shipping available.</p>
+      </div>
+      <div class="category-why-card fade-in">
+        <div class="category-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Dedicated Support</h3>
+        <p>24/7 technical support via phone, email, and video call. Operator training included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section category-social">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Client Feedback</div><h2>Trusted by <span class="highlight">Operators</span> Worldwide</h2></div>
+    <div class="category-testimonials-grid">
+      <div class="category-testimonial fade-in">
+        <div class="category-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"We ordered 25 EL-2000 karts for our new indoor venue. The zero-emission setup was exactly what we needed, and the fast-charging batteries keep our sessions running all day. VortKart handled everything from design to delivery."</blockquote>
+        <cite>Sarah Chen<span>Operations Director, GreenKart Entertainment — Melbourne, Australia</span></cite>
+      </div>
+      <div class="category-testimonial fade-in delay-1">
+        <div class="category-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Switched our entire rental fleet from gas to VortKart electric. Maintenance costs dropped 60% and our customers love the instant torque. Best business decision we've made."</blockquote>
+        <cite>Anna Kowalski<span>Owner, CityKart Indoor — Warsaw, Poland</span></cite>
+      </div>
+      <div class="category-testimonial fade-in delay-2">
+        <div class="category-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"The EL-2500 karts are incredibly fast yet smooth. Our customers consistently rate them as the best indoor karts they've ever driven. Charging takes just 1 hour between sessions."</blockquote>
+        <cite>Michael Torres<span>GM, ThrillZone FEC — Phoenix, Arizona, USA</span></cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq-section">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">FAQ</div><h2>Electric Go Kart <span class="highlight">Questions</span></h2><p>Common questions about our commercial electric go kart range.</p></div>
+    <div class="faq-grid-2">
+      <div class="faq-item fade-in"><h4>What are the best electric go karts for commercial use?</h4><p>VortKart® offers 500W–3000W electric karts with PMSM motors, lithium or lead-acid batteries, and zero emissions — ideal for indoor and outdoor commercial venues.</p></div>
+      <div class="faq-item fade-in delay-1"><h4>How long do electric go kart batteries last?</h4><p>Fast-charging models reach 80–85% in 1 hour. Lithium batteries last 2000+ charge cycles; lead-acid batteries last 500+ cycles.</p></div>
+      <div class="faq-item fade-in delay-2"><h4>Can electric go karts be used outdoors?</h4><p>Yes — higher-powered models like the EL-2500 (2500W) and EL-3000 (3000W) deliver 65 km/h top speed with 4130 Cr-Mo steel frames, suitable for outdoor tracks.</p></div>
+      <div class="faq-item fade-in delay-3"><h4>What is the minimum order for electric go karts?</h4><p>Orders start from 5 units with factory-direct pricing and volume discounts for larger fleet orders.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section"><div class="container"><div class="fade-in">
+  <div class="label" style="justify-content:center">Go Electric</div>
+  <h2>Ready to Electrify<br><span class="highlight">Your Venue?</span></h2>
+  <p>Tell us about your venue and fleet requirements. We'll recommend the perfect electric kart lineup.</p>
+  <div class="cta-buttons"><a href={`${base}/contact`} class="btn btn-primary btn-lg">Get a Free Quote</a><a href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, '')}`} class="btn btn-outline btn-lg" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a><a href={`${base}/portfolio`} class="btn btn-outline btn-lg">View All Models</a></div>
+</div></div></section>
+</BaseLayout>

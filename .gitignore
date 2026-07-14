@@ -3,10 +3,14 @@ node_modules/
 
 # Build output
 dist/
+dist-slim/
 .astro/
 
 # Dev logs
 dev.log
+dev.err.log
+astro-dev.log
+*.log
 
 # Environment files
 .env

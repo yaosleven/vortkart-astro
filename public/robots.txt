@@ -1,5 +1,5 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 Disallow:
 
-Sitemap: https://yaosleven.github.io/vortkart-website/sitemap.xml
+Sitemap: https://vortkart.com/sitemap.xml

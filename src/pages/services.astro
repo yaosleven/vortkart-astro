@@ -2,15 +2,54 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the minimum order quantity?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Our standard minimum order is 5 units. Larger fleet orders (20+ units) qualify for volume pricing and priority production slots." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does manufacturing and delivery take?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Standard production lead time is 4–8 weeks. We ship worldwide via sea freight (3–6 weeks) or air freight (5–10 days)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer electric and gas-powered options?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. EL-2000 electric for indoor venues, FL-270 gas-powered for outdoor tracks. Both in adult and junior configurations." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you design a track for an indoor space?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. We specialize in constrained spaces — warehouse conversions, rooftop tracks, basement circuits, and irregular outdoor footprints." }
+    },
+    {
+      "@type": "Question",
+      "name": "What warranty and support do you provide?",
+      "acceptedAnswer": { "@type": "Answer", "text": "All VortKart® commercial karts carry a 12-month structural warranty on chassis and a 6-month warranty on drivetrain components. We stock spare parts for every kart model we've ever manufactured and can ship globally within 48 hours. Our technical support team is available 24/7 via phone, email, and video call." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with distributors and resellers?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. We actively partner with distributors in territories where we don't have direct representation. Our distributor program offers preferential pricing, co-branded marketing materials, technical training, and dedicated account management." }
+    }
+  ]
+};
 ---
 <BaseLayout
   title="VortKart® Services | Commercial Go Karts, Racing Chassis & Track Design"
   description="VortKart® offers commercial go kart manufacturing, racing kart chassis production, go kart track design and complete turnkey karting solutions for operators worldwide."
+  keywords="go kart services, commercial go kart services, go kart track design service, turnkey karting solutions, go kart manufacturer services, go kart supplier, go kart wholesale, go kart fleet management, go kart operator training, go kart turnkey provider"
   canonical="https://vortkart.com/services"
+  jsonLd={faqJsonLd}
 >
 <style>
-.service-featured{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--radius-xl);overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:var(--dark-3);margin-bottom:32px;transition:var(--transition)}
-.service-featured:hover{border-color:rgba(230,57,0,0.35)}
+.service-featured{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--radius-xl);overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:var(--dark-3);margin-bottom:32px;transition:var(--transition)}
+.service-featured:hover{border-color:rgba(249,115,22,0.35)}
 .service-featured-img{overflow:hidden}
 .service-featured-img img{width:100%;height:100%;object-fit:cover;object-position:center 65%;transition:transform .5s ease}
 .service-featured:hover .service-featured-img img{transform:scale(1.04)}
@@ -32,13 +71,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 .pricing-features{text-align:left}
 .pricing-features li{display:flex;gap:10px;align-items:center;padding:8px 0;font-size:14px;color:var(--gray-4)}
 .pricing-features li svg{width:16px;height:16px;color:var(--primary);flex-shrink:0}
-.service-card{background:var(--dark-3);border-radius:var(--radius-xl);border:1px solid rgba(255,255,255,0.07);overflow:hidden;transition:var(--transition)}
-.service-card:hover{border-color:rgba(230,57,0,0.35);transform:translateY(-6px)}
+.service-card{background:var(--dark-3);border-radius:var(--radius-xl);border:1px solid rgba(255,255,255,0.08);overflow:hidden;transition:var(--transition)}
+.service-card:hover{border-color:rgba(249,115,22,0.35);transform:translateY(-6px)}
 .service-card-img{aspect-ratio:16/9;overflow:hidden}
 .service-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .service-card:hover .service-card-img img{transform:scale(1.05)}
 .service-card-body{padding:36px}
-.service-card-icon{width:52px;height:52px;background:rgba(230,57,0,0.1);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.service-card-icon{width:52px;height:52px;background:rgba(249,115,22,0.1);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
 .service-card-icon svg{width:26px;height:26px;color:var(--primary)}
 .service-features{list-style:none;margin:0}
 .service-features li{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;color:var(--gray-4)}
@@ -50,33 +89,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 @media(max-width:1024px){.service-featured{grid-template-columns:1fr!important}.faq-grid{grid-template-columns:1fr!important;gap:48px}.pricing-cards{grid-template-columns:1fr!important}}
 </style>
 <section class="page-hero">
-  <div class="page-hero-bg" style={`background-image:url('${base}/images/proframe-r32/1.jpg')`}></div>
+  <div class="page-hero-bg" style={`background-image:url('${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis1.webp')`}></div>
   <div class="page-hero-overlay"></div>
   <div class="container"><div class="page-hero-content">
-    <nav class="breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>Services</span></nav>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg><span>Services</span></nav>
     <div class="label">What We Offer</div>
     <h1>Full-Spectrum<br><span class="highlight">Karting</span> Solutions</h1>
   </div></div>
 </section>
 <section class="section" id="commercial"><div class="container">
-  <div class="section-header center fade-in"><div class="label">Our Services</div><h2>Everything You Need<br>to <span class="highlight">Launch &amp; Operate</span></h2><p>From a single kart purchase to a complete attraction.</p></div>
+  <div class="section-header center fade-in"><div class="label">Our Services</div><h2>Everything You Need<br>to <span class="highlight">Launch &amp; Operate</span></h2><p>From a single kart purchase to a complete attraction — as a commercial go kart manufacturer and turnkey supplier, we cover every stage.</p></div>
   <div class="service-featured fade-in">
-    <div class="service-featured-img"><img src={`${base}/images/ev-pro-48/1.jpg`} alt="Fleet of commercial go karts" loading="lazy" /></div>
+    <div class="service-featured-img"><img src={`${base}/images/fl-270/Recreational-go-karting1.webp`} alt="Fleet of commercial go karts" loading="lazy" /></div>
     <div class="service-featured-body">
       <div class="label">Most Popular</div><h3>Commercial <span class="highlight">Go Karts</span></h3>
-      <p style="margin:16px 0 24px">Purpose-built for high-throughput rental operations, our commercial go karts deliver unmatched durability, consistent performance, and minimal maintenance demands — protecting your bottom line race after race.</p>
-      <ul class="service-features"><li>Electric EV-Pro® series — zero emissions, low noise, ideal for indoor/outdoor</li><li>Gas-powered DuraTrak® series — max power for outdoor tracks</li><li>Junior Kart series — purpose-designed for 5–12 year age groups</li><li>Custom fleet sizing from 5 to 100+ units</li><li>Fleet management &amp; timing system integration</li></ul>
+      <p style="margin:16px 0 24px">Purpose-built for high-throughput rental operations, our commercial go karts deliver unmatched durability, consistent performance, and minimal maintenance demands. As a factory-direct go kart manufacturer and wholesale supplier, we protect your bottom line race after race.</p>
+      <ul class="service-features"><li>EL-2000 electric series — zero emissions, low noise, ideal for indoor/outdoor</li><li>FL-270 gas-powered series — Honda GX270 engine, max power for outdoor tracks</li><li>Junior Kart series — purpose-designed for 5–12 year age groups</li><li>Custom fleet sizing from 5 to 100+ units</li><li>Fleet management &amp; timing system integration</li></ul>
       <a href={`${base}/contact`} class="service-card-link">Request Fleet Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
     </div>
   </div>
   <div class="grid-3" style="margin-top:32px">
-    <div class="service-card fade-in delay-1" id="racing"><div class="service-card-img"><img src={`${base}/images/proframe-r32/1.jpg`} alt="Racing kart chassis" loading="lazy" /></div><div class="service-card-body"><div class="service-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>Racing Kart Chassis</h3><p>Competition-grade tubular steel chassis for club and professional racing.</p><ul class="service-features"><li>CIK/FIA homologated designs</li><li>32mm &amp; 30mm tube options</li><li>Junior, Cadet, and Senior sizes</li><li>Custom OEM branding available</li></ul><a href={`${base}/contact`} class="service-card-link">Get Chassis Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
-    <div class="service-card fade-in delay-2" id="track"><div class="service-card-img"><img src={`${base}/images/proframe-r32/4.jpg`} alt="Track design" loading="lazy" /></div><div class="service-card-body"><div class="service-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>Track Design</h3><p>Custom go kart track layout design for any space — indoor, outdoor, rooftop, or integrated in a larger attraction.</p><ul class="service-features"><li>3D CAD design and rendering</li><li>Feasibility study and site analysis</li><li>Safety barrier specification</li><li>Revenue optimization layout modeling</li></ul><a href={`${base}/contact`} class="service-card-link">Request Track Design <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
-    <div class="service-card fade-in delay-3" id="turnkey"><div class="service-card-img"><img src={`${base}/images/duratrak-270/8.jpg`} alt="Turnkey karting" loading="lazy" /></div><div class="service-card-body"><div class="service-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div><h3>Turnkey Solutions</h3><p>The complete package: track design, kart supply, timing systems, staff training, and grand opening. One partner.</p><ul class="service-features"><li>Single point of contact management</li><li>Barrier, signage &amp; pit lane setup</li><li>Timing &amp; fleet management systems</li><li>Staff training and operations manual</li></ul><a href={`${base}/contact`} class="service-card-link">Get Turnkey Proposal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+    <div class="service-card fade-in delay-1" id="racing"><div class="service-card-img"><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis1.webp`} alt="Racing kart chassis" loading="lazy" /></div><div class="service-card-body"><div class="service-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>Racing Kart Chassis</h3><p>Competition-grade tubular steel chassis for club and professional racing.</p><ul class="service-features"><li>CIK/FIA homologated designs</li><li>32mm &amp; 30mm tube options</li><li>Junior, Cadet, and Senior sizes</li><li>Custom OEM branding available</li></ul><a href={`${base}/contact`} class="service-card-link">Get Chassis Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+    <div class="service-card fade-in delay-2" id="track"><div class="service-card-img"><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis4.webp`} alt="Track design" loading="lazy" /></div><div class="service-card-body"><div class="service-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>Track Design</h3><p>Custom go kart track layout design for any space — indoor, outdoor, rooftop, or integrated in a larger attraction.</p><ul class="service-features"><li>3D CAD design and rendering</li><li>Feasibility study and site analysis</li><li>Safety barrier specification</li><li>Revenue optimization layout modeling</li></ul><a href={`${base}/contact`} class="service-card-link">Request Track Design <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+    <div class="service-card fade-in delay-3" id="turnkey"><div class="service-card-img"><img src={`${base}/images/fr-200x/2026-Four-stroke-go-kart8.webp`} alt="Turnkey karting" loading="lazy" /></div><div class="service-card-body"><div class="service-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div><h3>Turnkey Solutions</h3><p>The complete package: track design, kart supply, timing systems, staff training, and grand opening. One partner.</p><ul class="service-features"><li>Single point of contact management</li><li>Barrier, signage &amp; pit lane setup</li><li>Timing &amp; fleet management systems</li><li>Staff training and operations manual</li></ul><a href={`${base}/contact`} class="service-card-link">Get Turnkey Proposal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
   </div>
 </div></section>
 <section class="section process-section"><div class="container">
-  <div class="section-header center fade-in"><div class="label">How It Works</div><h2>From Enquiry to<br><span class="highlight">Opening Day</span></h2><p>Our proven 4-step process ensures every project is delivered on time, on spec, and ready to generate revenue.</p></div>
+  <div class="section-header center fade-in"><div class="label">How It Works</div><h2>From Enquiry to<br><span class="highlight">Opening Day</span></h2><p>Our proven 4-step process ensures every go kart project — from fleet orders to turnkey track builds — is delivered on time, on spec, and ready to generate revenue.</p></div>
   <div class="process-steps fade-in">
     <div class="process-step"><div class="step-num">01</div><h4>Discovery Call</h4><p>Tell us your vision, site dimensions, budget, and timeline. We'll match you to the right solution within 48 hours.</p></div>
     <div class="process-step"><div class="step-num">02</div><h4>Design &amp; Proposal</h4><p>Our engineers produce a custom track layout, kart specification, and detailed project proposal with full cost breakdown.</p></div>
@@ -89,7 +128,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="faq-right fade-in delay-2">
     <div class="faq-item"><button class="faq-question" aria-expanded="false">What is the minimum order quantity?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Our standard minimum order is 5 units. Larger fleet orders (20+ units) qualify for volume pricing and priority production slots.</div></div></div>
     <div class="faq-item"><button class="faq-question" aria-expanded="false">How long does manufacturing and delivery take?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Standard production lead time is 4–8 weeks. We ship worldwide via sea freight (3–6 weeks) or air freight (5–10 days).</div></div></div>
-    <div class="faq-item"><button class="faq-question" aria-expanded="false">Do you offer electric and gas-powered options?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. EV-Pro® electric for indoor venues, DuraTrak® gas-powered for outdoor tracks. Both in adult and junior configurations.</div></div></div>
+    <div class="faq-item"><button class="faq-question" aria-expanded="false">Do you offer electric and gas-powered options?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. EL-2000 electric for indoor venues, FL-270 gas-powered for outdoor tracks. Both in adult and junior configurations.</div></div></div>
     <div class="faq-item"><button class="faq-question" aria-expanded="false">Can you design a track for an indoor space?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Absolutely. We specialize in constrained spaces — warehouse conversions, rooftop tracks, basement circuits, and irregular outdoor footprints.</div></div></div>
     <div class="faq-item"><button class="faq-question" aria-expanded="false">What warranty and support do you provide?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">All VortKart® commercial karts carry a 12-month structural warranty on chassis and a 6-month warranty on drivetrain components. We stock spare parts for every kart model we've ever manufactured and can ship globally within 48 hours. Our technical support team is available 24/7 via phone, email, and video call.</div></div></div>
     <div class="faq-item"><button class="faq-question" aria-expanded="false">Do you work with distributors and resellers?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We actively partner with distributors in territories where we don't have direct representation. Our distributor program offers preferential pricing, co-branded marketing materials, technical training, and dedicated account management. Contact us to enquire about territory availability in your region.</div></div></div>
@@ -107,6 +146,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="label" style="justify-content:center">Start Today</div>
   <h2>Ready to Discuss<br><span class="highlight">Your Project?</span></h2>
   <p>Our team responds to every enquiry within 24 hours with a tailored recommendation.</p>
-  <div class="cta-buttons"><a href={`${base}/contact`} class="btn btn-primary btn-lg">Request a Quote</a><a href={`${base}/listings`} class="btn btn-outline btn-lg">View Our Work</a></div>
+  <div class="cta-buttons"><a href={`${base}/contact`} class="btn btn-primary btn-lg">Request a Quote</a><a href={`${base}/portfolio`} class="btn btn-outline btn-lg">View Our Work</a></div>
 </div></div></section>
 </BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../config/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -23,9 +24,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 .legal-content li{margin-bottom:8px}
 .legal-content a{color:var(--primary);text-decoration:underline}
 .legal-content strong{color:var(--white)}
-.legal-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-lg);padding:24px;margin:24px 0}
+.legal-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:24px;margin:24px 0}
 .legal-card h3{margin-top:0}
-.legal-toc{background:var(--dark-2);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:40px}
+.legal-toc{background:var(--dark-2);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:40px}
 .legal-toc h3{color:var(--white);font-size:16px;margin-bottom:12px;text-transform:uppercase;letter-spacing:.1em}
 .legal-toc ol{margin-left:20px}
 .legal-toc li{margin-bottom:6px}
@@ -43,9 +44,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <p class="legal-updated">Last updated: June 24, 2026</p>
       </div>
 
-      <nav class="breadcrumb" style="justify-content:center;margin-bottom:32px">
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="justify-content:center;margin-bottom:32px">
         <a href={`${base}/`}>Home</a>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
         <span>Privacy Policy</span>
       </nav>
 
@@ -128,7 +129,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </div>
         <div class="legal-card">
           <h3>5.3 Google Ads</h3>
-          <p>We use Google Ads to display advertisements and track conversions. Google may use cookies to serve ads based on your prior visits to our Site. You can opt out at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>.</p>
+          <p>We use Google Ads to display advertisements and track conversions. Google may use cookies to serve ads based on your prior visits to our Site. You can opt out at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>.</p>
         </div>
         <div class="legal-card">
           <h3>5.4 Google Tag Manager (GTM)</h3>
@@ -159,7 +160,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <li><strong>Right to object:</strong> Object to the processing of your personal data</li>
           <li><strong>Right to withdraw consent:</strong> Withdraw consent at any time for data processing based on consent</li>
         </ul>
-        <p>To exercise any of these rights, please contact us at <a href="mailto:sales@vortkart.com">sales@vortkart.com</a>.</p>
+        <p>To exercise any of these rights, please contact us at <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.</p>
 
         <h2 id="children">9. Children's Privacy</h2>
         <p>Our Site and services are not intended for individuals under the age of 16. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately, and we will take steps to delete such information.</p>
@@ -171,9 +172,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <p>If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
         <div class="legal-card">
           <ul>
-            <li><strong>Email:</strong> <a href="mailto:sales@vortkart.com">sales@vortkart.com</a></li>
-            <li><strong>Phone:</strong> +1 (234) 567-890</li>
-            <li><strong>Address:</strong> 123 Motorsport Drive, Karting District, CA 90001</li>
+            <li><strong>Company:</strong> {CONTACT.legalName}</li>
+            <li><strong>Email:</strong> <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
+            <li><strong>Phone:</strong> {CONTACT.phone}</li>
+            <li><strong>Address:</strong> {CONTACT.address}</li>
           </ul>
         </div>
         <div class="legal-back">

@@ -3,7 +3,7 @@ title: "Grand Marina Resort Karting"
 category: "resort"
 location: "Barcelona, Spain"
 country: "Spain"
-image: "/images/duratrak-270/7.jpg"
+image: "/images/fr-200x/2026-Four-stroke-go-kart7.webp"
 stats:
   trackLength: "420m"
   kartCount: "20 karts"

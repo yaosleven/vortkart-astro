@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../config/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How much does go kart track design cost?", "acceptedAnswer": { "@type": "Answer", "text": "Go kart track design services typically range from $5,000 to $25,000 depending on track size and complexity. VortKart® provides professional go kart track design including 3D CAD modeling, site analysis, safety engineering, and revenue optimization. Track design fees are included with turnkey project packages." } },
+    { "@type": "Question", "name": "How long does it take to design and build a go kart track?", "acceptedAnswer": { "@type": "Answer", "text": "A complete go kart track project takes 3-8 months from initial design to grand opening. Track design takes 2-4 weeks, manufacturing and shipping takes 4-8 weeks, and on-site construction takes 4-8 weeks. VortKart® manages the entire process as your dedicated go kart track builder." } },
+    { "@type": "Question", "name": "Can you design both indoor and outdoor go kart tracks?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. VortKart® designs both indoor and outdoor go karting tracks. Indoor tracks typically range from 200m to 600m in length, while outdoor tracks can exceed 1,000m. Our go kart track design team optimizes every layout for throughput, safety, and revenue regardless of venue type." } },
+    { "@type": "Question", "name": "Do you handle construction or just design?", "acceptedAnswer": { "@type": "Answer", "text": "VortKart® provides complete turnkey go kart track design and build services. We handle everything from feasibility study and 3D CAD design to construction oversight, barrier installation, and grand opening support. As a go kart track builder and manufacturer, we are your single point of contact." } }
+  ]
+};
+---
+<BaseLayout
+  title="Go Kart Track Design | Custom Layouts & 3D Rendering | VortKart®"
+  description="Professional go kart track design services — custom layouts, 3D CAD rendering, safety analysis, and revenue optimization. 120+ tracks designed worldwide."
+  keywords="go kart track design, go kart track builder, karting track design company, go kart track manufacturer, indoor go kart track design, outdoor karting track, go kart track construction, turnkey karting track, track layout design, go kart circuit design"
+  canonical="https://vortkart.com/track-design"
+  jsonLd={faqJsonLd}
+>
+<style>
+  .lp-hero{background:var(--dark);position:relative;overflow:hidden}
+  .lp-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,8,13,.92) 0%,rgba(6,8,13,.7) 100%);pointer-events:none}
+  .lp-hero-bg{position:absolute;inset:0}
+  .lp-hero-bg img{width:100%;height:100%;object-fit:cover}
+  .lp-hero-content{position:relative;z-index:1;padding:100px 0 80px}
+  .lp-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.25);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:24px}
+  .lp-badge svg{width:14px;height:14px}
+  .lp-hero h1{font-size:clamp(32px,5vw,56px);line-height:1.1;margin-bottom:20px}
+  .lp-hero h1 .highlight{color:var(--primary)}
+  .lp-hero-sub{font-size:18px;color:var(--gray-3);max-width:560px;line-height:1.7;margin-bottom:36px}
+  .lp-hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .lp-services{background:var(--dark-2)}
+  .lp-service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-service-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);padding:36px;transition:var(--transition)}
+  .lp-service-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+  .lp-service-icon{width:48px;height:48px;border-radius:var(--radius-md);background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .lp-service-icon svg{width:24px;height:24px;color:var(--primary)}
+  .lp-service-card h3{font-size:20px;margin-bottom:10px}
+  .lp-service-card p{font-size:14px;color:var(--gray-3);line-height:1.7}
+  .lp-showcase{background:var(--dark)}
+  .lp-showcase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-showcase-card{border-radius:var(--radius-xl);overflow:hidden;position:relative;aspect-ratio:4/3;border:1px solid rgba(255,255,255,0.08);transition:var(--transition)}
+  .lp-showcase-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+  .lp-showcase-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .lp-showcase-card:hover img{transform:scale(1.05)}
+  .lp-showcase-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(6,8,13,.85))}
+  .lp-showcase-overlay h4{font-size:16px;margin-bottom:4px}
+  .lp-showcase-overlay p{font-size:12px;color:var(--gray-3)}
+  .lp-numbers{background:var(--dark-2)}
+  .lp-number-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+  .lp-number{padding:32px 16px}
+  .lp-number-val{font-family:var(--font-heading);font-size:48px;font-weight:800;color:var(--primary);line-height:1}
+  .lp-number-label{font-size:14px;color:var(--gray-3);margin-top:8px}
+  .lp-trust{display:flex;gap:24px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+  .lp-trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-3)}
+  .lp-trust-item svg{width:16px;height:16px;color:var(--primary);flex-shrink:0}
+  .lp-why{background:var(--dark-2)}
+  .lp-why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .lp-why-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;transition:var(--transition)}
+  .lp-why-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+  .lp-why-icon{width:48px;height:48px;border-radius:var(--radius-md);background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+  .lp-why-icon svg{width:24px;height:24px;color:var(--primary)}
+  .lp-why-card h3{font-size:16px;margin-bottom:8px}
+  .lp-why-card p{font-size:13px;color:var(--gray-3);line-height:1.6}
+  .lp-social{background:var(--dark)}
+  .lp-testimonial{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);padding:40px;max-width:720px;margin:0 auto;text-align:center}
+  .lp-testimonial-stars{color:var(--accent);font-size:20px;margin-bottom:16px;letter-spacing:4px}
+  .lp-testimonial blockquote{font-size:18px;line-height:1.7;color:var(--gray-4);font-style:italic;margin-bottom:20px}
+  .lp-testimonial cite{font-size:14px;font-weight:600;color:var(--white);font-style:normal}
+  .lp-testimonial cite span{display:block;font-size:12px;color:var(--gray-3);font-weight:400;margin-top:4px}
+  .lp-testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-testimonials-grid .lp-testimonial{max-width:none}
+  .faq-section{background:var(--dark-2)}
+  .faq-item{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:12px;transition:var(--transition)}
+  .faq-item:hover{border-color:rgba(249,115,22,0.2)}
+  .faq-item h4{font-size:16px;margin-bottom:8px;color:var(--white)}
+  .faq-item p{font-size:14px;color:var(--gray-3);line-height:1.7;margin:0}
+.faq-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:1024px){.lp-service-grid{grid-template-columns:1fr 1fr}.lp-showcase-grid{grid-template-columns:1fr 1fr}.lp-number-grid{grid-template-columns:1fr 1fr}.lp-why-grid{grid-template-columns:1fr 1fr}.lp-testimonials-grid{grid-template-columns:1fr}}
+  @media(max-width:768px){.lp-hero-content{padding:60px 0 50px}.lp-service-card{padding:24px}.lp-number{padding:24px 12px}.lp-testimonial{padding:28px}}
+  @media(max-width:640px){.faq-grid-2{grid-template-columns:1fr}.lp-service-grid{grid-template-columns:1fr}.lp-showcase-grid{grid-template-columns:1fr}.lp-number-grid{grid-template-columns:1fr 1fr}.lp-hero-actions{flex-direction:column}.lp-hero-actions .btn{width:100%;justify-content:center}.lp-why-grid{grid-template-columns:1fr}}
+  @media(max-width:480px){.lp-hero-content{padding:40px 0 30px}.lp-number-grid{grid-template-columns:1fr}.lp-service-card{padding:20px}.lp-number-val{font-size:36px}}
+</style>
+
+<section class="lp-hero">
+  <div class="lp-hero-bg"><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis1.webp`} alt="Go kart track design" /></div>
+  <div class="lp-hero-content container">
+    <div class="lp-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      120+ Tracks Designed
+    </div>
+    <h1>Professional <span class="highlight">Track</span><br>Design Services</h1>
+    <p class="lp-hero-sub">Custom go kart track layouts engineered for maximum throughput, safety, and revenue. From feasibility study to 3D rendering to construction oversight.</p>
+    <div class="lp-hero-actions">
+      <a href={`${base}/contact`} class="btn btn-primary btn-lg">Request Track Design</a>
+      <a href={`${base}/portfolio`} class="btn btn-outline btn-lg">View Projects</a>
+    </div>
+    <div class="lp-trust">
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>ISO 9001 Certified</div>
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>120+ Tracks Designed</div>
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>12-Month Warranty</div>
+      <div class="lp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Worldwide Service</div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-services">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Design Services</div><h2>Everything in <span class="highlight">One Package</span></h2><p>As a professional go kart track design company, VortKart® delivers comprehensive track design and construction services worldwide.</p></div>
+    <div class="lp-service-grid">
+      <div class="lp-service-card fade-in delay-1">
+        <div class="lp-service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Site Analysis</h3>
+        <p>We assess your space — dimensions, ceiling height, columns, fire exits, utilities — and determine the optimal track footprint.</p>
+      </div>
+      <div class="lp-service-card fade-in delay-2">
+        <div class="lp-service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>3D CAD Design</h3>
+        <p>Full 3D modeling and photorealistic rendering so you can visualize the final result before construction begins.</p>
+      </div>
+      <div class="lp-service-card fade-in delay-3">
+        <div class="lp-service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Safety Engineering</h3>
+        <p>Barrier specification, impact zone analysis, and compliance with international karting safety standards.</p>
+      </div>
+      <div class="lp-service-card fade-in">
+        <div class="lp-service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Revenue Modeling</h3>
+        <p>Throughput analysis and revenue projections based on track capacity, session pricing, and operating hours.</p>
+      </div>
+      <div class="lp-service-card fade-in delay-1">
+        <div class="lp-service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h3>Permit Documentation</h3>
+        <p>Technical drawings and specifications needed for building permits, insurance, and regulatory approvals.</p>
+      </div>
+      <div class="lp-service-card fade-in delay-2">
+        <div class="lp-service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Construction Oversight</h3>
+        <p>On-site project management during track construction to ensure design intent is faithfully executed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-showcase">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Recent Projects</div><h2>Go Kart Tracks We've <span class="highlight">Designed &amp; Built</span></h2><p>Explore our portfolio of indoor and outdoor karting track projects across 60+ countries.</p></div>
+    <div class="lp-showcase-grid">
+      <a href={`${base}/project/dubai-indoor-karting`} class="lp-showcase-card fade-in delay-1">
+        <img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis4.webp`} alt="Dubai Indoor Karting Dome" loading="lazy" />
+        <div class="lp-showcase-overlay"><h4>Dubai Indoor Karting Dome</h4><p>600m track · 30 karts · Dubai, UAE</p></div>
+      </a>
+      <a href={`${base}/project/speedzone-grand-prix`} class="lp-showcase-card fade-in delay-2">
+        <img src={`${base}/images/fr-200x/2026-Four-stroke-go-kart8.webp`} alt="SpeedZone Grand Prix" loading="lazy" />
+        <div class="lp-showcase-overlay"><h4>SpeedZone Grand Prix</h4><p>850m track · 40 karts · California, USA</p></div>
+      </a>
+      <a href={`${base}/project/grand-marina-resort`} class="lp-showcase-card fade-in delay-3">
+        <img src={`${base}/images/fl-270/Recreational-go-karting1.webp`} alt="Grand Marina Resort" loading="lazy" />
+        <div class="lp-showcase-overlay"><h4>Grand Marina Resort</h4><p>420m track · 20 karts · Barcelona, Spain</p></div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:40px"><a href={`${base}/portfolio`} class="btn btn-outline">View All Projects &rarr;</a></div>
+  </div>
+</section>
+
+<section class="section lp-numbers">
+  <div class="container">
+    <div class="lp-number-grid fade-in">
+      <div class="lp-number"><div class="lp-number-val" data-count="120" data-suffix="+">0</div><div class="lp-number-label">Tracks Designed</div></div>
+      <div class="lp-number"><div class="lp-number-val" data-count="60" data-suffix="+">0</div><div class="lp-number-label">Countries</div></div>
+      <div class="lp-number"><div class="lp-number-val" data-count="15" data-suffix="+">0</div><div class="lp-number-label">Years Experience</div></div>
+      <div class="lp-number"><div class="lp-number-val" data-count="98" data-suffix="%">0</div><div class="lp-number-label">Client Satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-why">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Why VortKart®</div><h2>The <span class="highlight">Factory-Direct</span> Advantage</h2><p>As a leading go kart track builder and manufacturer, we deliver unmatched value at every stage.</p></div>
+    <div class="lp-why-grid">
+      <div class="lp-why-card fade-in delay-1">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Factory-Direct Pricing</h3>
+        <p>No resale markup. Buy go kart track design and construction services directly from the manufacturer.</p>
+      </div>
+      <div class="lp-why-card fade-in delay-2">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>12-Month Warranty</h3>
+        <p>Full warranty on track construction and barrier systems. Spare parts shipped globally within 48 hours.</p>
+      </div>
+      <div class="lp-why-card fade-in delay-3">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Ships to 60+ Countries</h3>
+        <p>Go kart track design and build services available worldwide. Sea or air freight with full documentation.</p>
+      </div>
+      <div class="lp-why-card fade-in">
+        <div class="lp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Dedicated Support</h3>
+        <p>24/7 technical support for every go kart track project. Construction oversight and operator training included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section lp-social">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Client Feedback</div><h2>Trusted by <span class="highlight">Operators</span> Worldwide</h2></div>
+    <div class="lp-testimonials-grid">
+      <div class="lp-testimonial fade-in">
+        <div class="lp-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"VortKart® designed and built our 850m outdoor go kart track from scratch. The 3D CAD designs were incredibly detailed, and the final track exceeded our expectations."</blockquote>
+        <cite>Ahmed Al-Rashid<span>CEO, Desert Speed Karting — Dubai, UAE</span></cite>
+      </div>
+      <div class="lp-testimonial fade-in delay-1">
+        <div class="lp-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"The track layout VortKart designed doubled our hourly throughput compared to our old layout. Their revenue modeling was spot-on — we hit projected ROI within 8 months."</blockquote>
+        <cite>Lucia Fernandez<span>GM, SpeedZone Entertainment — Madrid, Spain</span></cite>
+      </div>
+      <div class="lp-testimonial fade-in delay-2">
+        <div class="lp-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Professional from start to finish. VortKart handled the feasibility study, 3D design, permit documentation, and construction oversight. Truly a one-stop shop for track design."</blockquote>
+        <cite>Wei Lim<span>Director, AsiaKart Racing — Singapore</span></cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq-section">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">FAQ</div><h2>Go Kart Track Design <span class="highlight">Questions</span></h2><p>Common questions about professional go kart track design and construction services.</p></div>
+    <div class="faq-grid-2">
+      <div class="faq-item fade-in"><h4>How much does go kart track design cost?</h4><p>Track design services range from $5,000–$25,000 depending on size and complexity. Fees are included with turnkey project packages.</p></div>
+      <div class="faq-item fade-in delay-1"><h4>How long does it take to design and build a go kart track?</h4><p>Complete projects take 3–8 months: design 2–4 weeks, manufacturing 4–8 weeks, construction 4–8 weeks.</p></div>
+      <div class="faq-item fade-in delay-2"><h4>Can you design both indoor and outdoor go kart tracks?</h4><p>Yes — indoor tracks from 200m–600m, outdoor tracks exceeding 1,000m, all optimized for throughput, safety, and revenue.</p></div>
+      <div class="faq-item fade-in delay-3"><h4>Do you handle construction or just design?</h4><p>VortKart® provides full turnkey service from feasibility study and 3D CAD design through construction oversight and grand opening support.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section"><div class="container"><div class="fade-in">
+  <div class="label" style="justify-content:center">Start Designing</div>
+  <h2>Have a Space? <span class="highlight">Let's Design Your Track.</span></h2>
+  <p>Send us your site dimensions and we'll prepare a feasibility assessment and initial layout concept.</p>
+  <div class="cta-buttons">
+    <a href={`${base}/contact`} class="btn btn-primary btn-lg">Request Track Design</a>
+    <a href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, '')}`} class="btn btn-outline btn-lg" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+  </div>
+</div></div></section>
+</BaseLayout>

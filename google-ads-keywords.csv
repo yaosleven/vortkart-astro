@@ -1,0 +1,30 @@
+Campaign,Ad Group,Keyword,Match Type,Max CPC (USD),Final URL,Intent Note
+S1 Commercial-Rental,Commercial Go Karts,commercial go kart manufacturer,Exact,2.80,https://vortkart.com/commercial-go-karts,Highest intent - buyer seeking factory
+S1 Commercial-Rental,Commercial Go Karts,commercial go karts for sale,Phrase,2.40,https://vortkart.com/commercial-go-karts,Purchase intent
+S1 Commercial-Rental,Commercial Go Karts,commercial go karts,Phrase,2.00,https://vortkart.com/commercial-go-karts,Broad commercial
+S1 Commercial-Rental,Rental Fleet,rental go karts for sale,Phrase,2.40,https://vortkart.com/commercial-go-karts,FEC / venue buyer
+S1 Commercial-Rental,Rental Fleet,go karts for rental business,Phrase,2.20,https://vortkart.com/commercial-go-karts,Business use
+S1 Commercial-Rental,Rental Fleet,amusement park go karts,Phrase,2.00,https://vortkart.com/commercial-go-karts,End venue
+S1 Commercial-Rental,Wholesale,buy go karts wholesale,Phrase,2.30,https://vortkart.com/commercial-go-karts,Bulk buyer
+S1 Commercial-Rental,Wholesale,go karts bulk order,Phrase,2.10,https://vortkart.com/commercial-go-karts,Bulk buyer
+S2 Turnkey-Track,Track Design,go kart track design,Exact,2.60,https://vortkart.com/track-design,High-value turnkey
+S2 Turnkey-Track,Track Design,go kart track layout design,Phrase,2.40,https://vortkart.com/track-design,Design service
+S2 Turnkey-Track,Track Design,karting track construction,Phrase,2.30,https://vortkart.com/track-design,Build service
+S2 Turnkey-Track,Turnkey,turnkey karting solution,Phrase,2.50,https://vortkart.com/track-design,Full project
+S2 Turnkey-Track,Turnkey,how to build a go kart track,Phrase,1.90,https://vortkart.com/track-design,Investor researching
+S2 Turnkey-Track,Turnkey,go kart business setup,Phrase,2.00,https://vortkart.com/track-design,Startup investor
+S2 Turnkey-Track,Indoor,indoor go kart track builder,Phrase,2.40,https://vortkart.com/indoor-karting,Indoor venue
+S2 Turnkey-Track,Indoor,indoor karting equipment supplier,Phrase,2.30,https://vortkart.com/indoor-karting,Indoor supply
+S3 Manufacturer-OEM,Manufacturer,go kart manufacturer,Exact,2.50,https://vortkart.com/factory,Golden supply-chain lead
+S3 Manufacturer-OEM,Manufacturer,go kart manufacturer china,Phrase,2.20,https://vortkart.com/factory,Sourcing China
+S3 Manufacturer-OEM,Factory,go kart factory,Phrase,2.10,https://vortkart.com/factory,Source direct
+S3 Manufacturer-OEM,Factory,go kart factory china,Phrase,2.00,https://vortkart.com/factory,Source China
+S3 Manufacturer-OEM,Supplier,go kart supplier,Phrase,2.20,https://vortkart.com/commercial-go-karts,Distributor / importer
+S3 Manufacturer-OEM,Supplier,go kart wholesale supplier,Phrase,2.30,https://vortkart.com/commercial-go-karts,Distributor
+S3 Manufacturer-OEM,OEM,OEM go kart manufacturer,Phrase,2.60,https://vortkart.com/factory,OEM/ODM buyer
+S3 Manufacturer-OEM,OEM,electric go kart manufacturer,Phrase,2.40,https://vortkart.com/commercial-go-karts,Electric sourcing
+S4 Racing-Electric,Racing Chassis,racing go kart chassis,Phrase,2.10,https://vortkart.com/portfolio,Racing niche
+S4 Racing-Electric,Racing Chassis,KZ class kart chassis,Phrase,1.90,https://vortkart.com/portfolio,Pro racing
+S4 Racing-Electric,Racing Chassis,OK class kart chassis,Phrase,1.90,https://vortkart.com/portfolio,Pro racing
+S4 Racing-Electric,Electric Karts,electric go kart for adults,Phrase,2.20,https://vortkart.com/commercial-go-karts,Adult electric
+S4 Racing-Electric,Electric Karts,high speed electric go kart,Phrase,2.10,https://vortkart.com/commercial-go-karts,Performance electric

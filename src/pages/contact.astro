@@ -1,26 +1,56 @@
 ﻿---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../config/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How fast will I receive a quote?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For standard kart orders, we typically respond with a full quote within 24–48 hours. For track design or turnkey projects, we schedule a discovery call and provide a detailed proposal within 5–7 business days." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you ship internationally?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — we ship to 60+ countries worldwide via sea or air freight. We handle all export documentation and can arrange DDP (Delivered Duty Paid) shipping to your facility." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I visit your factory before ordering?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Absolutely — we welcome factory visits by appointment. Contact us to schedule a visit to our manufacturing facility, QC processes, and kart test track." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer financing or payment terms?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We offer flexible payment terms for qualified buyers, typically 30% deposit + 70% before shipment. For larger projects we can discuss extended payment schedules." }
+    }
+  ]
+};
 ---
 <BaseLayout
   title="Contact VortKart® | Request a Quote for Commercial Go Karts & Track Design"
   description="Contact VortKart® to request a quote for commercial go karts, racing chassis, track design, or turnkey karting solutions. We respond within 24 hours."
+  keywords="contact go kart manufacturer, go kart quote request, commercial go kart pricing, go kart supplier contact, buy go karts, go kart manufacturer inquiry, go kart wholesale quote, go kart track design quote, turnkey karting quote, go kart dealer contact"
   canonical="https://vortkart.com/contact"
+  jsonLd={faqJsonLd}
 >
 <style>
 .contact-main{background:var(--dark)}
 .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
 .contact-info{position:sticky;top:calc(var(--nav-height) + 32px)}
 .contact-block{margin-bottom:32px}
-.contact-block-item{display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--dark-3);border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.07);margin-bottom:12px;transition:var(--transition)}
-.contact-block-item:hover{border-color:rgba(230,57,0,0.3)}
-.contact-item-icon{width:44px;height:44px;border-radius:var(--radius-md);background:rgba(230,57,0,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-block-item{display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--dark-3);border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.08);margin-bottom:12px;transition:var(--transition)}
+.contact-block-item:hover{border-color:rgba(249,115,22,0.3)}
+.contact-item-icon{width:44px;height:44px;border-radius:var(--radius-md);background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .contact-item-icon svg{width:20px;height:20px;color:var(--primary)}
 .contact-item-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-3);margin-bottom:4px}
 .contact-item-value{font-size:15px;font-weight:600;color:var(--white)}
 .contact-item-sub{font-size:13px;color:var(--gray-3);margin-top:2px}
-.hours-card{background:var(--dark-3);border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.07);padding:24px}
+.hours-card{background:var(--dark-3);border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.08);padding:24px}
 .hours-title{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
 .hours-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;color:var(--gray-4)}
 .hours-row:last-child{border-bottom:none}
@@ -33,7 +63,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 .social-link-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:var(--dark-3);border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08);font-size:12px;font-weight:600;color:var(--gray-4);text-transform:uppercase;letter-spacing:.06em;transition:var(--transition)}
 .social-link-btn:hover{background:var(--dark-4);border-color:rgba(255,255,255,0.15);color:var(--white)}
 .social-link-btn svg{width:16px;height:16px}
-.response-promise{background:rgba(230,57,0,0.06);border:1px solid rgba(230,57,0,0.15);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:32px;display:flex;gap:16px;align-items:center}
+.response-promise{background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.15);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:32px;display:flex;gap:16px;align-items:center}
 .response-promise svg{width:28px;height:28px;color:var(--primary);flex-shrink:0}
 .response-promise p{font-size:14px;margin:0}
 .response-promise strong{color:var(--white)}
@@ -42,7 +72,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 .form-panel>p{font-size:15px;margin-bottom:32px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-submit{width:100%;padding:18px;border-radius:var(--radius-md);background:var(--primary);color:var(--white);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:var(--transition);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px}
-.form-submit:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(230,57,0,0.4)}
+.form-submit:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,0.4)}
 .form-submit svg{width:18px;height:18px}
 .form-footer{margin-top:16px;font-size:13px;color:var(--gray-3);text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
 .form-footer svg{width:14px;height:14px;flex-shrink:0;color:var(--primary)}
@@ -54,13 +84,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 .map-overlay-info p{font-size:13px;color:var(--gray-3)}
 .map-overlay-info a{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)}
 @media(max-width:1024px){.contact-grid{grid-template-columns:1fr!important;gap:48px!important}.contact-info{position:static!important}.form-panel{padding:36px!important}.form-row{grid-template-columns:1fr!important}.map-container{height:300px}}
+.faq-item{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:12px;transition:var(--transition)}
+.faq-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.faq-grid-2{grid-template-columns:1fr}}
 </style>
 
 <section class="page-hero">
-  <div class="page-hero-bg" style={`background-image:url('${base}/images/ev-pro-48/1.jpg')`}></div>
+  <div class="page-hero-bg" style={`background-image:url('${base}/images/fl-270/Recreational-go-karting1.webp')`}></div>
   <div class="page-hero-overlay"></div>
   <div class="container"><div class="page-hero-content">
-    <nav class="breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>Contact</span></nav>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg><span>Contact</span></nav>
     <div class="label">Let's Talk</div>
     <h1>Get Your <span class="highlight">Free</span><br>Quote Today</h1>
   </div></div>
@@ -75,49 +108,49 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <p style="margin:16px 0 28px">Whether you're planning a new installation or expanding your existing fleet, our team is standing by to give you a tailored recommendation and detailed quote.</p>
 
       <div class="response-promise">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <p><strong>We guarantee a response within 24 hours</strong> on every enquiry — often within just a few hours during business hours.</p>
       </div>
 
       <div class="contact-block">
         <div class="contact-block-item">
-          <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 010 2.94 2 2 0 012 .76h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-          <div><div class="contact-item-label">Phone / WhatsApp</div><div class="contact-item-value"><a href="tel:+1234567890" style="color:inherit">+1 (234) 567-890</a></div><div class="contact-item-sub">Available Mon–Fri, 8am–7pm EST</div></div>
+          <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 010 2.94 2 2 0 012 .76h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="contact-item-label">Phone / WhatsApp</div><div class="contact-item-value"><a href={`tel:${CONTACT.phoneRaw}`} style="color:inherit">{CONTACT.phone}</a></div><div class="contact-item-sub">Available Mon–Fri, 8am–7pm CST (UTC+8)</div></div>
         </div>
         <div class="contact-block-item">
-          <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div><div class="contact-item-label">Email</div><div class="contact-item-value"><a href="mailto:sales@vortkart.com" style="color:inherit">sales@vortkart.com</a></div><div class="contact-item-sub">Quote requests &amp; general enquiries</div></div>
+          <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="contact-item-label">Email</div><div class="contact-item-value"><a href={`mailto:${CONTACT.email}`} style="color:inherit">{CONTACT.email}</a></div><div class="contact-item-sub">Quote requests, spare parts &amp; after-sales service</div></div>
         </div>
         <div class="contact-block-item">
-          <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div><div class="contact-item-label">Headquarters</div><div class="contact-item-value">123 Motorsport Drive</div><div class="contact-item-sub">Karting District, Los Angeles, CA 90001, USA</div></div>
+          <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="contact-item-label">Head Office</div><div class="contact-item-value">{CONTACT.officeAddress.split(',')[0]}</div><div class="contact-item-sub">{CONTACT.officeAddress.split(',').slice(1).join(',').trim()}</div><div class="contact-item-sub">{CONTACT.legalName}</div></div>
         </div>
         <div class="contact-block-item">
-          <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></div>
-          <div><div class="contact-item-label">Technical Support</div><div class="contact-item-value"><a href="mailto:support@vortkart.com" style="color:inherit">support@vortkart.com</a></div><div class="contact-item-sub">For existing clients — spare parts &amp; service</div></div>
+          <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg></div>
+          <div><div class="contact-item-label">Factory</div><div class="contact-item-value">Xingyang Manufacturing Facility</div><div class="contact-item-sub">{CONTACT.factoryAddress}</div></div>
         </div>
       </div>
 
       <div class="hours-card">
         <div class="hours-title">Office Hours</div>
-        <div class="hours-row"><span>Monday – Friday</span><strong>8:00 AM – 7:00 PM EST</strong></div>
-        <div class="hours-row"><span>Saturday</span><strong>9:00 AM – 3:00 PM EST</strong></div>
+        <div class="hours-row"><span>Monday – Friday</span><strong>8:00 AM – 7:00 PM CST</strong></div>
+        <div class="hours-row"><span>Saturday</span><strong>9:00 AM – 3:00 PM CST</strong></div>
         <div class="hours-row"><span>Sunday</span><strong>Emergency Support Only</strong></div>
         <div class="hours-status"></div>
       </div>
 
       <div class="social-links-row">
-        <a href="#" class="social-link-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>FB</a>
-        <a href="#" class="social-link-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>IG</a>
-        <a href="#" class="social-link-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LI</a>
-        <a href="#" class="social-link-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.95C18.88 4 12 4 12 4s-6.88 0-8.6.47a2.78 2.78 0 00-1.94 1.95A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.53C5.12 20 12 20 12 20s6.88 0 8.6-.47a2.78 2.78 0 001.94-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0a0a0a"/></svg>YT</a>
+        <a href={`mailto:${CONTACT.email}`} class="social-link-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>
+        <a href={`tel:${CONTACT.phoneRaw}`} class="social-link-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 010 2.94 2 2 0 012 .76h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Call</a>
+        <a href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, '')}`} class="social-link-btn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+        <a href={`https://maps.google.com/?q=${encodeURIComponent(CONTACT.officeAddress)}`} class="social-link-btn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Maps</a>
       </div>
     </div>
 
     <div class="form-panel fade-in delay-2">
       <h3>Send Us a <span class="highlight">Message</span></h3>
       <p>Fill in the form below and our team will prepare a tailored quote or recommendation for your project.</p>
-      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate data-success-redirect={`${base}/thank-you`}>
         <input type="hidden" name="access_key" value="b1666b6c-25e0-47fb-abe2-f9f7843c4c66" />
         <input type="hidden" name="subject" value="VortKart® Website - New Quote Request" />
         <div class="form-row">
@@ -126,7 +159,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </div>
         <div class="form-row">
           <div class="form-group"><label for="email">Email Address <span style="color:var(--primary)">*</span></label><input type="email" id="email" name="email" class="form-control" placeholder="john@company.com" required autocomplete="email" /></div>
-          <div class="form-group"><label for="phone">Phone / WhatsApp</label><input type="tel" id="phone" name="phone" class="form-control" placeholder="+1 (234) 567-890" autocomplete="tel" /></div>
+          <div class="form-group"><label for="phone">Phone / WhatsApp</label><input type="tel" id="phone" name="phone" class="form-control" placeholder={CONTACT.phone} autocomplete="tel" /></div>
         </div>
         <div class="form-group"><label for="company">Company / Venue Name</label><input type="text" id="company" name="company" class="form-control" placeholder="Your business name" autocomplete="organization" /></div>
         <div class="form-group"><label for="country">Country</label><input type="text" id="country" name="country" class="form-control" placeholder="United States" autocomplete="country-name" /></div>
@@ -143,17 +176,32 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             <option value="other">Other / General Enquiry</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="kart-qty">Approximate Kart Quantity</label>
-          <select id="kart-qty" name="kart-qty" class="form-control">
-            <option value="" disabled selected>Select quantity range...</option>
-            <option value="1-5">1 – 5 karts</option>
-            <option value="5-10">5 – 10 karts</option>
-            <option value="10-20">10 – 20 karts</option>
-            <option value="20-50">20 – 50 karts</option>
-            <option value="50+">50+ karts</option>
-            <option value="tbd">Not sure yet</option>
-          </select>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="kart-qty">Approximate Kart Quantity</label>
+            <select id="kart-qty" name="kart-qty" class="form-control">
+              <option value="" disabled selected>Select quantity range...</option>
+              <option value="1-5">1 – 5 karts</option>
+              <option value="5-10">5 – 10 karts</option>
+              <option value="10-20">10 – 20 karts</option>
+              <option value="20-50">20 – 50 karts</option>
+              <option value="50+">50+ karts</option>
+              <option value="tbd">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="budget">Estimated Budget (USD)</label>
+            <select id="budget" name="budget" class="form-control">
+              <option value="" disabled selected>Select budget range...</option>
+              <option value="under-25k">Under $25,000</option>
+              <option value="25k-50k">$25,000 – $50,000</option>
+              <option value="50k-100k">$50,000 – $100,000</option>
+              <option value="100k-250k">$100,000 – $250,000</option>
+              <option value="250k-500k">$250,000 – $500,000</option>
+              <option value="500k-plus">$500,000+</option>
+              <option value="tbd">Not sure yet</option>
+            </select>
+          </div>
         </div>
         <div class="form-group"><label for="message">Project Details / Message <span style="color:var(--primary)">*</span></label><textarea id="message" name="message" class="form-control" rows="5" placeholder="Tell us about your project — venue type, site dimensions, timeline, any specific requirements..." required></textarea></div>
         <div class="form-group">
@@ -185,16 +233,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="container">
     <div class="map-container">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7320388!2d-118.2436849!3d34.0522342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fef1de0573841!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sus!4v1234567890"
-        title="VortKart headquarters location"
+        src="https://www.google.com/maps?q=Yunxi+Center,+High-tech+Zone,+Zhengzhou,+Henan,+China&output=embed"
+        title="VortKart head office location — Zhengzhou, Henan, China"
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
       <div class="map-overlay-info">
-        <h4>VortKart® Headquarters</h4>
-        <p>123 Motorsport Drive<br>Karting District, Los Angeles<br>CA 90001, USA</p>
-        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
+        <h4>VortKart® Head Office</h4>
+        <p>{CONTACT.officeAddress.split(',').slice(0, 2).join(',')}<br>{CONTACT.officeAddress.split(',').slice(2).join(',').trim()}</p>
+        <a href={`https://maps.google.com/?q=${encodeURIComponent(CONTACT.officeAddress)}`} target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M7 17L17 7M7 7h10v10"/></svg>
           Open in Google Maps
         </a>
@@ -206,11 +254,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <section class="section-sm" style="background:var(--dark-2);padding-top:80px;padding-bottom:80px">
   <div class="container">
     <div class="section-header center fade-in"><div class="label">Quick Answers</div><h2>Before You <span class="highlight">Reach Out</span></h2></div>
-    <div style="max-width:720px;margin:0 auto">
-      <div class="faq-item fade-in"><button class="faq-question" aria-expanded="false">How fast will I receive a quote?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">For standard kart orders, we typically respond with a full quote within 24–48 hours. For track design or turnkey projects, we schedule a discovery call and provide a detailed proposal within 5–7 business days.</div></div></div>
-      <div class="faq-item fade-in delay-1"><button class="faq-question" aria-expanded="false">Do you ship internationally?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes — we ship to 60+ countries worldwide via sea or air freight. We handle all export documentation and can arrange DDP (Delivered Duty Paid) shipping to your facility.</div></div></div>
-      <div class="faq-item fade-in delay-2"><button class="faq-question" aria-expanded="false">Can I visit your factory before ordering?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Absolutely — we welcome factory visits by appointment. Contact us to schedule a visit to our manufacturing facility, QC processes, and kart test track.</div></div></div>
-      <div class="faq-item fade-in delay-3"><button class="faq-question" aria-expanded="false">Do you offer financing or payment terms?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">We offer flexible payment terms for qualified buyers, typically 30% deposit + 70% before shipment. For larger projects we can discuss extended payment schedules.</div></div></div>
+    <div class="faq-grid-2">
+      <div class="faq-item fade-in"><button class="faq-question" aria-expanded="false">How fast will I receive a quote?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Standard kart quotes arrive within 24–48 hours; track design and turnkey proposals take 5–7 business days.</div></div></div>
+      <div class="faq-item fade-in delay-1"><button class="faq-question" aria-expanded="false">Do you ship internationally?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes — we ship to 60+ countries via sea or air freight with full export documentation and DDP shipping available.</div></div></div>
+      <div class="faq-item fade-in delay-2"><button class="faq-question" aria-expanded="false">Can I visit your factory before ordering?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Factory visits are welcome by appointment — see our manufacturing facility, QC processes, and test track firsthand.</div></div></div>
+      <div class="faq-item fade-in delay-3"><button class="faq-question" aria-expanded="false">Do you offer financing or payment terms?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">We offer flexible terms for qualified buyers — typically 30% deposit + 70% before shipment, with extended schedules for larger projects.</div></div></div>
     </div>
   </div>
 </section>

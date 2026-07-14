@@ -1,32 +1,62 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
-  return projects.map(p => ({ params: { slug: p.slug } }));
+  return projects.map(p => ({ params: { slug: p.id } }));
 }
 
 const { slug } = Astro.params;
-const entry = await getEntry('projects', slug);
-if (!entry) return Astro.redirect('/listings');
+const entry = await getEntry({ collection: 'projects', id: slug });
+if (!entry) return Astro.redirect('/portfolio');
 
 const { data: p } = entry;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const all = await getCollection('projects');
-const related = all.filter(r => r.slug !== slug).sort((a,b) => a.data.order - b.data.order).slice(0, 3);
+const related = all.filter(r => r.id !== slug).sort((a,b) => a.data.order - b.data.order).slice(0, 3);
+
+// Project structured data for SEO
+const projectSchema = {
+  "@type": "Place",
+  "name": p.title,
+  "description": `${p.title} — a ${p.category} karting project in ${p.location} by VortKart®.`,
+  "url": `https://vortkart.com/project/${slug}`,
+  "image": `https://vortkart.com${p.image}`,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": p.location,
+    "addressCountry": p.country,
+  },
+  ...(p.stats.trackLength && { "additionalProperty": [
+    ...(p.stats.trackLength ? [{ "@type": "PropertyValue", "name": "Track Length", "value": p.stats.trackLength }] : []),
+    ...(p.stats.kartCount ? [{ "@type": "PropertyValue", "name": "Kart Count", "value": p.stats.kartCount }] : []),
+  ]}),
+};
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vortkart.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://vortkart.com/portfolio" },
+    { "@type": "ListItem", "position": 3, "name": p.title, "item": `https://vortkart.com/project/${slug}` },
+  ],
+};
 ---
 <BaseLayout
   title={`${p.title} — Project Case Study | VortKart®`}
   description={`VortKart® project: ${p.title} in ${p.location}. ${p.stats.kartCount ?? ''} ${p.stats.trackLength ?? ''}.`}
+  ogType="article"
+  ogImage={`https://vortkart.com${p.image}`}
   canonical={`https://vortkart.com/project/${slug}`}
+  jsonLd={[projectSchema, breadcrumbSchema]}
 >
 <style>
 .project-hero{position:relative;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;padding-top:var(--nav-height)}
 .project-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
-.project-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,0.72) 0%,rgba(10,10,10,0.45) 55%,rgba(10,10,10,0.25) 100%)}
+.project-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,8,13,0.72) 0%,rgba(6,8,13,0.45) 55%,rgba(6,8,13,0.25) 100%)}
 .project-hero-content{position:relative;z-index:2;padding:60px 0}
 .pr-title{font-size:clamp(32px,5vw,60px);margin-bottom:12px}
 .pr-subtitle{font-size:18px;color:var(--gray-4);max-width:560px;margin-bottom:24px}
@@ -44,21 +74,19 @@ const related = all.filter(r => r.slug !== slug).sort((a,b) => a.data.order - b.
 .pr-gallery-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
 .pr-gallery-img:hover img{transform:scale(1.04)}
 .pr-scope-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.pr-scope-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-lg);padding:28px;transition:var(--transition)}
-.pr-scope-card:hover{border-color:rgba(230,57,0,0.3);transform:translateY(-4px)}
-.pr-scope-icon{width:44px;height:44px;background:rgba(230,57,0,0.1);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.pr-scope-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:28px;transition:var(--transition)}
+.pr-scope-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+.pr-scope-icon{width:44px;height:44px;background:rgba(249,115,22,0.1);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
 .pr-scope-icon svg{width:22px;height:22px;color:var(--primary)}
 .pr-scope-card h4{font-size:17px;margin-bottom:8px}
 .pr-scope-card p{font-size:14px;color:var(--gray-3)}
-.pr-related-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);display:block;text-decoration:none}
-.pr-related-card:hover{border-color:rgba(230,57,0,0.25);transform:translateY(-4px)}
+.pr-related-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);display:block;text-decoration:none}
+.pr-related-card:hover{border-color:rgba(249,115,22,0.25);transform:translateY(-4px)}
 .pr-related-card img{width:100%;aspect-ratio:16/9;object-fit:cover}
 .pr-related-body{padding:22px}
 .pr-related-body h4{font-size:18px;margin-bottom:6px}
 .pr-related-body p{font-size:13px;color:var(--gray-3);margin-bottom:14px}
-.pr-cta-bar{background:var(--dark-2);border-top:1px solid rgba(255,255,255,0.08);padding:60px 0;text-align:center}
-.pr-cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:24px}
-.pr-tag{display:inline-block;background:rgba(230,57,0,0.1);border:1px solid rgba(230,57,0,0.25);color:var(--primary);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-right:6px;margin-bottom:6px}
+.pr-tag{display:inline-block;background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.25);color:var(--primary);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-right:6px;margin-bottom:6px}
 @media(max-width:1024px){.pr-overview-grid{grid-template-columns:1fr!important;gap:40px}.pr-facts-card{position:static!important}.pr-gallery{grid-template-columns:1fr 1fr!important}.pr-scope-grid{grid-template-columns:1fr!important}}
 </style>
 
@@ -66,11 +94,11 @@ const related = all.filter(r => r.slug !== slug).sort((a,b) => a.data.order - b.
   <div class="project-hero-bg" style={`background-image:url('${base}${p.image}')`}></div>
   <div class="project-hero-overlay"></div>
   <div class="container"><div class="project-hero-content">
-    <nav class="breadcrumb" style="margin-bottom:16px">
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom:16px">
       <a href={`${base}/`}>Home</a>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-      <a href={`${base}/listings`}>Portfolio</a>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href={`${base}/portfolio`}>Portfolio</a>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
       <span>{p.title}</span>
     </nav>
     <div class="label">{p.category.charAt(0).toUpperCase() + p.category.slice(1)} Project Case Study</div>
@@ -119,7 +147,7 @@ const related = all.filter(r => r.slug !== slug).sort((a,b) => a.data.order - b.
     <div class="section-header fade-in"><div class="label">Related Projects</div><h2>More <span class="highlight">Case Studies</span></h2></div>
     <div class="grid-3 fade-in delay-1">
       {related.map(r => (
-        <a href={`${base}/project/${r.slug}`} class="pr-related-card">
+        <a href={`${base}/project/${r.id}`} class="pr-related-card">
           <img src={`${base}${r.data.image}`} alt={r.data.title} loading="lazy" />
           <div class="pr-related-body">
             <h4>{r.data.title}</h4>
@@ -132,14 +160,15 @@ const related = all.filter(r => r.slug !== slug).sort((a,b) => a.data.order - b.
   </div>
 </section>
 
-<div class="pr-cta-bar">
-  <div class="container">
-    <div class="label" style="justify-content:center;margin-bottom:16px">Start Your Project</div>
-    <h2 style="font-size:clamp(24px,4vw,40px)">Ready to Build Your <span class="highlight">Karting Attraction?</span></h2>
-    <div class="pr-cta-buttons">
+<section class="cta-section">
+  <div class="container"><div class="fade-in">
+    <div class="label" style="justify-content:center">Start Your Project</div>
+    <h2>Ready to Build Your <span class="highlight">Karting Attraction?</span></h2>
+    <p>From track design to a turnkey fleet — get a factory-direct quote tailored to your venue and market.</p>
+    <div class="cta-buttons">
       <a href={`${base}/contact`} class="btn btn-primary btn-lg">Get a Free Quote</a>
-      <a href={`${base}/listings`} class="btn btn-outline btn-lg">View More Projects</a>
+      <a href={`${base}/portfolio`} class="btn btn-outline btn-lg">View More Projects</a>
     </div>
-  </div>
-</div>
+  </div></div>
+</section>
 </BaseLayout>

@@ -1,7 +1,12 @@
-import { defineConfig } from 'astro/config';
+﻿import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://yaosleven.github.io',
-  base: '/vortkart-astro',
+  site: 'https://vortkart.com',
   compressHTML: true,
+  devToolbar: { enabled: false },
+  vite: {
+    optimizeDeps: {
+      exclude: ['aria-query', 'axobject-query'],
+    },
+  },
 });

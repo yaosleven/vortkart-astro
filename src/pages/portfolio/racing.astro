@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { CONTACT } from '../../config/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const allProducts = await getCollection('products');
+const products = allProducts
+  .filter(p => p.data.category === 'racing')
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const racingFaqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What engines are compatible with VortKart® racing chassis?", "acceptedAnswer": { "@type": "Answer", "text": "VortKart® KZ Class racing chassis are compatible with all major racing engine packages including IAME X30, Vortex ROK, and ROTAX Max. The chassis design allows easy engine swaps, giving teams full flexibility to choose their preferred powertrain for different racing series." } },
+    { "@type": "Question", "name": "Are VortKart® racing chassis CIK/FIA approved?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. VortKart® racing chassis are built to CIK/FIA specification standards using 30×2.0mm precision 4130 Cr-Mo steel tubing. They are eligible for club, regional, and national-level karting competitions worldwide." } },
+    { "@type": "Question", "name": "How fast do racing go karts go?", "acceptedAnswer": { "@type": "Answer", "text": "VortKart® KZ Class racing chassis can exceed 110+ km/h depending on the engine configuration. With a 1040mm competition-optimized wheelbase and Φ50mm hollow rear axle, the chassis delivers precise handling at high speeds on professional karting circuits." } },
+    { "@type": "Question", "name": "Can I order a racing chassis in bulk for a team or racing school?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. VortKart® supplies racing chassis to teams, racing schools, and rental operators worldwide. We offer competitive bulk pricing, custom liveries, and dedicated technical support. Contact us for team and fleet order quotes." } }
+  ]
+};
+---
+<BaseLayout
+  title="Racing Kart Chassis | CIK/FIA Competition Chassis | VortKart®"
+  description="VortKart® KZ Class racing chassis — CIK/FIA-spec, 4130 Cr-Mo steel, compatible with X30, ROK, ROTAX engines. Built for club and national-level karting competition."
+  keywords="racing kart chassis, KZ chassis, competition go kart, CIK FIA chassis, racing go kart, kart racing chassis, X30 chassis, ROK chassis, ROTAX chassis, race kart manufacturer, 4130 Cr-Mo chassis"
+  canonical="https://vortkart.com/portfolio/racing/"
+  jsonLd={racingFaqSchema}
+>
+<style>
+.category-hero{position:relative;overflow:hidden;background:var(--dark)}
+.category-hero-bg{position:absolute;inset:0}
+.category-hero-bg img{width:100%;height:100%;object-fit:cover}
+.category-hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,var(--dark) 0%,rgba(7,9,14,0.6) 100%)}
+.category-hero .page-hero-content{position:relative;z-index:1;padding:120px 0 80px}
+.category-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(var(--primary-rgb),0.12);border:1px solid rgba(var(--primary-rgb),0.25);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:20px}
+.category-badge svg{width:14px;height:14px}
+.category-hero h1{font-size:clamp(32px,5vw,52px);line-height:1.1;margin-bottom:16px}
+.category-hero h1 .highlight{color:var(--primary)}
+.category-hero-sub{font-size:18px;color:var(--gray-3);max-width:600px;line-height:1.7;margin-bottom:32px}
+.category-stats{display:flex;gap:40px;flex-wrap:wrap}
+.category-stat-val{font-family:var(--font-heading);font-size:28px;font-weight:800;color:var(--primary);line-height:1}
+.category-stat-label{font-size:13px;color:var(--gray-3);margin-top:4px}
+.product-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);overflow:hidden;transition:var(--transition)}
+.product-card:hover{border-color:rgba(var(--primary-rgb),0.35);transform:translateY(-6px)}
+.product-img{aspect-ratio:4/3;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;object-position:center 65%;transition:transform .5s ease}
+.product-card:hover .product-img img{transform:scale(1.05)}
+.product-badge{position:absolute;top:16px;left:16px;background:var(--primary);color:var(--white);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px}
+.product-info{padding:28px}
+.product-info h3{font-size:22px;margin-bottom:8px}
+.product-info p{font-size:14px;color:var(--gray-3);margin-bottom:16px}
+.product-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.spec-item{background:var(--dark-4);border-radius:var(--radius-sm);padding:10px 12px}
+.spec-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-3)}
+.spec-value{font-size:14px;font-weight:600;color:var(--white);margin-top:2px}
+.product-actions{display:flex;gap:10px;margin-top:20px}
+.features-list{background:var(--dark-2)}
+.feature-item{display:flex;align-items:flex-start;gap:12px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.feature-item:last-child{border-bottom:none}
+.feature-icon{width:36px;height:36px;border-radius:var(--radius-md);background:rgba(var(--primary-rgb),0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feature-icon svg{width:18px;height:18px;color:var(--primary)}
+.feature-item h4{font-size:15px;margin-bottom:4px}
+.feature-item p{font-size:13px;color:var(--gray-3);line-height:1.5}
+@media(max-width:768px){.category-hero .page-hero-content{padding:80px 0 60px}.category-stats{gap:24px}.product-actions{flex-direction:column}.category-b2b-stats{gap:24px}.category-why-grid{grid-template-columns:1fr 1fr}.category-trust{gap:16px}}
+.category-b2b-stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+.category-b2b-stat-val{font-family:var(--font-heading);font-size:28px;font-weight:800;color:var(--primary);line-height:1}
+.category-b2b-stat-label{font-size:13px;color:var(--gray-3);margin-top:4px}
+.category-trust{display:flex;gap:24px;flex-wrap:wrap;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+.category-trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-3)}
+.category-trust-item svg{width:16px;height:16px;color:var(--primary);flex-shrink:0}
+.category-why{background:var(--dark-2)}
+.category-why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.category-why-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;transition:var(--transition)}
+.category-why-card:hover{border-color:rgba(var(--primary-rgb),0.3);transform:translateY(-4px)}
+.category-why-icon{width:48px;height:48px;border-radius:var(--radius-md);background:rgba(var(--primary-rgb),0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.category-why-icon svg{width:24px;height:24px;color:var(--primary)}
+.category-why-card h3{font-size:16px;margin-bottom:8px}
+.category-why-card p{font-size:13px;color:var(--gray-3);line-height:1.6}
+.category-social{background:var(--dark)}
+.category-testimonial{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-xl);padding:40px;max-width:720px;margin:0 auto;text-align:center}
+.category-testimonial-stars{color:var(--accent);font-size:20px;margin-bottom:16px;letter-spacing:4px}
+.category-testimonial blockquote{font-size:18px;line-height:1.7;color:var(--gray-4);font-style:italic;margin-bottom:20px}
+.category-testimonial cite{font-size:14px;font-weight:600;color:var(--white);font-style:normal}
+.category-testimonial cite span{display:block;font-size:12px;color:var(--gray-3);font-weight:400;margin-top:4px}
+.category-testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.category-testimonials-grid .category-testimonial{max-width:none}
+@media(max-width:1024px){.category-why-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.category-why-grid{grid-template-columns:1fr}.category-b2b-stats{flex-direction:column;gap:16px}.category-trust{flex-direction:column;gap:12px}.category-testimonial{padding:28px}.faq-grid-2{grid-template-columns:1fr}}
+.faq-section{background:var(--dark)}
+.faq-item{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:12px;transition:var(--transition)}
+.faq-item:hover{border-color:rgba(var(--primary-rgb),0.2)}
+.faq-item h4{font-size:16px;margin-bottom:8px;color:var(--white)}
+.faq-item p{font-size:14px;color:var(--gray-3);line-height:1.7;margin:0}
+.faq-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+</style>
+
+<section class="category-hero">
+  <div class="category-hero-bg"><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis1.webp`} alt="Racing kart chassis" /></div>
+  <div class="category-hero-overlay"></div>
+  <div class="container"><div class="page-hero-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg><a href={`${base}/portfolio`}>Portfolio</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg><span>Racing</span></nav>
+    <div class="category-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+      {products.length} {products.length === 1 ? 'Model' : 'Models'}
+    </div>
+    <h1>Racing <span class="highlight">Chassis</span></h1>
+    <p class="category-hero-sub">CIK/FIA-spec competition chassis engineered for club and national-level karting. As a racing kart chassis manufacturer, VortKart® supplies teams and racing academies with factory-direct 4130 Cr-Mo steel chassis compatible with X30, ROK, ROTAX and more.</p>
+    <div class="category-stats">
+      <div><div class="category-stat-val">{products.length}</div><div class="category-stat-label">{products.length === 1 ? 'Model' : 'Models'}</div></div>
+      <div><div class="category-stat-val">110+ km/h</div><div class="category-stat-label">Top Speed</div></div>
+      <div><div class="category-stat-val">CIK/FIA</div><div class="category-stat-label">Spec Standard</div></div>
+    </div>
+    <div class="category-b2b-stats">
+      <div><div class="category-b2b-stat-val">200+</div><div class="category-b2b-stat-label">Chassis Built</div></div>
+      <div><div class="category-b2b-stat-val">CIK/FIA</div><div class="category-stat-label">Competition Eligible</div></div>
+      <div><div class="category-b2b-stat-val">3</div><div class="category-b2b-stat-label">Unit MOQ</div></div>
+    </div>
+    <div class="category-trust">
+      <div class="category-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>ISO 9001 Certified</div>
+      <div class="category-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>12-Month Warranty</div>
+      <div class="category-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Worldwide Shipping</div>
+      <div class="category-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Spare Parts Stocked</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="section" style="background:var(--dark-2)">
+  <div class="container">
+    <div class="section-header fade-in"><div class="label">Racing Range</div><h2>Our <span class="highlight">Racing Models</span></h2><p>Competition racing kart chassis from a trusted manufacturer — CIK/FIA-spec, bulk pricing for teams and racing schools, worldwide delivery.</p></div>
+    <div class="grid-3">
+      {products.map((p, i) => {
+        const delay = ['delay-1','delay-2','delay-3'][i % 3];
+        const specs = p.data.specs ?? {};
+        const specEntries = Object.entries({
+          ...(specs.engine     ? { Engine:      specs.engine }     : {}),
+          ...(specs.topSpeed   ? { 'Top Speed': specs.topSpeed }   : {}),
+          ...(specs.weight     ? { Weight:      specs.weight }     : {}),
+          ...(specs.extra      ? { Notes:       specs.extra }      : {}),
+        }).slice(0, 4);
+        return (
+          <div class={`product-card fade-in ${delay}`}>
+            <div class="product-img">
+              <img src={`${base}${p.data.image}`} alt={`VortKart ${p.data.title} racing chassis`} loading="lazy" />
+              {p.data.badge && <span class="product-badge">{p.data.badge}</span>}
+            </div>
+            <div class="product-info">
+              <h3>{p.data.title}</h3>
+              <p>{p.data.tagline}</p>
+              <div class="product-specs">
+                {specEntries.map(([label, value]) => (
+                  <div class="spec-item"><div class="spec-label">{label}</div><div class="spec-value">{value}</div></div>
+                ))}
+              </div>
+              <div class="product-actions">
+                <a href={`${base}/contact`} class="btn btn-primary" style="flex:1;justify-content:center">Request Quote</a>
+                <a href={`${base}/product/${p.id}`} class="btn btn-outline" style="flex:1;justify-content:center">Spec Sheet</a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<section class="section features-list">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Why Racing</div><h2>The Competition <span class="highlight">Advantage</span></h2></div>
+    <div style="max-width:720px;margin:0 auto">
+      <div class="feature-item fade-in">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+        <div><h4>CIK/FIA Spec</h4><p>Built to international competition standards — eligible for club, regional, and national-level karting events worldwide.</p></div>
+      </div>
+      <div class="feature-item fade-in delay-1">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+        <div><h4>Engine Compatibility</h4><p>Accepts all major racing engine packages — IAME X30, Vortex ROK, ROTAX Max — giving teams full flexibility in powertrain choice.</p></div>
+      </div>
+      <div class="feature-item fade-in delay-2">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div><h4>Precision Engineering</h4><p>30×2.0mm precision steel tubing, 1040mm competition-optimized wheelbase, and Φ50mm hollow rear axle for maximum handling precision.</p></div>
+      </div>
+      <div class="feature-item fade-in delay-3">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <div><h4>Compact Transport</h4><p>1880×1220×560mm packing dimensions — easy to transport to race weekends with standard trailers and vehicles.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section category-why">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Why VortKart®</div><h2>The <span class="highlight">Factory-Direct</span> Advantage</h2></div>
+    <div class="category-why-grid">
+      <div class="category-why-card fade-in delay-1">
+        <div class="category-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Factory-Direct Pricing</h3>
+        <p>No distributors, no markup. Buy directly from the manufacturer and save 20–40%.</p>
+      </div>
+      <div class="category-why-card fade-in delay-2">
+        <div class="category-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>12-Month Warranty</h3>
+        <p>Full structural warranty on chassis. Spare parts shipped globally within 48 hours.</p>
+      </div>
+      <div class="category-why-card fade-in delay-3">
+        <div class="category-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Ships to 60+ Countries</h3>
+        <p>Sea or air freight with full export documentation. DDP shipping available.</p>
+      </div>
+      <div class="category-why-card fade-in">
+        <div class="category-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Dedicated Support</h3>
+        <p>24/7 technical support via phone, email, and video call. Operator training included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section category-social">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Client Feedback</div><h2>Trusted by <span class="highlight">Operators</span> Worldwide</h2></div>
+    <div class="category-testimonials-grid">
+      <div class="category-testimonial fade-in">
+        <div class="category-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"We ordered 8 KZ chassis for our racing academy. The build quality is exceptional — precise handling, solid welds, and compatible with all our engine setups. VortKart's technical team was knowledgeable and responsive throughout."</blockquote>
+        <cite>Marco Bellini<span>Team Principal, Bellini Racing Academy — Milan, Italy</span></cite>
+      </div>
+      <div class="category-testimonial fade-in delay-1">
+        <div class="category-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"The KZ chassis handles beautifully at high speed. We've won 3 regional championships since switching to VortKart. The 4130 Cr-Mo construction inspires confidence on every corner."</blockquote>
+        <cite>James Whitfield<span>Head Coach, Whitfield Racing School — Silverstone, UK</span></cite>
+      </div>
+      <div class="category-testimonial fade-in delay-2">
+        <div class="category-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Bought 5 KZ chassis for our team. Engine compatibility with our X30 setups was plug-and-play. The chassis arrived well-packed and the quality exceeded our expectations at this price point."</blockquote>
+        <cite>Daniel Kim<span>Team Manager, Apex Racing Team — Seoul, South Korea</span></cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq-section">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">FAQ</div><h2>Racing Chassis <span class="highlight">Questions</span></h2><p>Common questions about our competition racing kart chassis.</p></div>
+    <div class="faq-grid-2">
+      <div class="faq-item fade-in"><h4>What engines are compatible with VortKart® racing chassis?</h4><p>Compatible with all major racing engines — IAME X30, Vortex ROK, and ROTAX Max. The chassis allows easy engine swaps for different racing series.</p></div>
+      <div class="faq-item fade-in delay-1"><h4>Are VortKart® racing chassis CIK/FIA approved?</h4><p>Yes — built to CIK/FIA spec using 30×2.0mm precision 4130 Cr-Mo steel tubing, eligible for club, regional, and national competitions worldwide.</p></div>
+      <div class="faq-item fade-in delay-2"><h4>How fast do racing go karts go?</h4><p>KZ Class chassis exceed 110+ km/h with a 1040mm competition wheelbase and Φ50mm hollow rear axle for precise high-speed handling.</p></div>
+      <div class="faq-item fade-in delay-3"><h4>Can I order a racing chassis in bulk for a team or racing school?</h4><p>VortKart® supplies teams and racing schools worldwide with competitive bulk pricing, custom liveries, and dedicated technical support.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section"><div class="container"><div class="fade-in">
+  <div class="label" style="justify-content:center">Go Racing</div>
+  <h2>Ready to Compete<br><span class="highlight">On Track?</span></h2>
+  <p>Tell us about your racing program and engine preference. We'll spec the perfect chassis for your team.</p>
+  <div class="cta-buttons"><a href={`${base}/contact`} class="btn btn-primary btn-lg">Get a Free Quote</a><a href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, '')}`} class="btn btn-outline btn-lg" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a><a href={`${base}/portfolio`} class="btn btn-outline btn-lg">View All Models</a></div>
+</div></div></section>
+</BaseLayout>

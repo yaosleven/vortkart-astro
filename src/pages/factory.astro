@@ -1,0 +1,274 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../config/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout
+  title="VortKart® Factory | Commercial Go Kart Manufacturing, QC & Certifications"
+  description="Inside the VortKart® factory — a 15,000 m² ISO 9001 certified commercial go kart manufacturing facility. Our story, production process, quality control, and export certifications (CE, SGS, CIK/FIA)."
+  keywords="go kart factory, commercial go kart manufacturer, go kart manufacturer China, go kart production line, ISO 9001 go kart factory, go kart quality control, CE certified go kart, go kart factory direct, OEM go kart manufacturer, karting manufacturing facility"
+  canonical="https://vortkart.com/factory"
+>
+<style>
+.mission-section{background:var(--dark-2)}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.mission-img{border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:4/3}
+.mission-img img{width:100%;height:100%;object-fit:cover}
+.mission-text h2{margin-bottom:24px}
+.mission-text p{margin-bottom:20px}
+.mission-quote{border-left:3px solid var(--primary);padding-left:24px;margin:32px 0}
+.mission-quote blockquote{font-size:20px;font-style:italic;color:var(--white);line-height:1.6}
+.mission-quote cite{font-size:13px;color:var(--gray-3);font-style:normal;display:block;margin-top:12px}
+.timeline-section{background:var(--dark)}
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--primary),rgba(249,115,22,0.1))}
+.timeline-item{position:relative;padding:0 0 48px 40px}
+.timeline-dot{position:absolute;left:-39px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--primary);border:3px solid var(--dark);box-shadow:0 0 0 3px rgba(249,115,22,0.3)}
+.timeline-year{font-family:var(--font-heading);font-size:14px;font-weight:800;color:var(--primary);letter-spacing:.1em;margin-bottom:8px}
+.timeline-item h3{font-size:20px;margin-bottom:8px}
+.timeline-item p{font-size:15px;max-width:600px}
+.timeline-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
+.timeline-col{max-width:560px}
+.collage-col{position:relative}
+.collage-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:12px}
+.collage-item{border-radius:var(--radius-lg);overflow:hidden;position:relative;aspect-ratio:4/3}
+.collage-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.collage-item:hover img{transform:scale(1.04)}
+.collage-item.full{grid-column:span 2;aspect-ratio:21/9}
+.collage-year{position:absolute;bottom:10px;left:12px;font-family:var(--font-heading);font-size:12px;font-weight:700;color:var(--white);background:rgba(6,8,13,0.7);backdrop-filter:blur(6px);padding:3px 10px;border-radius:100px;letter-spacing:.05em}
+.values-section{background:var(--dark-2)}
+.value-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px;text-align:center;transition:var(--transition)}
+.value-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+.value-num{font-family:var(--font-heading);font-size:64px;font-weight:800;color:rgba(249,115,22,0.1);line-height:1;margin-bottom:8px}
+.diff-section{background:var(--dark)}
+.diff-row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.diff-row.reverse .diff-img{order:2}
+.diff-row.reverse .diff-content{order:1}
+.diff-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.diff-img{border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:16/10}
+.diff-img img{width:100%;height:100%;object-fit:cover}
+.diff-list{margin-top:20px}
+.diff-list li{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.diff-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:8px}
+.diff-list li span{font-size:15px;color:var(--gray-4)}
+@media(max-width:1024px){.mission-grid{grid-template-columns:1fr!important;gap:48px!important}.diff-row{grid-template-columns:1fr!important;gap:32px!important}.diff-row.reverse .diff-img{order:1!important}.diff-row.reverse .diff-content{order:2!important}.timeline-grid{grid-template-columns:1fr!important;gap:48px!important}.timeline-col{max-width:100%!important}}
+@media(max-width:640px){.collage-grid{grid-template-columns:1fr}.collage-item.full{grid-column:span 1;aspect-ratio:16/9}}
+.process-section{background:var(--dark-2)}
+.process-timeline{position:relative;padding-left:40px;max-width:640px;margin:0 auto}
+.process-timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--primary),rgba(249,115,22,0.1))}
+.process-item{position:relative;padding:0 0 44px 40px}
+.process-item:last-child{padding-bottom:0}
+.process-dot{position:absolute;left:-32px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--primary);border:3px solid var(--dark-2);box-shadow:0 0 0 3px rgba(249,115,22,0.3)}
+.process-item h3{font-size:18px;margin-bottom:8px}
+.process-item p{font-size:14px;color:var(--gray-3);line-height:1.7}
+.qc-section{background:var(--dark)}
+.qc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.qc-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px;transition:var(--transition)}
+.qc-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px)}
+.qc-card-icon{width:44px;height:44px;border-radius:var(--radius-md);background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.qc-card-icon svg{width:22px;height:22px;color:var(--primary)}
+.qc-card h3{font-size:16px;margin-bottom:8px}
+.qc-card p{font-size:13px;color:var(--gray-3);line-height:1.6}
+.certs-section{background:var(--dark-2)}
+.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.cert-card{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:24px;text-align:center;transition:var(--transition);min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.cert-card:hover{border-color:rgba(249,115,22,0.3)}
+.cert-card-icon{width:48px;height:48px;border-radius:50%;background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center}
+.cert-card-icon svg{width:24px;height:24px;color:var(--primary)}
+.cert-card h3{font-size:14px;font-weight:700}
+.cert-card p{font-size:12px;color:var(--gray-3)}
+.factory-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gallery-item{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gallery-item:hover img{transform:scale(1.05)}
+.gallery-cap{position:absolute;bottom:0;left:0;right:0;padding:16px 14px 12px;background:linear-gradient(0deg,rgba(6,8,13,0.85),transparent);font-size:12px;font-weight:600;color:var(--white);letter-spacing:.02em}
+@media(max-width:1024px){.qc-grid{grid-template-columns:1fr 1fr}.cert-grid{grid-template-columns:1fr 1fr}.factory-gallery{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.qc-grid{grid-template-columns:1fr}.factory-gallery{grid-template-columns:1fr}.process-item{padding:0 0 32px 28px}.process-timeline{padding-left:28px}}
+</style>
+
+<section class="page-hero">
+  <div class="page-hero-bg" style={`background-image:url('${base}/images/fl-270/Recreational-go-karting4.webp')`}></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container"><div class="page-hero-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href={`${base}/`}>Home</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg><span>Factory</span></nav>
+    <div class="label">Our Factory &amp; Story</div>
+    <h1>Your Go Kart Factory,<br><span class="highlight">Built to Deliver</span></h1>
+  </div></div>
+</section>
+
+<section class="section mission-section">
+  <div class="container"><div class="mission-grid">
+    <div class="mission-img fade-in"><img src={`${base}/images/fl-270/Recreational-go-karting4.webp`} alt="VortKart manufacturing team" loading="lazy" /></div>
+    <div class="mission-text fade-in delay-2">
+      <div class="label">Our Mission</div>
+      <h2>Powering the World's<br><span class="highlight">Karting Industry</span></h2>
+      <p>VortKart® was founded in 2009 with a clear mission: to make world-class commercial karting accessible to entrepreneurs, resorts, and entertainment venues globally — without the premium markup of multiple resale layers.</p>
+      <p>We believed that factory-direct manufacturing, combined with deep engineering expertise and end-to-end project support, would create a better solution for operators everywhere. Today, our 15,000 m² ISO 9001 facility and 120+ skilled staff have validated that belief with 500+ deployments across 60+ countries.</p>
+      <div class="mission-quote">
+        <blockquote>"We don't just sell karts. We invest in our clients' success — from the first consultation through years of ongoing support."</blockquote>
+        <cite>— Marcus Chen, Founder &amp; CEO of VortKart®</cite>
+      </div>
+      <a href={`${base}/contact`} class="btn btn-primary">Work With Us</a>
+    </div>
+  </div></div>
+</section>
+
+<section class="section values-section" style="background:var(--dark)">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">What We Stand For</div><h2>The Principles Behind <span class="highlight">Every Kart</span></h2></div>
+    <div class="grid-4">
+      <div class="value-card fade-in delay-1"><div class="value-num">01</div><h3>Safety First</h3><p>Every go kart we manufacture meets or exceeds international safety standards. No shortcuts, ever.</p></div>
+      <div class="value-card fade-in delay-2"><div class="value-num">02</div><h3>Quality Over Volume</h3><p>We'd rather build fewer karts perfectly than rush production and compromise durability.</p></div>
+      <div class="value-card fade-in delay-3"><div class="value-num">03</div><h3>Transparent Partnership</h3><p>Clear quotes, honest lead times, and open communication — no hidden costs from first inquiry to after-sales.</p></div>
+      <div class="value-card fade-in delay-4"><div class="value-num">04</div><h3>Continuous Innovation</h3><p>We reinvest in R&amp;D every year to keep our clients' fleets ahead of the market.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="container"><div class="stats-grid">
+    <div class="text-center fade-in"><div class="stat-num" data-count="500" data-suffix="+">500+</div><div class="stat-label">Go Karts Delivered</div></div>
+    <div class="text-center fade-in delay-1"><div class="stat-num" data-count="120" data-suffix="+">120+</div><div class="stat-label">Go Kart Tracks Designed</div></div>
+    <div class="text-center fade-in delay-2"><div class="stat-num" data-count="60" data-suffix="+">60+</div><div class="stat-label">Countries Served</div></div>
+    <div class="text-center fade-in delay-3"><div class="stat-num" data-count="98" data-suffix="%">98%</div><div class="stat-label">Client Retention Rate</div></div>
+  </div></div>
+</div>
+
+<section class="section timeline-section">
+  <div class="container">
+    <div class="section-header fade-in" style="max-width:600px"><div class="label">Our Journey</div><h2>From Garage to<br><span class="highlight">Global Leader</span></h2></div>
+    <div class="timeline-grid">
+      <div class="timeline-col">
+        <div class="timeline">
+          <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-year">2009</div><h3>The Beginning</h3><p>VortKart® founded in a 200 m² workshop with a team of 6 engineers. First commercial rental go kart model launched and adopted by 3 local tracks.</p></div>
+          <div class="timeline-item fade-in delay-1"><div class="timeline-dot"></div><div class="timeline-year">2012</div><h3>International Expansion</h3><p>First export orders shipped to Europe and the Middle East. Manufacturing facility expanded to 2,000 m². ISO 9001 quality certification received.</p></div>
+          <div class="timeline-item fade-in delay-2"><div class="timeline-dot"></div><div class="timeline-year">2015</div><h3>Track Design Division Launched</h3><p>Expanded services to include full track design, layout consultation, and turnkey project management.</p></div>
+          <div class="timeline-item fade-in delay-3"><div class="timeline-dot"></div><div class="timeline-year">2018</div><h3>Electric Kart Series</h3><p>Launched the EL-2000 electric commercial kart series. Over 200 units shipped in the first year.</p></div>
+          <div class="timeline-item fade-in delay-4"><div class="timeline-dot"></div><div class="timeline-year">Today</div><h3>A Global Go Kart Manufacturer</h3><p>500+ go karts delivered and 120+ tracks designed across 60+ countries. Our 15,000 m² facility and 120+ skilled staff continue to scale to meet growing global demand.</p></div>
+        </div>
+      </div>
+      <div class="collage-col fade-in delay-2">
+        <div class="collage-grid">
+          <div class="collage-item full">
+            <img src={`${base}/images/history/2009-workshop.png`} alt="VortKart founding workshop 2009" loading="lazy" />
+            <span class="collage-year">2009</span>
+          </div>
+          <div class="collage-item">
+            <img src={`${base}/images/history/2012-expansion.png`} alt="VortKart factory expansion 2012" loading="lazy" />
+            <span class="collage-year">2012</span>
+          </div>
+          <div class="collage-item">
+            <img src={`${base}/images/history/2015-track-design.png`} alt="VortKart track design team 2015" loading="lazy" />
+            <span class="collage-year">2015</span>
+          </div>
+          <div class="collage-item">
+            <img src={`${base}/images/history/2018-electric.png`} alt="VortKart electric kart production 2018" loading="lazy" />
+            <span class="collage-year">2018</span>
+          </div>
+          <div class="collage-item">
+            <img src={`${base}/images/history/2024-campus.png`} alt="VortKart modern manufacturing campus 2024" loading="lazy" />
+            <span class="collage-year">2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section diff-section">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Why We Win</div><h2>Our <span class="highlight">Differentiators</span></h2><p>Three things set VortKart® apart from every other manufacturer in the industry.</p></div>
+    <div>
+      <div class="diff-row fade-in">
+        <div class="diff-img"><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis5.webp`} alt="Advanced CNC machining" loading="lazy" /></div>
+        <div class="diff-content">
+          <div class="label">01 — Manufacturing</div>
+          <h3>Factory-Direct,<br><span class="highlight">Zero Compromise</span></h3>
+          <p>Unlike importers or resellers, VortKart® owns the entire manufacturing chain. Our engineers design every component, our welders fabricate every chassis, and our QA team certifies every unit.</p>
+          <ul class="diff-list"><li><span>In-house steel tube bending and CNC machining</span></li><li><span>Proprietary welding jigs for dimensional accuracy</span></li><li><span>100-point pre-shipment quality inspection</span></li><li><span>Custom OEM branding and livery production</span></li></ul>
+        </div>
+      </div>
+      <div class="diff-row reverse fade-in">
+        <div class="diff-img"><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis2.webp`} alt="Track design blueprint" loading="lazy" /></div>
+        <div class="diff-content">
+          <div class="label">02 — Design Expertise</div>
+          <h3>Track Design That<br><span class="highlight">Maximizes Revenue</span></h3>
+          <p>Our in-house track designers optimize for throughput, guest experience, and operational efficiency. Every track is modeled in 3D before construction begins.</p>
+          <ul class="diff-list"><li><span>3D CAD modeling and simulation for every project</span></li><li><span>Revenue-per-seat-hour optimization analysis</span></li><li><span>FIA-aligned safety barrier and runoff planning</span></li><li><span>Lighting, signage, and spectator zone design</span></li></ul>
+        </div>
+      </div>
+      <div class="diff-row fade-in">
+        <div class="diff-img"><img src={`${base}/images/fr-60k/Junior-Racing-Karting8.webp`} alt="Customer support" loading="lazy" /></div>
+        <div class="diff-content">
+          <div class="label">03 — Lifetime Support</div>
+          <h3>Support That<br><span class="highlight">Never Stops</span></h3>
+          <p>Our relationship with clients doesn't end at delivery. VortKart® operates a global spare parts network and provides dedicated technical support throughout the lifetime of your fleet.</p>
+          <ul class="diff-list"><li><span>24/7 technical hotline in multiple languages</span></li><li><span>Spare parts shipped within 48 hours worldwide</span></li><li><span>Annual operator training and recertification programs</span></li><li><span>Fleet upgrade and refurbishment services</span></li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section process-section">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Production Process</div><h2>From Raw Steel to <span class="highlight">Finished Go Kart</span></h2><p>Every VortKart® commercial go kart moves through a rigorous, six-stage manufacturing process at our factory-direct facility.</p></div>
+    <div class="process-timeline fade-in">
+      <div class="process-item"><div class="process-dot"></div><h3>1. Chassis Fabrication</h3><p>Precision tube bending, jig-welded frames, and CNC-cut components. Every chassis is welded on a dedicated fixture for dimensional accuracy within ±1mm.</p></div>
+      <div class="process-item"><div class="process-dot"></div><h3>2. Surface Treatment</h3><p>Full sandblasting, epoxy primer, and powder-coat finish for uniform coverage with excellent chip and corrosion resistance.</p></div>
+      <div class="process-item"><div class="process-dot"></div><h3>3. Drivetrain Assembly</h3><p>Motor or engine installation, axle fitting, braking system, and steering assembly. All fasteners torqued to specification and lock-wired where required.</p></div>
+      <div class="process-item"><div class="process-dot"></div><h3>4. Electrical &amp; Bodywork</h3><p>Wiring harness, battery installation (electric models), body panels, bumpers, seats, and decals — each kart dressed to your specification.</p></div>
+      <div class="process-item"><div class="process-dot"></div><h3>5. Testing &amp; QA</h3><p>Every kart runs on our in-house test track. Braking, steering, acceleration, electrical systems, and structural integrity are verified before packing.</p></div>
+      <div class="process-item"><div class="process-dot"></div><h3>6. Packing &amp; Export Shipping</h3><p>Steel-frame crating with foam protection. Each shipment includes full export documentation: invoice, packing list, certificate of origin, and test certificates.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section qc-section">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Quality Control</div><h2>Quality Built Into <span class="highlight">Every Stage</span></h2><p>Quality isn't a final checkpoint — it's embedded in every step of our go kart manufacturing.</p></div>
+    <div class="qc-grid">
+      <div class="qc-card fade-in delay-1"><div class="qc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h3>Incoming Material Inspection</h3><p>All raw materials and purchased components are inspected on arrival — steel certificates verified, dimensions checked.</p></div>
+      <div class="qc-card fade-in delay-2"><div class="qc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>In-Process Checks</h3><p>Weld inspections after every chassis, torque checks on all fasteners, and dimensional verification at each assembly stage.</p></div>
+      <div class="qc-card fade-in delay-3"><div class="qc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h3>100-Point Pre-Shipment Check</h3><p>Before crating, every kart passes a 100-point final inspection — fasteners, finish, decals, and documentation verified against your order.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section certs-section">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Certifications</div><h2>Certified &amp; <span class="highlight">Export-Compliant</span></h2><p>Our products and processes meet international standards — critical for smooth customs clearance and buyer confidence.</p></div>
+    <div class="cert-grid fade-in">
+      <div class="cert-card"><div class="cert-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>ISO 9001:2015</h3><p>Quality Management</p></div>
+      <div class="cert-card"><div class="cert-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h3>CE Marking</h3><p>European Compliance</p></div>
+      <div class="cert-card"><div class="cert-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><h3>SGS Reports</h3><p>Material Testing</p></div>
+      <div class="cert-card"><div class="cert-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><h3>CIK/FIA</h3><p>Racing Homologation</p></div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--gray-2);margin-top:24px">Certificate copies available upon request. <a href={`${base}/contact`} style="color:var(--primary)">Contact us</a> for documentation.</p>
+  </div>
+</section>
+
+<section class="section-sm" style="background:var(--dark);padding-top:80px;padding-bottom:80px">
+  <div class="container">
+    <div class="section-header center fade-in"><div class="label">Gallery</div><h2>Inside the <span class="highlight">Factory</span></h2><p>A glimpse of our production line, chassis workshop, and finished go karts.</p></div>
+    <div class="factory-gallery fade-in">
+      <a class="gallery-item" href={`${base}/portfolio`}><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis5.webp`} alt="Go kart chassis welding workshop" loading="lazy" /><span class="gallery-cap">Chassis Welding</span></a>
+      <a class="gallery-item" href={`${base}/portfolio`}><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis2.webp`} alt="Go kart chassis assembly line" loading="lazy" /><span class="gallery-cap">Chassis Assembly</span></a>
+      <a class="gallery-item" href={`${base}/portfolio`}><img src={`${base}/images/fr-200x/2026-Four-stroke-go-kart3.webp`} alt="Four-stroke go kart production" loading="lazy" /><span class="gallery-cap">Gas Kart Production</span></a>
+      <a class="gallery-item" href={`${base}/portfolio`}><img src={`${base}/images/fl-270/Recreational-go-karting3.webp`} alt="Finished rental go karts" loading="lazy" /><span class="gallery-cap">Finished Rental Fleet</span></a>
+      <a class="gallery-item" href={`${base}/portfolio`}><img src={`${base}/images/fr-60k/Junior-Racing-Karting5.webp`} alt="Junior racing go kart test" loading="lazy" /><span class="gallery-cap">Test Track QA</span></a>
+      <a class="gallery-item" href={`${base}/portfolio`}><img src={`${base}/images/kz-class-chassis/KZ-Class-Kart-Chassis8.webp`} alt="Go kart powder coating and finishing" loading="lazy" /><span class="gallery-cap">Powder Coating &amp; Finishing</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container"><div class="fade-in">
+    <div class="label" style="justify-content:center">Let's Build Together</div>
+    <h2>Visit the Factory.<br>Build With <span class="highlight">Confidence.</span></h2>
+    <p>We welcome factory visits by appointment — see our production line, QC processes, and test track in person. Or request a quote and we'll prepare a tailored proposal for your venue.</p>
+    <div class="cta-buttons"><a href={`${base}/contact`} class="btn btn-primary btn-lg">Get a Free Quote</a><a href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, '')}`} class="btn btn-outline btn-lg" target="_blank" rel="noopener noreferrer">Schedule a Visit</a></div>
+  </div></div>
+</section>
+</BaseLayout>
