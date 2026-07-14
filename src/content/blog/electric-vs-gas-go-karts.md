@@ -58,4 +58,4 @@ Many successful operators run a mixed fleet. Use electric karts for junior group
 
 ## Ready to Decide?
 
-Our team can help you model the total cost of ownership for your specific venue, including energy costs, maintenance schedules, and fleet sizing recommendations. [Request a free consultation](/contact) and we'll prepare a customised comparison within 48 hours.
+Our team can help you model the total cost of ownership for your specific venue, including energy costs, maintenance schedules, and fleet sizing recommendations. [Request a free consultation](/contact) and we'll prepare a customised comparison within 24 hours.

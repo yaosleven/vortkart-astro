@@ -11,6 +11,7 @@ export interface Props {
   ogType?: string;
   canonical?: string;
   jsonLd?: object | object[];
+  heroImage?: string;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   ogType = 'website',
   canonical,
   jsonLd,
+  heroImage,
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -39,13 +41,17 @@ const orgSchema = {
   "email": CONTACT.email,
   "address": CONTACT.address,
   "logo": `${SITE.url}/images/logo.png`,
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "127",
-    "bestRating": "5",
-    "worstRating": "1"
-  }
+  "areaServed": { "@type": "GeoShape", "name": "Worldwide" },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": CONTACT.phone,
+    "email": CONTACT.email,
+    "contactType": "sales",
+    "availableLanguage": ["English", "Chinese"]
+  },
+  ...(Object.values(SOCIAL).filter(Boolean).length
+    ? { "sameAs": Object.values(SOCIAL).filter(Boolean) }
+    : {})
 };
 
 const jsonLdGraph = jsonLd
@@ -58,13 +64,17 @@ const jsonLdGraph = jsonLd
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#06080D" />
+  <meta name="format-detection" content="telephone=no" />
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="keywords" content={keywords} />
-  <link rel="icon" type="image/png" href={`${base}/images/logo.png`} />
-  <link rel="apple-touch-icon" href={`${base}/images/logo.png`} />
+  <link rel="icon" type="image/png" sizes="512x512" href={`${base}/images/favicon-512.png`} />
+  <link rel="icon" type="image/png" sizes="192x192" href={`${base}/images/favicon-192.png`} />
+  <link rel="apple-touch-icon" sizes="180x180" href={`${base}/images/apple-touch-icon.png`} />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {heroImage && <link rel="preload" as="image" href={heroImage} fetchpriority="high" />}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
   {canonical && <link rel="canonical" href={canonical} />}
   <meta property="og:title" content={ogTitle || title} />
@@ -124,7 +134,7 @@ const jsonLdGraph = jsonLd
   <div class="container">
     <div class="nav-inner">
       <a href={`${base}/`} class="nav-logo" aria-label="VortKart Home">
-        <img src={`${base}/images/logo.png`} alt={SITE.name} class="nav-logo-img" width="48" height="48" />
+        <img src={`${base}/images/logo.png`} alt={SITE.name} class="nav-logo-img" width="85" height="48" />
       </a>
       <ul class="nav-links" aria-label="Main navigation">
         <li><a href={`${base}/factory`}>Factory</a></li>
@@ -163,7 +173,7 @@ const jsonLdGraph = jsonLd
     <div class="footer-top">
       <div class="footer-brand">
         <a href={`${base}/`} class="nav-logo" aria-label="VortKart Home">
-          <img src={`${base}/images/logo.png`} alt={SITE.name} class="nav-logo-img" width="48" height="48" />
+          <img src={`${base}/images/logo.png`} alt={SITE.name} class="nav-logo-img" width="85" height="48" />
         </a>
         <p>VortKart® is a factory-direct manufacturer of commercial go karts and turnkey karting solutions for operators worldwide.</p>
         {hasSocialLinks && (
