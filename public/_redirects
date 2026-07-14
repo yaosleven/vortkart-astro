@@ -1,6 +1,6 @@
-# Canonical host: force non-www + HTTPS (Netlify / Cloudflare Pages)
-https://www.vortkart.com/*   https://vortkart.com/:splat   301!
-
 # Legacy path safety net (about page was merged into /factory)
+# NOTE: www -> non-www canonical redirect is handled by Cloudflare
+# dashboard Redirect Rules after binding the custom domain (Cloudflare
+# _redirects only allows relative-path targets, not absolute URLs).
 /about        /factory   301
 /about/       /factory   301
