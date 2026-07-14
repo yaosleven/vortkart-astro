@@ -1,6 +1,7 @@
 # Legacy path safety net (about page was merged into /factory)
-# NOTE: www -> non-www canonical redirect is handled by Cloudflare
-# dashboard Redirect Rules after binding the custom domain (Cloudflare
-# _redirects only allows relative-path targets, not absolute URLs).
+# IMPORTANT: Do NOT add a www -> non-www redirect here or in Cloudflare.
+# This site is bound to the APEX domain (vortkart.com) only.
+# www.vortkart.com points to a SEPARATE site (Site A) on another host;
+# forcing www -> apex would hijack and break that site.
 /about        /factory   301
 /about/       /factory   301
