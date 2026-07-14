@@ -27,3 +27,8 @@ Thumbs.db
 vortkart-site.zip
 *.zip
 Google ads/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
