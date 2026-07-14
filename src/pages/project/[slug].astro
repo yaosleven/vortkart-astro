@@ -9,7 +9,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const entry = await getEntry({ collection: 'projects', id: slug });
-if (!entry) return Astro.redirect('/portfolio');
+if (!entry) throw new Error(`Project not found: ${slug}`);
 
 const { data: p } = entry;
 const { Content } = await render(entry);

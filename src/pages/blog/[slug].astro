@@ -9,7 +9,8 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const entry = await getEntry({ collection: 'blog', id: slug });
-if (!entry) return Astro.redirect('/blog');
+// slug always comes from getStaticPaths, so entry is guaranteed to exist.
+if (!entry) throw new Error(`Blog entry not found: ${slug}`);
 
 const { data: post } = entry;
 const { Content } = await render(entry);
